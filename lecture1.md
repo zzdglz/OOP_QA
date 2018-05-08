@@ -1,2 +1,2 @@
-##lecture 1
-This is a try for OOP_QA.
+##1.Question
+Answer
