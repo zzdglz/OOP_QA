@@ -121,33 +121,15 @@
 	}
 
 
-#### 11.	What are the advantages of inline functions? When and where should we use keyword inline?
+#### 11.	What is the real meaning of inline functions? When and where should we use keyword inline?
 
-- Advantages:
-  - Comparing to normal functions: they are function-like macros and after compilation is written into the code, thus faster than other functions.
-  - supports type checking, debugging, etc.
-  - can be used as member functions.   
-- When to use:
-  - simple functions which are used many times.
-  - better without any looping.
-  - the addresses of the functions are not used.
-- How to use: (coding style)
-  - a)	put definitions into headers.
+inline关键字的**最初**意图是作为优化器的一个**提示**(而非命令)，即函数的内联替换优于函数调用。但是由于inline的这个含义是非强制的，因此编译器可以自由使用内联替换来标记没有标记为内联的函数，并且可以自由地为任何标记为内联的函数生成函数调用。
+
+事实上，inline关键字的真正用途是规避ODR(one definition rule)的规则。被inline标记的函数可以在不同的编译单元中重复多次而不会产生redefinition错误。static标记的函数也有类似的作用，但是static标记的函数会为每个编译单元都生成一个实体，而inline标记的函数在所有编译单元中为同一个实体(It has the same address in every translation unit)。简单的来说，inline函数很适合在头文件中定义。
 
 
-#### 12.	Please try to explain the implementation of inline functions (内联函数的实现) in compiler, and explain the reason for the advantages of inline functions.
-
-- The compiler will copy the code of inline function to where it is called.
-- reason:
-  - inline function save time because inline can yield less code than the function call preamble and return.
-  - No function call overhead, and with more safety. Because of it expand everywhere it called so that definition is needed forward, so that there can’t be called overhead.
-
-#### 13.	What will happen if we abuse (滥用) keyword inline?
-
-- 由于内联是代码替代，在编译过程之中完成，所以如果对于一些相对较小的函数使用内联，可以适当提高运行时的速度。但如果滥用内联，则会导致空间开销大大增加，同时还有可能反而降低运行时的时间，同时编译时间也会变长。得不偿失。
-- 
 ##	Header guarding
-#### 14.	Please give an example of header guarding using preprocessor directives (预编译命令) “#ifndef … #define …#endif”, and try to explain the possible compiling errors without them.
+#### 12.	Please give an example of header guarding using preprocessor directives (预编译命令) “#ifndef … #define …#endif”, and try to explain the possible compiling errors without them.
 
 
 	/* in computer.h */
@@ -175,7 +157,7 @@ This occurs because Computer is somehow already defined in Bus.h, and g++ only a
 
 
 ##	This pointer
-#### 15.	What does this mean? How to avoid the name conflicts (名字冲突) between member and non-member variables with this? How to return current objects in member functions?
+#### 13.	What does this mean? How to avoid the name conflicts (名字冲突) between member and non-member variables with this? How to return current objects in member functions?
 
 - “this” is a constant pointer pointing to the address of the current object. It cannot be changed, and is commonly used to access member variables/functions when name conflicts occur.
 
@@ -186,14 +168,14 @@ This occurs because Computer is somehow already defined in Bus.h, and g++ only a
 
 
 ##	Memory allocation
-#### 16.	What are the differences between new/delete and malloc/free?
+#### 14.	What are the differences between new/delete and malloc/free?
 
 malloc/free are library functions. new/delete are c++ operators.  
 malloc calculate the space manually. new calculate the space required automatically.  
 new/delete can call constructor/destructor. malloc/free can’t.  
 
 
-#### 17.	Why does C++ bring in new/delete to replace malloc/free?
+#### 15.	Why does C++ bring in new/delete to replace malloc/free?
 - 由于c++语言相比c语言，加强了面向对象设计部分，有许多抽象数据类型，而malloc和free由于是标准库函数，并没有自动调用动态对象的构造函数和析构函数的功能，也不是设计者最初的本愿；相比之下new和delete是运算符，可以执行构造函数和析构函数。
 - 同时对于内存分配上来说，new和delete更加智能，可以自动计算需要动态分配的内存大小，而malloc和free需要手动输入表达式计算所需大小。同时返回的是指向无类型void区域的指针，还需要一次强制类型转换。
 - C++更加强调安全性，从安全性上来说，new比malloc 更加安全。 
@@ -201,7 +183,7 @@ new/delete can call constructor/destructor. malloc/free can’t.
 - Malloc /free需要库文件支持，但是new/delete不需要。
 
 ##	Incomplete class
-#### 18.	Please list the situations where we need to use incomplete type, i.e., forward declaration (前向声明).
+#### 16.	Please list the situations where we need to use incomplete type, i.e., forward declaration (前向声明).
 
 
 - When we want to declare a function with a incomplete type as its argument type or return value type.
