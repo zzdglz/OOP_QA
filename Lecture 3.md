@@ -206,3 +206,32 @@ To fix this problem, we can:
 2、Or just overload a constructor  
 &emsp;&emsp;O (){};
 
+#### 13. How to use constructor initializer list? 
+
+- Have a look at this example below:
+
+	class A
+	{
+		int num1,num2;
+		A(int _num1,int _num2) : num1(_num1), num2(_num2) {}
+	};
+
+
+#### 14. When do we have to use constructor initializer list?
+
+- For const varibles.
+- For reference varibles.
+- For class varibles that don't have a default constructor. See below:
+
+	struct Base
+	{
+		int num;
+		Base(int _num) : num(_num) {}
+	};
+
+	class A
+	{
+		int num;
+		Base b;
+		A(int k) : num(k), b(k) {}
+	};
