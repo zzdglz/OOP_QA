@@ -98,12 +98,22 @@ Or removing a type of noodles that does not sell well.
 
 <!--  ![image][tmp10]  -->
 ![10-11](https://raw.githubusercontent.com/darknessnone/oop-exercise/master/10-11.png)
+
+
+#### 12. Please plot a typical UML class diagram with “class adapter” design pattern.
+
+![10-12](/10-12.png)
+
+#### 13. What is the difference between Object Adapter and Class Adapter?
+- Object Adapter uses composition for the adaptee.
+- Class Adapter uses inheritance for the adaptee, which requires multiple inheritance.
+
 ##	Simple Factory
-#### 12.	What is the basic function (功能) of simple factory?
+#### 14.	What is the basic function (功能) of simple factory?
 - Create pointer to objects of a children class of a basic class.
 - Avoid any negative effects of future modifications on implementation classes.
 
-#### 13.	Please give an example using simple factory.
+#### 15.	Please give an example using simple factory.
 
 	class Juice {
 	public:
@@ -138,10 +148,10 @@ Or removing a type of noodles that does not sell well.
 	}
 	};
 
-#### 14.	Please list some typical situations where simple factory is useful or necessary.
+#### 16.	Please list some typical situations where simple factory is useful or necessary.
 - 工厂模式有一种非常形象的描述，建立对象的类就如一个工厂，而需要被建立的对象就是一个个产品；在工厂中加工产品，使用产品的人，不用在乎产品是如何生产出来的。从软件开发的角度来说，这样就有效的降低了模块之间的耦合。1.在程序中，需要创建的对象很多，导致对象的new操作多且杂时，需要使用简单工厂模式；2.由于对象的创建过程是我们不需要去关心的，而我们注重的是对象的实际操作，所以，我们需要分离对象的创建和操作两部分，如此，方便后期的程序扩展和维护。
 
-#### 15.	Please plot a typical UML class diagram with simple factory pattern.
+#### 17.	Please plot a typical UML class diagram with simple factory pattern.
 
 
 
