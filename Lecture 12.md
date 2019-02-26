@@ -2,7 +2,7 @@
 ##	Strategy
 #### 1.	What is the basic function (功能) of strategy pattern?
 
-Strategy Pattern: define a family of algorithms, encapsulate each one, and make them interchangeable, which can reduce the number of classes and can reduce errors.
+- Define a family of algorithms, encapsulate each one, and make them interchangeable, which can reduce the number of classes and can reduce errors.
 
 #### 2.	Please give an example using strategy pattern.
 
@@ -25,8 +25,8 @@ Strategy Pattern: define a family of algorithms, encapsulate each one, and make 
 
 #### 3. List some typical situations where strategy pattern is useful or necessary.
 
--	when algorithms of similar use have to be altered under different operating systems.
--	when different characters will use different implementations of the same movements in a game.
+-	When algorithms of similar use have to be altered under different operating systems.
+-	When different characters will use different implementations of the same movements in a game.
 -	Have a family of algorithms to solve a problem and need to choose one of them easily.
 
 #### 4. Plot a typical UML class diagram with strategy pattern for a general situation
@@ -35,20 +35,35 @@ Strategy Pattern: define a family of algorithms, encapsulate each one, and make 
 ![12-4](https://raw.githubusercontent.com/darknessnone/oop-exercise/master/12-4.png)
 ##	Template method
 #### 5. What is the basic function (功能) of template pattern?
-Define skeleton (骨架) of an algorithm  
-Deferring (延迟) some steps to subclasses  
-Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm’s structure
+- Define skeleton (骨架) of an algorithm.
+- Deferring (延迟) some steps to subclasses.  
+- Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm’s structure.
 
 
 #### 6. Please give an example using template method design pattern.
 
-<!--  ![image][tmp6]  -->
-![12-6](https://raw.githubusercontent.com/darknessnone/oop-exercise/master/12-6.jpg)
- 
+
+	class HotDrink {
+	  public:
+		void sellDrink() {
+			boilWater();
+			brew();
+			pourIntoCup();
+			addCondiments();
+		}
+		void boilWater() {
+			cout << "Boiling Water" << endl;
+		}
+		virtual void brew() = 0;
+		void pourIntoCup() {
+			cout << "Pouring into cup";
+		}
+		virtual void addCondiments() = 0;
+	};
 
 #### 7. List some typical situations where template pattern is useful or necessary.
 
-- when the same algorithm only has a little changes to different tasks. it’s often used alongside with Strategy method.
+- When the same algorithm only has a little changes to different tasks. It’s often used with Strategy method.
 - One algorithm is going to deal with data with different types.
 
 
@@ -86,9 +101,9 @@ Before and after providing access to the object, different tasks can be added fo
  
 
 #### 13. What is the main difference between proxy and adapter?
-- Proxy wraps one object to control it’s access; Adapter wraps one or more objects to adapt their interface to the user program
-- Proxy does not change interface; Adapter may change interface
-- Proxy often changes functionality; Adapter does not change functionality
+- Proxy wraps one object to control it’s access; Adapter wraps one or more objects to adapt their interface to the user program.
+- Proxy does not change interface; Adapter may change interface.
+- Proxy often changes functionality; Adapter does not change functionality.
 
 ##	Command
 #### 14.	What is the basic function (功能) of command pattern?
