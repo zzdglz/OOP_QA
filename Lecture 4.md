@@ -158,11 +158,15 @@ Therefore, these codes have two different meanings, so it cannot pass the compil
 
 #### 13. How to convert a constant variable into a non-constant one?
 
-使用const_cast，如：  
+原则上我们可以使用const_cast，例如：
 
 	const int a = 1;  
 	int &b = const_cast<int&> (a);  
 	b = 2;  
+
+这段代码可以通过编译，但是很有可能运行错误，或者得到无法预计的结果(例如，在上述代码之后再开一个以a为长度的数组试试？)。C++标准规定：Modifying a const object through a non-const access path and referring to a volatile object through a non-volatile glvalue results in undefined behavior。
+
+在设计良好的程序中，通常不应该使用const_cast。
 
 
 

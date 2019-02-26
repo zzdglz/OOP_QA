@@ -119,19 +119,22 @@
 	}
 
 
-#### 11.	What are the advantages of inline functions? When and where should we use keyword inline?
+#### 11.	What is the real meaning of inline functions? When and where should we use keyword inline?
+
+The keyword **inline** is an optimizing indicator for the compiler, which indicates that the compiler may optimize the function as an inline function. However, the inline indicator is not compulsive. The compiler may optimize any function without the inline indicator as an inline function, and may treat any inline function as an ordinary function with function call. 
+事实上，inline关键字的真正用途是规避ODR(one definition rule)的规则。被inline标记的函数可以在不同的编译单元中重复多次而不会产生redefinition错误。static标记的函数也有类似的作用，但是static标记的函数会为每个编译单元都生成一个实体，而inline标记的函数在所有编译单元中为同一个实体(It has the same address in every translation unit)。简单的来说，inline函数很适合在头文件中定义。
 
 - Advantages:
-  - Comparing to normal functions: they are function-like macros and after compilation is written into the code, thus faster than other functions.
+  - Comparing with normal functions: they are function-like macros and after compilation is written into the code, thus faster than other functions.
   - supports type checking, debugging, etc.
   - can be used as member functions.
 - When to use:
   - simple functions which are used many times.
   - better without any looping.
   - the addresses of the functions are not used.
+  - Because that inline funtions simply replace the function call by code, so it's OK if we use inline on some "small" functions in order to accelerate the program. However, abused keyword inline will make the code long and thus make compilation longer, and may also reduce running speed
 - How to use: (coding style)
   - a)	put definitions into headers.
-
 
 #### 12.	Please try to explain the implementation of inline functions (内联函数的实现) in compiler, and explain the reason for the advantages of inline functions.
 
@@ -141,13 +144,8 @@
   - No function call overhead, and with more safety. Because of it expand everywhere it called so that definition is needed forward, so that there can't be called overhead.
 - Keyword inline send compiler a request to make this function inline. However, this request may be ignored by compiler.
 
-#### 13.	What will happen if we abuse (滥用) keyword inline?
-
-- 由于内联是代码替代，在编译过程之中完成，所以如果对于一些相对较小的函数使用内联，可以适当提高运行时的速度。但如果滥用内联，则会导致空间开销大大增加，同时还有可能反而降低运行时的时间，同时编译时间也会变长。得不偿失。
-- Because that inline funtions simply replace the function call by code, so it's OK if we use inline on some "small" functions in order to accelerate the program. However, abused keyword inline will make the code long and thus make compilation longer, and may also reduce running speed.
-
 ##	Header guarding
-#### 14.	Please give an example of header guarding using preprocessor directives (预编译命令) “#ifndef … #define …#endif”, and try to explain the possible compiling errors without them.
+#### 13.	Please give an example of header guarding using preprocessor directives (预编译命令) “#ifndef … #define …#endif”, and try to explain the possible compiling errors without them.
 
 	/* in computer.h */
 	#ifndef COMPUTER_H
@@ -172,7 +170,7 @@ The error message should be 'Computer' : 'class' type redefinition.
 This occurs because Computer is somehow already defined in Bus.h, and g++ only allows for one declaration for each class (to guarantee consistency).
 
 ##	This pointer
-#### 15.	What does this mean? How to avoid the name conflicts (名字冲突) between member and non-member variables with this? How to return current objects in member functions?
+#### 14.	What does this mean? How to avoid the name conflicts (名字冲突) between member and non-member variables with this? How to return current objects in member functions?
 
 - "this" is a constant pointer pointing to the address of the current object. It cannot be changed, and is commonly used to access member variables/functions when name conflicts occur.
 
@@ -182,13 +180,13 @@ This occurs because Computer is somehow already defined in Bus.h, and g++ only a
 	To return current objects in member functions: return *this;
 
 ##	Memory allocation
-#### 16.	What are the differences between new/delete and malloc/free?
+#### 15.	What are the differences between new/delete and malloc/free?
 
 malloc/free are library functions. new/delete are c++ operators.
 malloc calculate the space manually. new calculate the space required automatically.
 new/delete can call constructor/destructor. malloc/free can't.
 
-#### 17.	Why does C++ bring in new/delete to replace malloc/free?
+#### 16.	Why does C++ bring in new/delete to replace malloc/free?
 - 由于c++语言相比c语言，加强了面向对象设计部分，有许多抽象数据类型，而malloc和free由于是标准库函数，并没有自动调用动态对象的构造函数和析构函数的功能，也不是设计者最初的本愿；相比之下new和delete是运算符，可以执行构造函数和析构函数。
 - Compared to malloc/free, new/delete calls constructor and destructor automatically. This is a very important feature in oop designing, makes coding easier (otherwise the memory allocated needs to be freed manually).
 - 同时对于内存分配上来说，new和delete更加智能，可以自动计算需要动态分配的内存大小，而malloc和free需要手动输入表达式计算所需大小。同时返回的是指向无类型void区域的指针，还需要一次强制类型转换。
@@ -201,7 +199,7 @@ new/delete can call constructor/destructor. malloc/free can't.
 - new/delete doesn't need library.
 
 ##	Incomplete class
-#### 18.	Please list the situations where we need to use incomplete type, i.e., forward declaration (前向声明).
+#### 17.	Please list the situations where we need to use incomplete type, i.e., forward declaration (前向声明).
 
 - When we want to declare a function with a incomplete type as its argument type or return value type.
 - When we want to reduce #include to save the time of compilation.
