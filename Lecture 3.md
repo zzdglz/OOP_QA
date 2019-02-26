@@ -3,7 +3,7 @@
 #### 1. What is the scopes of a, b, c and d?
 	int a;
 	int f ()
-	{	
+	{
     	static int c;
     	int b;
     	{int d; }
@@ -15,80 +15,80 @@
 
 
 
-a是全局变量，作用域是整个编译单元范围内；  
-b是函数中的栈变量，作用域只限于函数内部，在函数定义的反括号之后结束作用；  
-c是static静态变量，在静态内存区分配内存，虽然在函数内部声明定义，但是作用域是全局的；  
-d的作用域比函数作用域更小，是只限于函数内部的括号里。
+- a是全局变量，作用域是整个编译单元范围内；
+- b是函数中的栈变量，作用域只限于函数内部，在函数定义的反括号之后结束作用；
+- c是static静态变量，在静态内存区分配内存，虽然在函数内部声明定义，但是作用域是全局的；
+- d的作用域比函数作用域更小，是只限于函数内部的括号里。
 
 
 #### 2. What is the scopes of objects of O?
- 
+
 	struct O
 	{
 	    int i;
 	};
-	O f (O o)
+	O f(O o)
 	{
 	    return o;
 	}
-	const O& g (O o)
+	const O& g(O o)
 	{
 	    return std::move(o);
 	}
-	O h (const O& o)
+	O h(const O& o)
 	{
 	    return o;
 	}
 
 
 
-O as f parameter: in function f.  
-O as f return value: in the expression including f.  
-O as g parameter and g return value: in the expression including g.  
-O as h parameter and h return value: in the expression including h.  
+- O as f parameter: in function f.
+- O as f return value: in the expression including f.
+- O as g parameter and g return value: in the expression including g.
+- O as h parameter and h return value: in the expression including h.
 
 
 
 ##	Constructor and destructor
 #### 3. Is it necessary to declare destructors（析构函数） as public members? What about constructors（构造函数）?
 
-- 析构函数: 不是. 构造函数: 不是. 
+- 析构函数: 不是. 构造函数: 不是.
 - 原因：
   - 如果你不想让外面的用户直接构造一个类（假设这个类的名字为A）的对象，而希望用户只能构造这个类A的子类，那你就可以将类A的构造函数/析构函数声明为protected。
   - 如果将构造函数/析构函数声明为private，那只能这个类的“内部”的函数才能构造这个类的对象：
-	
-		    \#include <iostream>  
-		    using namespace std;  
-		      
-		    class A  
-		    {  
-		    private:  
-		        A():data(10){ cout << "A" << endl; }  
-		        ~A(){ cout << "~A" << endl; }  
-		    public:  
-		        static A& Instance()  
-		        {  
-		            static A a;  
-		            return a;  
+
+		    \#include <iostream>
+		    using namespace std;
+
+		    class A
+		    {
+		    private:
+		        A(): data(10) { cout << "A" << endl; }
+		        ~A() { cout << "~A" << endl; }
+		    public:
+		        static A& Instance()
+		        {
+		            static A a;
+		            return a;
 		        }
-		        void Print()  
-		        {  
-		            cout << data << endl;  
+		        void Print()
+		        {
+		            cout << data << endl;
 		        }
-		    private:  
-		        int data;  
-		    }; 
-		    int main(int argc, char** argv)  
-		    {  
-		        A& ra = A::Instance();  
-		        ra.Print();  
-		    }  
+		    private:
+		        int data;
+		    };
+		    int main(int argc, char** argv)
+		    {
+		        A& ra = A::Instance();
+		        ra.Print();
+		    }
   - 当我们规定类只能在堆上分配内存时，就可以将析构函数声明为私有的：
-  		 
+
 			class alloc
 			{
 			public:
-			   alloc():			
+			   alloc():
 			　 destroy(){ delete this;} 　
 			private:
 			   ~alloc();
@@ -101,7 +101,7 @@ O as h parameter and h return value: in the expression including h.
   - New objects are being defined by an existing object of the same class
   - Function parameter or function return value is an object passed by value
 
-- Move constructor is usually called when: 
+- Move constructor is usually called when:
   - New objects are being defined by an rvalue reference(an object that is about to be destroyed)
   - Function parameter or function return value is an rvalue reference(an object that is about to be destroyed)
 
@@ -134,7 +134,7 @@ O as h parameter and h return value: in the expression including h.
 - It is not necessary to call destructor explicitly. If we call destructor explicitly, it may cause the same memory to be released many times which has potential to cause errors.
 
 #### 7. Specify which constructor will get called for each statement.
- 
+
 	constructor ();
 	constructor (int);
 	constructor a;
@@ -145,13 +145,13 @@ O as h parameter and h return value: in the expression including h.
 	constructor f[5] = {(1), (2)};
 
 
-because numbers are default int type:  
-a)	constructor ();  
-b)	constructor (int);  
-c)	constructor ();  
-d)	constructor (int);  
-e)	constructor ();  
-f)	constructor (int) for the first two and constructor() for the last three.  
+because numbers are default int type:
+a)	constructor ();
+b)	constructor (int);
+c)	constructor ();
+d)	constructor (int);
+e)	constructor ();
+f)	constructor (int) for the first two and constructor() for the last three.
 
 
 #### 8. How to define an object on stack（栈）? What about heap? What will happen if you define oversize object exceed your system’s limit?
@@ -187,7 +187,7 @@ Generally, when an object is initialized without the use of new/delete (like myO
 - Not always. because some objects without using heap memories will be automatically freed by the compiler.
 
 #### 12. Is the code below work fine? Explain the reason. How to fix the problem?
-	
+
 	struct O
 	{
 	    int i;
@@ -199,10 +199,39 @@ Generally, when an object is initialized without the use of new/delete (like myO
 	}
 
 
-No. It doesn’t define the default constructor.  
-To fix this problem, we can:  
-1、give the constructor a default Argument.  
-&emsp;&emsp;O (int i=0) {};  
-2、Or just overload a constructor  
+No. It doesn’t define the default constructor.
+To fix this problem, we can:
+1、give the constructor a default Argument.
+&emsp;&emsp;O (int i=0) {};
+2、Or just overload a constructor
 &emsp;&emsp;O (){};
 
+#### 13. How to use constructor initializer list? 
+
+- Have a look at this example below:
+
+	class A
+	{
+		int num1,num2;
+		A(int _num1,int _num2) : num1(_num1), num2(_num2) {}
+	};
+
+
+#### 14. When do we have to use constructor initializer list?
+
+- For const varibles.
+- For reference varibles.
+- For class varibles that don't have a default constructor. See below:
+
+	struct Base
+	{
+		int num;
+		Base(int _num) : num(_num) {}
+	};
+
+	class A
+	{
+		int num;
+		Base b;
+		A(int k) : num(k), b(k) {}
+	};
