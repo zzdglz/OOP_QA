@@ -3,7 +3,7 @@
 ## Command-line argument（命令行参数）
 
 #### 1. Suppose that you want to write an A+B program, which get A and B from command-line argument, how to complete the task? Please give an example of the source code, as well as how to compile and run the program.
-<code>
+
 	//a.cpp
 	#include <iostream>
 	#include <cstdlib>
@@ -13,9 +13,9 @@
 	  std::cout << atof(argv[1]) + atof(argv[2]) << std::endl;
 	  return 0;
 	}
-</code>
+
 - Windows:
- - To compile：g++ a.cpp -o a.exe\
+ - To compile：g++ a.cpp -o a.exe
  - To run：a.exe 1 2
 
 #### 2. Please list（列举）the potential advantages and disadvantages of obtaining arguments by file reading vs. by command-line argument.
