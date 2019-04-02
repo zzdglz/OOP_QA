@@ -17,13 +17,17 @@
 - Windows:
  - To compile：g++ a.cpp -o a.exe\
  - To run：a.exe 1 2
-
+- Ubuntu:
+ - To compile:g++ a.cpp -o a
+ - To run: ./a 1 2
+	
 #### 2. Please list（列举）the potential advantages and disadvantages of obtaining arguments by file reading vs. by command-line argument.
 
 - Advantage of file reading:
   1) File reading can be used in programs with GUI.
   2) Files can be copied and modified easily.
   3) Files can provide a larger size of arguments.
+  4) When reading large amounts of arguments(>= 10000), file reading are faster than command-line argument.
 - Disadvantage of file reading:
   1) File IO is more complex and slower than command arguments with exceptions to handle.
   2) Conventions(e.g. “a.out”) are required without command argument.
@@ -57,10 +61,10 @@
 - 解释器是在执行程序时,才一条一条的解释成机器语言给计算机来执行,所以运行速度是不如编译后的程序运行的快的。典型语言为Python，java。优点是比较容易实现跨平台，因为解释器可根据运行时所在平台对代码进行转换。缺点是速度慢。
 - The interpreters interprete the code line by line while execute the program. It's easy to see that generally interpreters run programs slower than compiled programs. The typical examples are Python, java.
 - Advantage: codes can be easily transplanted to other platforms. (the execution of the program only rely on the interpreters)
-- Disadvantage: runs slower than compiled program.
+- Disadvantage: runs slower than compiled program. Also, it will cost more memory.
 - 编译器是把源程序的每一条语句都编译成机器语言,并保存成二进制文件,这样运行时计算机可以直接以机器语言来运行此程序,速度很快。典型语言为C++。优点是执行效率高，因为不需要一边运行一边翻译。缺点是需要根据不同的操作系统编制代码。
 - The compilers compile each code to machine language (save as binary file, for example ".o"), so that the computer can run the program directly using machine language, which is faster than interpreters. The typical examples are C, C++.
-- Advantage: faster than the interpreters.
+- Advantage: faster than the interpreters. By compiling codes into machine language, compilers can help with code hiding.
 - Disadvantage: different codes for different platforms.
 
 #### 6.	GNU compiler g++ is universally used in both commercial and research projects. So you are supposed to know how to compile C++ source files into the binary file. State the basic usage (基本用法) to compile a source file. List useful compiling options (编译选项) as many as possible, and explain why and when we need these options.
@@ -257,7 +261,7 @@ The compiler will search from the standard library directory. This way is used i
 	main.o:main.cpp
 		g++ -c main.cpp -o main.o
 	clean:
-		rmmain.o main
+		rm main.o main
 
 
 
