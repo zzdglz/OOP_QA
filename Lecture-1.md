@@ -9,22 +9,29 @@
 	#include <cstdlib> 
 	#include <cstdio> 
 	int main(int argc, char** argv)
-	{ 
-	  std::cout << atof(argv[1]) + atof(argv[2]) << std::endl; 
-	  return 0; 
-	} 
+	{
+	  std::cout << atof(argv[1]) + atof(argv[2]) << std::endl;
+	  return 0;
+	}
 
 - Windows:
- - To compile： g++ a.cpp -o a.exe
- - To run： a.exe 1 2
-
-#### 2. Please list（列举）the potential advantages and disadvantages of obtaining arguments by file reading vs. by command-line arguments.
+ - To compile：g++ a.cpp -o a.exe
+ - To run：a.exe 1 2
+- Ubuntu:
+ - To compile:g++ a.cpp -o a
+ - To run: ./a 1 2
+	
+#### 2. Please list（列举）the potential advantages and disadvantages of obtaining arguments by file reading vs. by command-line argument.
 
 - Advantage of file reading:
-  - File reading can be used in programs with GUI.
-  - Files can be copied and modified easily.
-  - Files can provide a larger number of arguments.
-- Disadvantage of file reading: With exceptions to handle (异常处理), file I/O is slower than command-line arguments.
+  1) File reading can be used in programs with GUI.
+  2) Files can be copied and modified easily.
+  3) Files can provide a larger size of arguments.
+  4) When reading large amounts of arguments(>= 10000), file reading are faster than command-line argument.
+- Disadvantage of file reading:
+  1) File IO is more complex and slower than command arguments with exceptions to handle.
+  2) Conventions(e.g. “a.out”) are required without command argument.
+  3) Not easy to know argument amounts.
 - Advantage of command-line argument:
   - Make the program easier to be called in command-line.
   - Make the program callable in batch scripts for tasks like parameter sweeping (参数扫描, 以不同的参数运行同一个程序).
@@ -49,13 +56,13 @@
 #### 5.	Please explain how interpreters（解释器）and compilers（编译器）work. What are the typical programming languages (典型编程语言) for each of the two translation methods? Please list the advantages and disadvantages of interpreters vs. compilers.
 
 - The interpreters translate the code line by line while executing the program. So generally interpreters run programs slower than compiled programs. The typical examples are Python and java.
-  - Advantages of interpreters: programs can be easily transplanted (移植) to other platforms (平台), because the execution of the program only relies on the interpreters.
-  - Disadvantage: runs slower than compiled program.
+- Advantages of interpreters: programs can be easily transplanted (移植) to other platforms (平台), because the execution of the program only relies on the interpreters.
+- Disadvantage: runs slower than compiled program. Also, it will cost more memory.
 - The compilers compile the program into machine code, which is saved as a binary file (二进制文件). Then the machine code runs directly on the operating system (操作系统). This makes it faster than interpreters. Typical examples are C and C++.
-  - Advantage: runs faster than interpreters.
-  - Disadvantage: For different platforms, the source code needs to be recompiled (重新编译).
+- Advantage: faster than the interpreters. By compiling codes into machine language, compilers can help with code hiding.
+- Disadvantage: For different platforms, the source code needs to be recompiled (重新编译).
 
-#### 6.	&#10084; To be improved: The g++ compiler is universally used in both commercial and scientific research projects. So you are supposed to know how to use g++ to compile C++ source files into the binary file. State the basic usage (基本用法) on how to compile a source file. List useful compiling options (编译选项) as many as possible, and explain why and when do we need these options.
+#### 6.	The g++ compiler is universally used in both commercial and scientific research projects. So you are supposed to know how to use g++ to compile C++ source files into the binary file. State the basic usage (基本用法) on how to compile a source file. List useful compiling options (编译选项) as many as possible, and explain why and when do we need these options.
 <pre>
 Usage: g++ [options] file...
 Options:
