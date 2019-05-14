@@ -4,87 +4,81 @@
 
 #### 1.	Generally speaking, what are the two major parts of a class? Please define a class that describes a computer, and then give an example of how to instantiate an object and access its members.
 
-- 类的两个主要成分是：成员变量(member variables)和成员函数(member functions)。
-以下为对class computer的声明和实例化：
+- The two major parts of a class: member variables (成员变量) and member functions (成员函数). The class Computer is defined and used as follows:
 
-	class computer
+	class Computer
 	{
 	  public:
-	    std::string type;  //member variables
-	    computer(const std::string& _type) : type(_type) {}    //member functions
+	    std::string type_;  //member variables
+	    computer(const std::string& type) : type_(type) {}    //member functions
 	};
 
 	int main()
 	{
-	  computer A("int");
-	  string B = A.type;
+	  Computer A("lenovo");
+	  string B = A.type_;
 	  return 0;
 	}
 
+#### 2.	Where should we place the class definition (i.e., in the header file or the source file)? Please try to explain why header files are necessary.
 
-#### 2.	Where should we place the class declaration, in the header file or the source file? Please try to explain why header files are necessary.
-
-- We should place the class declaration in the header file.
-
-  1) Header files show the declarations without implementations, which makes it easier to carry out type security checks.
-  2) Header files hide the implementations of interfaces, so that the source codes which are always commercial secrets can be protected.
-  3) Classes are likely to be used in multiple compilation units (because the compilers need to know the definitions to allocate memories, for example). However, programmers may accidentally include the same header multiple times (which is actually very common), so we should place an include guard by the aids of preprocessing commands.
-
+- We should place the class definition (class Foo {};) in the header file. Here are the reasons:
+  - **Class definition** is different from **object definition**. Even if different source files include the same header file with the same class definition, there are no linking errors of multiple class definitions.
+  - The definitions of member functions can be included in a source file, which helps hide the implementations details. In this way, we may only provide the header file and the library (compiled from the source files) to the users, without exposing the implementation details.
+  - To avoid multiple inclusion of the same header in a source file, we should place an include guard (i.e., #ifndef XXX #define XXX ... #endif).
 
 #### 3.	Please try to explain why the designers want to organize data and functions into classes? What are the advantages and disadvantages?
 
-- Data and functions are organized into classes because they are easier to deal with as a whole – an object, which has its own characteristic things (data) and can handle some more complicated movements by themselves.
+- Data and functions are organized into classes because they are easier to deal with as a whole – an object.
 - Advantages:
-  - Easy for dividing the whole program into several complete separately functioning parts. Easy for cooperation of a team and also easy for debugging.
-  -	Easy for code reuse. Little modifications are needed when using old code. Composition and inheritance are both really good ways.
-  - Safe for code reuse. When only headers and libraries are provided, the client user cannot change the implementations made by the providers, thus avoiding mistakes.
-  -	Safe for memory control. Just make sure to write good constructors and destructors, and won't need to worry about the client user forgetting to clean up.
+  - Easy for dividing the whole program into separate functioning modules.
+	- Easy for cooperation of a team and also easy for debugging.
+  -	Easy for code reuse. Little modifications are needed for reusing old code. Composition and inheritance are good ways for reuse.
+  - Safe for code reuse. When only headers (including class definition with inline member functions) and libraries (including definitions of non-inline member functions) are provided, the client user cannot change the implementations made by the providers.
+  -	Safe for memory control, with well-defined constructors and destructors.
 - Disadvantages:
-  -	Size of object Oriented programs tend to be larger, Because of the size, the execution speed of OO programs maybe be slower and use more resources.
-  -	The process of arranging data and functions into different objects takes really much work. And if the wrapping and design is not good enough it might cause lasting problems in large programs.
-
+  -	Polymorphism (多态) takes more runtime and memory, due to the virtual pointer (vptr) and virtual table (vtable).
 
 ## Access control
-#### 4.	Please try to use access control （访问控制）to enable information hiding of your class definition for computer in Problem No.1.
+#### 4.	Please try to use access control （访问控制）to enable information hiding of your class definition of a computer in Problem No.1.
 
-	class computer {
+	class Computer {
 	public:
-		computer(const std::string& _type) : type(_type) {}
-		std::string get_type() const { return type; };
+		computer(const std::string& type) : type_(type) {}
+		std::string get_type() const { return type_; };
 	private:
-		std::string type;
+		std::string type_;
 	};
 
 #### 5.	Please try to explain the benefits of access control.
 
-- 通过在类中建立访问控制，可以将接口部分放在public中，而实现的过程部分放在private之中，这样可以防止用户错误的修改或者访问了一些实现过程的量。同时也可以使编程者修改程序实现方法时更加便捷，可以只用改public部分，因为用户肯定没有对该部分进行访问。
-- By accessing control, programmers can put the interfaces in "public", and the implementations in "private". Thus reduce the risk that user programmers access or modify variables by mistake. Also it enabled the programmers to only rewrite the implementation part, which is in "private", without affecting existed programs.
+- By access control, the class designer can set the class interfaces as "public", and set the implementations as "private". The separation between interfaces and implementations makes the class easier to use. On the one hand, the client user does not need to worry about the implementation details. On the other hand, the class designer can easily modify the implentation details without affecting the user program (as the interfaces do not change).
 
-#### 6.	Please tell the difference between keywords public, private and protected. We know that access control works for objects of the class. Does access control work in member functions? I.e., is it possible that one member function cannot access another member?
+#### 6.	Please tell the differences between keywords public, private and protected. We know that access control works for objects of the class. Does access control work in member functions of this class? I.e., is it possible that one member function cannot access another member?
 
-- difference：
-  - public: can be accessed anywhere.
-  - private: can only be accessed by members of this class.
-  - protected: can be accessed by members of this class and its derived class.
+- Differences：
+  - public: public members can be accessed anywhere.
+  - private: private members can only be accessed by members of this class.
+  - protected: protected members can be accessed by members of this class and its derived class.
 
-- Access control does not work in member functions, but it is possible that one number function cannot access another member: static member functions cannot access non-static member functions. However, it is not implemented by access control.
+- Access control does not work in member functions of this class. No matter what access control the member has, it can always be accessed by the member functions of the same class.
 
-#### 7.	Please try to explain why it is suggested to define a member function（成员函数） outside class definition.
+#### 7.	Please try to explain why it is suggested to define a member function（成员函数） outside class definition (i.e., outside the "class XXX {};" block).
 
-- When definitions are outside class definitions, especially in another .cpp file instead of the .h file, you can wrap the implementation up into an object file and then put it inside a library. In this way, your client users cannot modify your implementation and this makes both sides easier.If the member function is defined inside class definition, every .cpp file that include the header file where the class is defined will copy the long definition of functions, which leads to code expansion.
-- Also, the member function defined inside the class is regarded as inline functions automatically. It will reduce efficiency if the function is to long.
+- When definitions of member functions are outside the class definitions, especially when they are defined in a separate .cpp file instead of the .h file, we can compile the implementation in .cpp into an object file (.o) and then wrap it into a library (.a on Linux). In this way, the client users cannot access or modify the implementation.
+- If the member function is defined inside class definition, every .cpp file that include the header file with the class definition will copy the long definition of functions, which leads to code expansion.
+- Besides, member functions defined inside the class definition are regarded as inline functions automatically. It is not be appropriate to inline every member function.
 
 #### 8.	Please explain the differences between keyword struct and class.
 
-- Members of struct are public by default; members of class are private by default.
-- class is an new attribute in C++. C doesn't have keyword "class".
+- Members of a struct are public by default; members of a class are private by default.
+- class is an new attribute in C++. In C, there is no "class". In contrast, there is "struct" in C.
 
 ##	Friend
 #### 9.	What should you do to permit a non-member function to access private or protected members? What about permitting another class to access them? Please give an example.
 
-- 要用非成员函数访问类的私有成员变量需要将此函数设置成为该类的友元函数。要用另一个类去访问私有成员变量则需要将这个类设置为友元类。
-- keyword friend is required if a non-member function wants to access private member of a class. It is similar if we want another class to access private member of a class.
-- for example:
+- The keyword **friend** is required to allow a non-member function to access private member of a class. It is similar if we want to allow another class to access private members of a class.
+- For example:
 		class B;
 		class A
 		{
@@ -100,54 +94,49 @@
 		class B
 		{
 		public:
-			int g(A* p){return p->x;}
+			int g(A* p) { return p->x; }
 		}
 
 ##	Inline
-#### 10.	Please try to define some inline functions in Problems No. 1 with keyword inline. It is suggested to add a header file.
-
+#### 10.	Please define an inline function in Problems No. 1 with keyword **inline**. It is suggested to add a header file.
 
 	//In header file:
 	class Computer {
-	  int computer_size;
-	  void set_size(int);
+	    int computer_size_;
+	public:
+	    void set_size(int);
 	};
 ###
 	//In source file:
-	inline void Computer::set_size(int _size){
-	  computer_size = _size;
+	inline void Computer::set_size(int _size) {
+	  computer_size_ = _size;
 	}
-
 
 #### 11.	What is the real meaning of inline functions? When and where should we use keyword inline?
 
-The keyword **inline** is an optimizing indicator for the compiler, which indicates that the compiler may optimize the function as an inline function. However, the inline indicator is not compulsive. The compiler may optimize any function without the inline indicator as an inline function, and may treat any inline function as an ordinary function with function call. 
-事实上，inline关键字的真正用途是规避ODR(one definition rule)的规则。被inline标记的函数可以在不同的编译单元中重复多次而不会产生redefinition错误。static标记的函数也有类似的作用，但是static标记的函数会为每个编译单元都生成一个实体，而inline标记的函数在所有编译单元中为同一个实体(It has the same address in every translation unit)。简单的来说，inline函数很适合在头文件中定义。
+- The keyword **inline** is an optimizing indicator for the compiler, which indicates that the compiler may optimize the function as an inline function. However, the inline indicator is not compulsive (强制的). The compiler may optimize any function without the inline indicator as an inline function, and may treat any inline function as an ordinary function with function call overhead. When a function is treated as inline by the compiler, the function calls will be replaced by the function body of the inline function, so that the function call overhead will be eliminated.
+- As a side effect, the inline keyword avoids the ODR (one definition rule). An inline function can be defined in different source files without causing the redefinition error. So the definition of an inline function can be put in the header file. Similarly, **static** also avoids the ODR.
 
 - Advantages:
-  - Comparing with normal functions: they are function-like macros and after compilation is written into the code, thus faster than other functions.
-  - supports type checking, debugging, etc.
-  - can be used as member functions.
+  - Inline functions are better than function-like macros. After compilation, there are no function all overhead for inline functions. Therefore, calls to inline functions are faster than that for ordinary functions.
+  - Inline functions support type checking and debugging.
+  - Both ordinary and member functions can be set as inline.
 - When to use:
-  - simple functions which are used many times.
-  - better without any looping.
-  - the addresses of the functions are not used.
-  - Because that inline funtions simply replace the function call by code, so it's OK if we use inline on some "small" functions in order to accelerate the program. However, abused keyword inline will make the code long and thus make compilation longer, and may also reduce running speed
-- How to use: (coding style)
-  - a)	put definitions into headers.
+  - Simple functions which are used many times.
+  - Better without any looping.
+  - The address of the function is not used.
+  - Because inline funtions simply replace the function call by code, so it is OK if we use inline on some "small" functions in order to accelerate the program. However, abused keyword inline will make the code long and thus make compilation longer. This may also reduce running speed.
 
-#### 12.	Please try to explain the implementation of inline functions (内联函数的实现) in compiler, and explain the reason for the advantages of inline functions.
+#### 12. Please try to explain the implementation of inline functions (内联函数的实现) in compiler, and explain the reason for runtime reduction of inline functions.
 
-- The compiler will copy the code of inline function to where it is called.
-- reason:
-  - inline function save time because inline can yield less code than the function call preamble and return.
-  - No function call overhead, and with more safety. Because of it expand everywhere it called so that definition is needed forward, so that there can't be called overhead.
-- Keyword inline send compiler a request to make this function inline. However, this request may be ignored by compiler.
+- The compiler will copy the code of inline function to where the function is called.
+- Reason:
+  - No function call overhead, and with better safety than function-like macros. Inline functions save runtime because inline can generate less code without the function call, which needs to store local parameters before function call and restore the parameters after return.
 
 ##	Header guarding
-#### 13.	Please give an example of header guarding using preprocessor directives (预编译命令) “#ifndef … #define …#endif”, and try to explain the possible compiling errors without them.
+#### 13.	Please give an example of header guarding using preprocessor directives (预编译命令) "#ifndef XXX #define XXX ... #endif", and try to explain the possible compiling errors without them.
 
-	/* in computer.h */
+	/* computer.h */
 	#ifndef COMPUTER_H
 	#define COMPUTER_H
 	class computer {
@@ -159,48 +148,53 @@ The keyword **inline** is an optimizing indicator for the compiler, which indica
 	};
 	#endif
 
-If without the guard, you may have error in this following codes.
+Without the guard, there will be compiling errors in the following codes.
 
-	#include “Computer.h”
-	#include “Bus.h”
+	/* main.cpp */
+	#include "Computer.h"
+	#include "Bus.h" /* in Bus.h, Computer.h is also included. */
 	//…
 
 The error message should be 'Computer' : 'class' type redefinition.
 
-This occurs because Computer is somehow already defined in Bus.h, and g++ only allows for one declaration for each class (to guarantee consistency).
+This occurs because the declaration of class Computer is included twice, and g++ only allows for one declaration of each class in a source file.
 
 ##	This pointer
-#### 14.	What does this mean? How to avoid the name conflicts (名字冲突) between member and non-member variables with this? How to return current objects in member functions?
+#### 14. What does **this** pointer mean? How to avoid the name conflicts (名字冲突) between member and non-member variables with this pointer? How to return the current object in member functions?
 
-- "this" is a constant pointer pointing to the address of the current object. It cannot be changed, and is commonly used to access member variables/functions when name conflicts occur.
-
-- To avoid name conflicts:
-  - when using member functions/variables, for example, a variable named “x”:this -> x;
-	when using other variable also named “x”: x;
-	To return current objects in member functions: return *this;
+- "this" is a constant pointer that points to the address of the current object. It cannot be changed, and is typically used to identify member variables/functions when name conflicts occur.
+- To avoid name conflicts: in a member function, **this -> x** refers to the member variable named **x**.
+- To return the current object in a member function: **return * this;**
 
 ##	Memory allocation
 #### 15.	What are the differences between new/delete and malloc/free?
 
-malloc/free are library functions. new/delete are c++ operators.
-malloc calculate the space manually. new calculate the space required automatically.
-new/delete can call constructor/destructor. malloc/free can't.
+- *malloc/free* are library functions. *new/delete* are C++ operators.
+- To use *malloc*, we have to manually calculate the memory space needed. *new* automatically calculates the required space.
+- new/delete automatically calls the constructor/destructor. But malloc/free can't.
 
 #### 16.	Why does C++ bring in new/delete to replace malloc/free?
-- 由于c++语言相比c语言，加强了面向对象设计部分，有许多抽象数据类型，而malloc和free由于是标准库函数，并没有自动调用动态对象的构造函数和析构函数的功能，也不是设计者最初的本愿；相比之下new和delete是运算符，可以执行构造函数和析构函数。
-- Compared to malloc/free, new/delete calls constructor and destructor automatically. This is a very important feature in oop designing, makes coding easier (otherwise the memory allocated needs to be freed manually).
-- 同时对于内存分配上来说，new和delete更加智能，可以自动计算需要动态分配的内存大小，而malloc和free需要手动输入表达式计算所需大小。同时返回的是指向无类型void区域的指针，还需要一次强制类型转换。
-- new/delete is smarter when allocating memory, for they don't need to calculate the size of the memory, while malloc/free has to calculate the size of memory manually.
-- C++更加强调安全性，从安全性上来说，new比malloc更加安全。
-- new/delete is safer for it calls constructor and destructor automatically.
-- New操作符可以重载，可以自定义内存分配策略，甚至不做内存分配，而malloc无能为力。
-- the operator new can be overr1dden to have a memory allocating strategy, which malloc cannot.
-- Malloc/free需要库文件支持，但是new/delete不需要。
-- new/delete doesn't need library.
+- Different from malloc/free, new/delete calls constructor and destructor automatically. This is an important feature in OOP design, which makes it much easier for memory allocatoin and cleanup.
+- new/delete is smarter when allocating the memory, which automatically calculates the size of the memory. However, malloc/free has to manually calculate the size of memory, and the returned void* pointer needs to be explicitly converted to the required type.
+- new/delete is safer when it calls constructor and destructor automatically. Moreover, new will throw an exception when there are not enough memory, which is helpful for enhancing the user experience.
+- The **new** operator can be overloaded to implement a memory allocating strategy to meet certain requirements. In contrast, malloc cannot be overloaded.
 
 ##	Incomplete class
-#### 17.	Please list the situations where we need to use incomplete type, i.e., forward declaration (前向声明).
-
+#### 17. Please list the situations where we need to use incomplete type, i.e., forward declaration (前向声明). Please give an example.
 - When we want to declare a function with a incomplete type as its argument type or return value type.
 - When we want to reduce #include to save the time of compilation.
-- When class A have a B* pointer and class B have an A* pointer, we must avoid the error of loop header file references.
+- When class A have a B* pointer and class B have an A* pointer, we must use forward declaration to avoid the error of referencing header files in loop.
+- Example:
+    ```
+    class B;
+    class A {
+			B *pb_;
+	  	public:
+			B *getB() { return pb_; }
+		};
+		class B {
+			A *pa_;
+	  	public:
+			A *getA() { return pa_; }
+		};
+    ```
