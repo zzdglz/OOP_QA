@@ -1,6 +1,6 @@
 # Lecture 13
-##	Operator overloading
-#### 1.	Please state the essence (本质) of operator overloading.
+##  Operator overloading
+#### 1.  Please state the essence (本质) of operator overloading.
 
 - Operator overloading provides a way to use operators for user-defined data types (classes). It is actually function overloading, where the operators are regarded as functions.
 
@@ -36,16 +36,16 @@
 
 #### 7. Please write down the declaration of the member function that is called for the following statement. (Note that v1 and v2 are well-defined objects.)
 ```
-	Vector3 v1, v2;
-	v1 = v2;
+  Vector3 v1, v2;
+  v1 = v2;
 ```
 - Vector3& operator = (const Vector3& vec_);
 
 
 #### 8. Please write down a declaration of stream operator “<<” for vec3 (object of class Vector3), making the following statements legal.
 ```
-	a)	std::cout << vec3 << std::endl;
-	b)	std::cout << std::left << std::setw  << vec3 << std::endl;
+  a)  std::cout << vec3 << std::endl;
+  b)  std::cout << std::left << std::setw  << vec3 << std::endl;
 ```
 - friend ostream & operator << (ostream &os, const Vector3 & vec3);
 
@@ -54,42 +54,42 @@
 - When we do not define the assignment operator, the synthesized assignment operator uses the bitcopy to copy the member data. When there are pointer members in the copied objects, these objects share the same pointer value. This will cause bugs to programs.
 
 ```
-	/* example */
-	/* example */
-	#include <iostream>
+  /* example */
+  /* example */
+  #include <iostream>
 
-	using namespace std;
-	class A
-	{
-	private:
-		string* m_s;
-	public:
-		A() {
-			m_s = NULL;
-		}
-		A(const string &s) {
-			m_s = new string(s.c_str());
-		}
-		void modify() { *m_s += "?"; }
-		~A() {
-			delete m_s;
-		}
-		void output() { cout << *m_s << endl; }
-	};
+  using namespace std;
+  class A
+  {
+  private:
+    string* m_s;
+  public:
+    A() {
+      m_s = NULL;
+    }
+    A(const string &s) {
+      m_s = new string(s.c_str());
+    }
+    void modify() { *m_s += "?"; }
+    ~A() {
+      delete m_s;
+    }
+    void output() { cout << *m_s << endl; }
+  };
 
-	int main()
-	{
-		A a("hello, world");
-		A b;
-		b = a;
-		//do something to b to modify m_s
-		b.modify();
-		b.output();
-		//a is also modified
-		a.output();		
-		//Moreover, the pointer m_s will be relased twice before exit.
-		return 0;
-	}
+  int main()
+  {
+    A a("hello, world");
+    A b;
+    b = a;
+    //do something to b to modify m_s
+    b.modify();
+    b.output();
+    //a is also modified
+    a.output();    
+    //Moreover, the pointer m_s will be relased twice before exit.
+    return 0;
+  }
 ```
 
 #### 10. Please explain why self-assignment checking is important in overloaded assignment operator. How to check self-assignment?
@@ -109,31 +109,31 @@ TYPE& operator = (const TYPE& src)
 
 #### 11. Please state the difference between operator postfix ++ (--) and prefix ++ (--). Please write down the function body of operator postfix ++ and prefix ++ for the following class.
 ```
-	class Integer
-	{
-	public:
-	    Integer (int x = 0): _x (x) {}
-	private:
-	    int _x;
-	};
+  class Integer
+  {
+  public:
+      Integer (int x = 0): _x (x) {}
+  private:
+      int _x;
+  };
 ```
 
 - Using postfix, the returned value is the original one before modification. Whereas using prefix, the returned value is the one after modification.
 ```
-		// Prefix
-		const Integer& operator++ () {
-	    	_x++;
-	    	return *this;
-	  }
-		// Postfix
-	  const Integer operator++ (int) {
-	    	Integer before (_x);
-	    	_x++;
-	    	return before;
-	  	}
+    // Prefix
+    const Integer& operator++ () {
+        _x++;
+        return *this;
+    }
+    // Postfix
+    const Integer operator++ (int) {
+        Integer before (_x);
+        _x++;
+        return before;
+      }
 ```
 
-##	Function object (函数对象)
+##  Function object (函数对象)
 #### 12. What is a function object? What is the difference between function objects and normal functions?
 
 - Function object is an object of a class with overloaded function call operator “()”.
@@ -159,26 +159,26 @@ const size_t size = 1 << 5;
 
 std::ostream& operator << (std::ostream& os, const Sum& sum)
 {
-		os << "sum:" << sum._x << std::endl;
-		return os;
+    os << "sum:" << sum._x << std::endl;
+    return os;
 }
 int main ()
 {
-		std::random_device rd;
-		std::mt19937 mt (rd ());
-		std::uniform_int_distribution<> dis (0, size);
-		std::array<int, size> arr;
-		for (auto& element: arr) {
-				element = dis (mt);
-				std::cout << element << " ";
-		}
-		std::cout << std::endl;
+    std::random_device rd;
+    std::mt19937 mt (rd ());
+    std::uniform_int_distribution<> dis (0, size);
+    std::array<int, size> arr;
+    for (auto& element: arr) {
+        element = dis (mt);
+        std::cout << element << " ";
+    }
+    std::cout << std::endl;
 
-		Sum s (0);
-		//from C++11, for_each returns std::move(s).
-		s = std::for_each (std::begin (arr), std::end (arr), s);
-		std::cout << s;
-		return 0;
+    Sum s (0);
+    //from C++11, for_each returns std::move(s).
+    s = std::for_each (std::begin (arr), std::end (arr), s);
+    std::cout << s;
+    return 0;
 }
 ```
   - Answer is given as follows:
@@ -193,50 +193,50 @@ int main ()
 const size_t size = 1 << 5;
 
 class Sum {
-		private:
-				int _x;
-		public:
-				Sum(int s = 0): _x(s) {}
-				//copy constructor
-				Sum(const Sum& a):_x(a._x) {
-						std::cout<<"Copy constructor" << std::endl;
-				}
-				//move assignment
-				Sum& operator=(Sum&& a) {
-						std::cout<<"Move assignment" << std::endl;
-						if (&a == this)
-								return *this;
-						this->_x = a._x;
-						a._x = 0;
-						return *this;
-				}
-				void operator()(int x) {
-						this->_x += x;
-				}
-				friend std::ostream& operator << (std::ostream&, const Sum&);
+    private:
+        int _x;
+    public:
+        Sum(int s = 0): _x(s) {}
+        //copy constructor
+        Sum(const Sum& a):_x(a._x) {
+            std::cout<<"Copy constructor" << std::endl;
+        }
+        //move assignment
+        Sum& operator=(Sum&& a) {
+            std::cout<<"Move assignment" << std::endl;
+            if (&a == this)
+                return *this;
+            this->_x = a._x;
+            a._x = 0;
+            return *this;
+        }
+        void operator()(int x) {
+            this->_x += x;
+        }
+        friend std::ostream& operator << (std::ostream&, const Sum&);
 };
 
 std::ostream& operator << (std::ostream& os, const Sum& sum)
 {
-		os << "sum:" << sum._x << std::endl;
-		return os;
+    os << "sum:" << sum._x << std::endl;
+    return os;
 }
 int main ()
 {
-		std::random_device rd;
-		std::mt19937 mt (rd ());
-		std::uniform_int_distribution<> dis (0, size);
-		std::array<int, size> arr;
-		for (auto& element: arr) {
-				element = dis (mt);
-				std::cout << element << " ";
-		}
-		std::cout << std::endl;
+    std::random_device rd;
+    std::mt19937 mt (rd ());
+    std::uniform_int_distribution<> dis (0, size);
+    std::array<int, size> arr;
+    for (auto& element: arr) {
+        element = dis (mt);
+        std::cout << element << " ";
+    }
+    std::cout << std::endl;
 
-		Sum s (0);
-		//from C++11, for_each returns std::move(s).
-		s = std::for_each (std::begin (arr), std::end (arr), s);
-		std::cout << s;
-		return 0;
+    Sum s (0);
+    //from C++11, for_each returns std::move(s).
+    s = std::for_each (std::begin (arr), std::end (arr), s);
+    std::cout << s;
+    return 0;
 }
 ```
