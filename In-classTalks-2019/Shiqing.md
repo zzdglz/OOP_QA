@@ -85,7 +85,8 @@ After compilation, `foo.o` contains one symbol, `main`, which references `f` and
 The contents of these symbols are addresses of the functions.
 
 The linker reads the two objects, finds out the actual contents of each symbol,
-and substitutes the placeholders in each object.
+and substitutes the placeholders in each object. This is the process of
+reference resolution.
 
 In this case, the addresses of `f` and `g` are written into the corresponding
 locations of `foo.o` to form complete and correct machine instructions.
@@ -160,11 +161,11 @@ Undefined symbols for architecture x86_64:
 ld: symbol(s) not found for architecture x86_64
 ```
 
-Undefined symbols are ones that do no have a definition (in this case
-a function implementation). We need to provide one in any source file
+Undefined symbols are ones that do not have a definition (in this case
+a function implementation). We need to provide one in any source file,
 and the issue can be resolved.
 
-Symbols are not restricted to functions, as we'll see in the following example
+Symbols are not restricted to functions, as can be seen in the following example
 with global variables.
 
 ```c
