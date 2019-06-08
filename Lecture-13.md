@@ -1,199 +1,242 @@
 # Lecture 13
-##	Operator overloading
-#### 1.	Please state the essence (本质) of operator overloading.
+##  Operator overloading
+#### 1.  Please state the essence (本质) of operator overloading.
 
-- use operators for user-defined data types (classes), it is actually function overloading.
+- Operator overloading provides a way to use operators for user-defined data types (classes). It is actually function overloading, where the operators are regarded as functions.
 
 #### 2. Please state the restrictions on operator overloading.
-- Cannot change the usage; 
-- Cannot define new operators by yourself; 
-- Cannot change precedence rules; 
+- Cannot change the usage;
+- Cannot define new operators by yourself;
+- Cannot change precedence rules (运算符优先级);
 - Cannot change the number of operands.
+- Operators that cannot be overloaded: “.”, “.*”, “::”, “?:”
 
-#### 3. Assume @ is an operator overloaded as member function, please write down the declaration of the functions corresponding to the following statements.
-a) x @ y;
-b) @x;
-c) y@;
+#### 3. Assume @ is an operator overloaded as member function, please write down the declaration of the functions corresponding to the following statements. Here, x, and y are objects of class TYPE. a) x @ y; b) @x; c) y@;
 
+- x @ y: return-type opeator@(const TYPE &right);
+- @x: TYPE operator@();
+- y@: TYPE operator@(int);
 
-- x @ y; return-type opeator@(object, object);
-- @x;   return-type operator@(object);
-- y@;   return-type operator@(object, int);
+#### 4. Assume @ is an operator overloaded as friend function, please write down the declarations of functions corresponding to the following statements. Here, x, and y are objects of class TYPE. a) x @ y; b) @x; c) y@;
 
-#### 4. Assume @ is an operator overloaded as friend function, please write down the declarations of functions corresponding to the following statements.
-a) x @ y;
-b) @x;
-c) y@;
+- x @ y: friend return-type opeator@(const TYPE &left, const TYPE &right);
+- @x: friend TYPE operator@(TYPE &x);
+- y@: friend TYPE operator@(TYPE &x, int);
 
-- friend abcd operator @ (const abcd &x,const abcd &y);
-- friend abcd operator @ (const abcd &x);
-- friend abcd operator @ (const abcd &x,int);
+#### 5. When are you supposed to overload operators as member functions? And when are you supposed to overload operators as friend functions?
 
-#### 5. When are you supposed to overload operator as member functions? And when are you supposed to overload operator as friend functions? Please try to explain your answer in detail.
-
-
-- 当双目运算符的左元素是一个系统定义好的类型，不方便重载，而又需要在函数中访问右元素的私有变量，就要用friend。
-- 当双目运算符的左元素是自定义类型，就可以将重载运算符作为成员函数，这时只需要一个参数就是右元素。当然也可以将其作为全局函数,参数改为两个，不需要加friend
+- For a binary operator, if the left-hand operand (左操作数) is NOT object of the user-defined class, i.e., it is of system-defined type, the operator cannot be overloaded as a member function. For example, the stream operator "<<" in "cout <<" cannot be overloaded as a member function. It can only be overloaded as a friend function.
+- For a binary operator, if the left-hand operand is an object of the user-defined class, the operator can be overloaded as a member function.
+- For an overloaded friend operator, the keyword **friend** may be removed if there is no need to access the private members.
+- Moreover, overloaded member functions are preferred if we want to emphasize (强调) the association between the operator and the class.
 
 
-#### 6. Why should stream operators “<<” and “>>” be overloaded as friend functions?
-- Because we want to use operator “<<” as “cout << obj;”, the operator occurs before object, if we overloaded it as member functions, we can only use it as “obj << obj2”, which is not expected.
+#### 6. Why should the stream operators “<<” and “>>” be overloaded as friend functions?
+- Because we want to use operator “<<” as in the form of “cout << obj;”, the operator is located before the object. However, if we overload the stream operator as a member functions, we can only use it as in the form of “obj << cout”. This is not allowed, because we are changing the usage of the stream operator.
 
-#### 7. Please write down the declaration of the function that is called for the following statement. (Note that vec3 is a well-defined object.)
-	Vector3 vec3_ = vec3;
+#### 7. Please write down the declaration of the member function that is called for the following statement. (Note that v1 and v2 are well-defined objects.)
+```
+  Vector3 v1, v2;
+  v1 = v2;
+```
+- Vector3& operator = (const Vector3& vec_);
 
-- Vector3& operator = (const complex& vec_);
 
-
-#### 8. Please write down a declaration of stream operator “<<” for Vector3, making the following statements legal.
-	a)	std::cout << vec3 << std::endl;
-	b)	std::cout << std::left << std::setw (5) << vec3 << std::endl;
-
+#### 8. Please write down a declaration of stream operator “<<” for vec3 (object of class Vector3), making the following statements legal.
+```
+  a)  std::cout << vec3 << std::endl;
+  b)  std::cout << std::left << std::setw  << vec3 << std::endl;
+```
 - friend ostream & operator << (ostream &os, const Vector3 & vec3);
 
-
 #### 9. Why is bit-copy dangerous, especially when there are pointer members in the class? Please give an example where bit-copy is adopted by the compiler, which potentially causes bugs.
-因为默认拷贝构造函数是按位拷贝的，所以如果类中有指针变量的时候，就很可能会拷贝出一个一模一样的指针，此时如果delete掉一个类，会影响到另一个类的值。
 
-	/* example */
-	#include <iostream>
-	
-	using namespace std;
-	
-	class A
-	{
-	private:
-		string* m_s;
-	public:
-		A() {
-			m_s = NULL;
-		}
-		A(const string &s) {
-			m_s = new string;
-			m_s = s;
-		}
-		~A() {
-			delete m_s;
-		}
-	};
-	
-	int main()
-	{
-		A a(“hello, world.”);
-		A b;
-		b = a;
-		return 0;
-	}
+- When we do not define the assignment operator, the synthesized assignment operator uses the bitcopy to copy the member data. When there are pointer members in the copied objects, these objects share the same pointer value. This will cause bugs to programs.
 
-when a and b are destructed, the memory area m_s point will be released for twice.
+```
+  /* example */
+  /* example */
+  #include <iostream>
 
+  using namespace std;
+  class A
+  {
+  private:
+    string* m_s;
+  public:
+    A() {
+      m_s = NULL;
+    }
+    A(const string &s) {
+      m_s = new string(s.c_str());
+    }
+    void modify() { *m_s += "?"; }
+    ~A() {
+      delete m_s;
+    }
+    void output() { cout << *m_s << endl; }
+  };
 
+  int main()
+  {
+    A a("hello, world");
+    A b;
+    b = a;
+    //do something to b to modify m_s
+    b.modify();
+    b.output();
+    //a is also modified
+    a.output();    
+    //Moreover, the pointer m_s will be relased twice before exit.
+    return 0;
+  }
+```
 
-
-#### 10. Please explain why self-assignment checking is important in overloading assignment operator.
-- If there is pointer in the class, the assignment will first delete the original pointer to free the memory. But in self-assignment, we cannot delete it and it may cause data lost and memory leak.
+#### 10. Please explain why self-assignment checking is important in overloaded assignment operator. How to check self-assignment?
+- If there is pointer member in the class, the assignment process will first delete the original pointer to free the memory. If it is self-assignment, deleting the pointer first will cause data lost and errors.
+- Self-assignment is meaningless but consumes more runtime.  
+- We check self-assignment as follows:
+```
+TYPE& operator = (const TYPE& src)
+{
+    if (&src != this)//check self-assignment
+    {   
+        //assignment …
+    }
+    return *this;
+}
+```
 
 #### 11. Please state the difference between operator postfix ++ (--) and prefix ++ (--). Please write down the function body of operator postfix ++ and prefix ++ for the following class.
-	class Integer
-	{
-	public:
-	    Integer (int x = 0): _x (x) {}
-	private:
-	    int _x;
-	};
+```
+  class Integer
+  {
+  public:
+      Integer (int x = 0): _x (x) {}
+  private:
+      int _x;
+  };
+```
 
+- Using postfix, the returned value is the original one before modification. Whereas using prefix, the returned value is the one after modification.
+```
+    // Prefix
+    const Integer& operator++ () {
+        _x++;
+        return *this;
+    }
+    // Postfix
+    const Integer operator++ (int) {
+        Integer before (_x);
+        _x++;
+        return before;
+      }
+```
 
-- Using postfix, the return value is the original one while using prefix the return value is the one after operation.
+##  Function object (函数对象)
+#### 12. What is a function object? What is the difference between function objects and normal functions?
 
-		const Integer& operator++ () { // Prefix
-	    	_x++;
-	    	return *this;
-	  	}
-	  	const Integer operator++ (int) { // Postfix
-	    	Integer before (_x);
-	    	_x++;
-	    	return before;
-	  	}
-
-
-##	Function object (函数对象)
-#### 12. What is a function object? What is the difference between function objects and normal functions? 
-
-- An object of a class with overloaded function call operator “()”.
-- Function object can store and pass data. An function object can correspond to multiple functions.
-
+- Function object is an object of a class with overloaded function call operator “()”.
+- Function object is essentially an object that is unitity of member data and member functions.
+- Normal functions can only perform computation tasks.
 
 #### 13. What is the difference between function objects and normal objects?
 
-- Function objects can store and pass values.
-- Normal functions can only calculate certain problems.
+- A function object "fo" is different from a normal object "no" in that we can use the function "fo(args)". But we cannot use the function "no(args)".
 
-#### 14. Please state the advantages of function object compared with function pointer (函数指针).
-- Function object can store some member variables which is easy to change through interface. But function pointer can only point to a fixed function. In addition, function object can have inheritance, composition and so on, which make it easy to be reused or adapted. So function object is more valuable.
-- Function objects can be safer and enables type checking. It can also utilize template to aid more powerful code reuse.
-- Function objects can create lots of different kinds of objects according to the parameter passed, while function pointer can only point to existing function.
+#### 14. Please state the advantages of function object over function pointer (函数指针).
+- Function object can store and pass data (存储和传递数据). But function pointer cannot.
+- Function objects enable type checking for safe usage. Integrated with template, functional objects are much more powerful, and are thus used in STL, Boost, CGAL, etc.
+- For tuning the functionality (功能), different function objects  could be created with different parameters passed to the constructor. Function pointer can only point to an existing function with fixed functionality.
 
-#### 15. Please complete the missing code in the following program such that we can obtain the sum of the integers in arr.
-	#include <iostream>
-	#include <array>
-	#include <algorithm>
-	#include <random>
-	const size_t size = 1 << 5;
-	std::ostream& operator << (std::ostream& os, const Sum& sum)
-	{
-	    os << "sum:" << sum._x << std::endl;
-	    return os;
-	}
-	int main ()	
-	{
-	    std::random_device rd;
-	    std::mt19937 mt (rd ());
-	    std::uniform_int_distribution<> dis (0, size);
-	    std::array<int, size> arr;
-	    for (auto& element: arr)
-	        element = dis (mt);
-	    Sum s (0);
-	    s = std::for_each (std::begin (arr), std::end (arr), s);
-	    std::cout << s;
-	    return 0;
-	}
+#### 15. Please complete the missing code (e.g., add constructor, copy constructor, move assignment operator, and functional call operator) in the following program such that we can obtain the sum of the integers in array arr.
+```
+#include <iostream>
+#include <array>
+#include <algorithm>
+#include <random>
+const size_t size = 1 << 5;
 
-###
+std::ostream& operator << (std::ostream& os, const Sum& sum)
+{
+    os << "sum:" << sum._x << std::endl;
+    return os;
+}
+int main ()
+{
+    std::random_device rd;
+    std::mt19937 mt (rd ());
+    std::uniform_int_distribution<> dis (0, size);
+    std::array<int, size> arr;
+    for (auto& element: arr) {
+        element = dis (mt);
+        std::cout << element << " ";
+    }
+    std::cout << std::endl;
 
-	#include <iostream>
-	#include <array>
-	#include <algorithm>
-	#include <random>
-	const size_t size = 1 << 5;
-	
-	class Sum {
-		private:
-			int _x;
-		public:
-			Sum(int s = 0): _x(s) {}
-			void operator()(int x) {
-				this->_x += x;
-			}
-			friend std::ostream& operator << (std::ostream&, const Sum&);
-	};
-	
-	
-	std::ostream& operator << (std::ostream& os, const Sum& sum)
-	{
-	    os << "sum:" << sum._x << std::endl;
-	    return os;
-	}
-	int main ()
-	{
-	    std::random_device rd;
-	    std::mt19937 mt (rd ());
-	    std::uniform_int_distribution<> dis (0, size);
-	    std::array<int, size> arr;
-	    for (auto& element: arr)
-	        element = dis (mt);
-	    Sum s (0);
-	    s = std::for_each (std::begin (arr), std::end (arr), s);
-	    std::cout << s;
-	    return 0;
-	}
+    Sum s (0);
+    //from C++11, for_each returns std::move(s).
+    s = std::for_each (std::begin (arr), std::end (arr), s);
+    std::cout << s;
+    return 0;
+}
+```
+  - Answer is given as follows:
 
+```
+//To compile, type "g++ main.cpp -std=c++11"
+//main.cpp
+#include <iostream>
+#include <array>
+#include <algorithm>
+#include <random>
+const size_t size = 1 << 5;
+
+class Sum {
+    private:
+        int _x;
+    public:
+        Sum(int s = 0): _x(s) {}
+        //copy constructor
+        Sum(const Sum& a):_x(a._x) {
+            std::cout<<"Copy constructor" << std::endl;
+        }
+        //move assignment
+        Sum& operator=(Sum&& a) {
+            std::cout<<"Move assignment" << std::endl;
+            if (&a == this)
+                return *this;
+            this->_x = a._x;
+            a._x = 0;
+            return *this;
+        }
+        void operator()(int x) {
+            this->_x += x;
+        }
+        friend std::ostream& operator << (std::ostream&, const Sum&);
+};
+
+std::ostream& operator << (std::ostream& os, const Sum& sum)
+{
+    os << "sum:" << sum._x << std::endl;
+    return os;
+}
+int main ()
+{
+    std::random_device rd;
+    std::mt19937 mt (rd ());
+    std::uniform_int_distribution<> dis (0, size);
+    std::array<int, size> arr;
+    for (auto& element: arr) {
+        element = dis (mt);
+        std::cout << element << " ";
+    }
+    std::cout << std::endl;
+
+    Sum s (0);
+    //from C++11, for_each returns std::move(s).
+    s = std::for_each (std::begin (arr), std::end (arr), s);
+    std::cout << s;
+    return 0;
+}
+```

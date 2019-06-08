@@ -92,8 +92,9 @@ passing references in function so that you can changed the value of the argument
 
 #### 12.	How is reference associated with the C++ class grammar?
 
-- Reference is necessary for copy constructor
-Reference is often used with operator overload.
+- Reference is necessary for copy constructor.
+- Actually, reference is a must for copy constructor, rather than a need. The object can't be passed into the constructor by value because you're trying to define the function that handles passing by value.  
+- Reference is often used with operator overload.
 
 
 #### 13.	Please list the cases where copy constructors are called. How to avoid the copy constructor in the listed cases?
