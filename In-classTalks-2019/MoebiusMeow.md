@@ -1,8 +1,8 @@
-#Testing with Google Test Framework
-###Author: ¹ù¼ÑÊ¤ 2018013387
-###Department: School of Software
-##Relative Code
-###Install GTest
+ï»¿# Testing with Google Test Framework
+### Author: éƒ­ä½³èƒœ 2018013387
+### Department: School of Software
+## Relative Code
+### Install GTest
 ```bash
 #!/bin/bash
 git clone https://github.com/google/googletest.git
@@ -16,7 +16,7 @@ make
 make install
 ```
 
-##Slide Pages
+## Slide Pages
 ![slidepages](src_MoebiusMeow/0001.jpg)
 ![slidepages](src_MoebiusMeow/0002.jpg)
 ![slidepages](src_MoebiusMeow/0003.jpg)
