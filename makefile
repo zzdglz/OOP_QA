@@ -1,4 +1,31 @@
-main.exe: main.o A.h D.h S.h W.H save.h autorecover.h autorecover1.h autorecover2.h feasibility.h read.h test.h test1.h test2.h
-	g++ main.o -o main.exe
-main.o: main.cpp A.h D.h S.h W.H save.h autorecover.h autorecover1.h autorecover2.h feasibility.h read.h test.h test1.h test2.h
-	g++ -c main.cpp -o main.o 
+lSOURCES=$(wildcard *.cxx)
+sSOURCES=$(wildcard *.cpp)
+HEADERS=$(wildcard *.h)
+lOBJECTS=$(lSOURCES:%.cxx=%.o)
+sOBJECTS=$(sSOURCES:%.cpp=%.o)
+TARGET=maze.exe
+LIB=maze.a
+
+all: $(TARGET) $(LIB)
+$(TARGET): $(sOBJECTS) $(HEADERS) $(LIB)
+	@echo "Now Generating $(TARGET) ..."
+	g++ $(sOBJECTS) $(LIB) -o $(TARGET)
+$(LIB): $(lOBJECTS) $(HEADERS)
+	@echo "Now Generating $(LIB) ..."
+	ar -rv $(LIB) $(lOBJECTS)
+	ranlib $(LIB)
+%.o: %.cpp $(HEADERS)
+	@echo "Now Compiling $< ..."
+	g++ -c $< -o $@
+%.o: %.cxx $(HEADERS)
+	@echo "Now Compiling $< ..."
+	g++ -c $< -o $@
+clean:
+	del *.o *.exe *.bak *.a
+explain:
+	@echo "Lib Sources: $(lSOURCES)"
+	@echo "User Sources: $(sSOURCES)"
+	@echo "Lib Objects: $(lOBJECTS)"
+	@echo "User Objects: $(sOBJECTS)"
+	@echo "Lib: $(LIB)"
+	@echo "Target: $(TARGET)"
