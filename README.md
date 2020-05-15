@@ -17,5 +17,6 @@
 ## [C++ grammars](https://github.com/hailongyao/OOP_QA/blob/master/grammars.md).
 ## [C++ programming skills](https://github.com/hailongyao/OOP_QA/blob/master/skills.md).
 ## [C++ programming tools](https://github.com/hailongyao/OOP_QA/blob/master/tools.md).
+## [C++ opensource projects](https://github.com/hailongyao/OOP_QA/blob/master/projects.md).
 ## [C++ online references](https://github.com/hailongyao/OOP_QA/blob/master/refs.md).
 
