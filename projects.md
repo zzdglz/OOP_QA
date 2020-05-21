@@ -16,4 +16,32 @@ void Visualization::draw_single_line(cv::Mat& img, cv::Point2d start,
 }
 ```
 
-### 
+## [protocol buffers](https://developers.google.com/protocol-buffers/docs/downloads)
+
+​	Protocol buffers are Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler. You define how you want your data to be structured once, then you can use special generated source code to easily write and read your structured data to and from a variety of data streams and using a variety of languages.
+
+```c++
+// example
+message Person {
+  required string name = 1;
+  required int32 id = 2;
+  optional string email = 3;
+}
+
+Person john = Person.newBuilder()
+    .setId(1234)
+    .setName("John Doe")
+    .setEmail("jdoe@example.com")
+    .build();
+output = new FileOutputStream(args[0]);
+john.writeTo(output);
+
+Person john;
+fstream input(argv[1],
+    ios::in | ios::binary);
+john.ParseFromIstream(&input);
+id = john.id();
+name = john.name();
+email = john.email();
+```
+
