@@ -41,3 +41,53 @@ void bar(T p = T{}) { // the default value of p is not undefined
 }
 
 '''
+
+## Argument-Dependent Lookup
+
+ADL applies primarily to unqualified names that look like they name a nonmember function ina function call or operator invocation. ADL does not happen if ordinary look up finds
+
+- the name of a member function
+- the name of a variable
+- the name of a type
+- the name of a block-scope function declaration
+
+ADL is also inhibited if the name of the function to be called is enclosed in parentheses.
+
+Otherwise, if the name if followed by a list of argument expressions enclosed in parentheses, ADL proceeds by looking up the name in namespaces and classes associated with the types of the call arguments, ie. assoceated namespaces and associated classes:
+
+- for built-in types, this is the empty set
+- for pointer and array types -> of the underlying type
+- for enumeration types, the namespace in which the enumeration is declared
+- for class members, the enclosing class
+- for class types, itself, the enclosing class, and base classes
+- for template classes, add that of the template parameters
+- for function types, add that of the parameter types and return type
+
+example:
+
+'''cpp
+
+#include<iostream>
+
+namespace X {
+  template<typename T> void f(T);
+}
+
+namespace N {
+  using namespace X;
+  enum E {e1};
+  void f(E) {
+    std::cout << "N::f(N::E) called\n";
+  }
+}
+
+void f(int) {
+  std::cout << "::f(int) called\n";
+}
+
+int main() {
+  ::f(N::e1); // qualified function name: no ADL
+  f(N::e1);   // ordinary lookup finds ::f() and ADL finds N::f(), the latter is preferred
+}
+
+'''
