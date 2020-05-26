@@ -133,3 +133,45 @@ int main() {
 }
 
 ```
+
+## Value Categories Explained
+
+The core categries since C++11 are lvalue, prvalue(pure rvalue) and xvalue. The composite categories are: glvalue(generalized lvalue), ie. lvalue and xvalue, and rvalue, ie. xvalue and prvalue.
+
+- A glvalue is an expression whose evaluation determines the identiy of an object, bit-field, or function(ie. an entity that has storage)
+- A prvalue is an expression whose evaluation initializes an object or a bit-field, or computes the value of the operand of an operator
+- An xvalue is a glvalue designation an object or bit-field whose resources can be reused(usually because it is about to eXpire)
+- An lvalue is a glvalue that is not an xvalue
+- An rvalue is an expression that is either a prvalue or an xvalue
+
+Examples of lvalues:
+
+- Expressions that designate variables or functions
+- Applications of the built-in unary * operator
+- An expression that is just a string literal
+- A call to a function with a return type that is an lvalue reference
+
+Examples of prvalues:
+
+- Expressions that consist of a literal that is not a string literal or a user-defined literal
+- Applications of the built-in unary & operator
+- Applications of built-in arithmetic operators
+- A call to a function with a return type that is not a reference type
+- Lambda expressions
+
+Examples of xvalues:
+
+- A call to a function with a return type that is an rvalue reference to an object type(eg. std::move())
+- A cast to an rvalue reference to an object type
+
+Example:
+
+```cpp
+
+int x = 3; // x here is a variable, not an lvalue. 3 is a prvalue initializing the variable x.
+
+int y = x; // x here is an lvalue. The evaluation of that lvalue expression does not produce
+           // the value 3, but a designation of an object containing the value 3. That lvalue
+           // is then converted to a prvalue, which is that initializes y.
+
+```
