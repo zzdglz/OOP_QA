@@ -18,3 +18,25 @@ for(int i=0;regex_search(baseString,result,myRegex);i++){  //search for all matc
 
 
 [Reference](http://www.cplusplus.com/reference/regex/)
+
+
+## Measure Time Accurately in C++11
+
+
+Header `<chrono>` should be included.
+
+```cpp
+//An example from reference
+
+using namespace chrono;
+steady_clock::time_point t1=steady_clock::now();
+
+//do sth
+
+steady_clock::time_point t2=steady_clock::now();
+
+duration<double>diff=duration_cast<duration<double>>(t2-t1);
+cout<<diff.count()<<" seconds.";
+```
+
+[Reference](http://www.cplusplus.com/reference/regex/)
