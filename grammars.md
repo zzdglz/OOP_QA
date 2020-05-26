@@ -4,18 +4,18 @@
 
 For fundamental types such as int, double, or pointer types, there is no default constructor that initializes them with a useful default value. Instead, any noninitialized local variable has an undefined value:
 
-'''cpp
+```cpp
 
 void foo() {
   int x;    // x has undefined value
   int* ptr; // ptr points to anywhere
 }
 
-'''
+```
 
 Then the following code is undefined if T is a fundamental type:
 
-'''cpp
+```cpp
 
 #include<iostream>
 template<typename T>
@@ -24,11 +24,11 @@ void foo() {
   std::cout<<x<<std::endl; // x is undefined
 }
 
-'''
+```
 
 C++ introduces the following mechanism to call explicitly a default constructor for built-in types that initializes them with zero (or false, nullptr). As a consequence, you can ensure proper initialization even for built-in types by writing:
 
-'''cpp
+```cpp
 
 template<typename T>
 void foo() {
@@ -40,7 +40,7 @@ void bar(T p = T{}) { // the default value of p is not undefined
   ...
 }
 
-'''
+```
 
 ## Argument-Dependent Lookup
 
@@ -65,7 +65,7 @@ Otherwise, if the name if followed by a list of argument expressions enclosed in
 
 example:
 
-'''cpp
+```cpp
 
 #include<iostream>
 
@@ -90,4 +90,46 @@ int main() {
   f(N::e1);   // ordinary lookup finds ::f() and ADL finds N::f(), the latter is preferred
 }
 
-'''
+```
+
+## Reference Qualifier
+
+C++ introduces a new feature called reference qualifier to constrain member functions to be used only when the class is a lvalue or a rvalue.
+
+Example 1
+
+```cpp
+
+class Widget {
+  public:
+  void doWork() &;  // called when *this is a glvalue
+  void doWork() &&; // called when *this is a prvalue
+}
+
+Widget makeWidget();
+Widget w;
+
+w.doWork();            // w is a lvalue, calls the glvalue version
+makeWidget().doWork(); // makeWidget() is a prvalue, calls the prvalue version
+
+```
+
+Example 2
+
+```cpp
+
+#include <iostream>
+
+class W {
+ public:
+  void f() & { std::cout << "f() & called.\n"; }
+  void f() && { std::cout << "f() && called.\n"; }
+};
+
+int main() {
+  W w1;
+  W w2 = std::move(w1);
+  w2.f();  // calls f() & because w2 is an xvalue
+}
+
+```
