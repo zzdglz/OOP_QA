@@ -1,8 +1,8 @@
-##Inclass Talk - Introduction to Libraries
+## Inclass Talk - Introduction to Libraries
 
 *胡学浚 2019013270*
 
-####1. Why we use libraries
+#### 1. Why we use libraries
 
 * We don’t want to write every code from scratch!
 
@@ -12,7 +12,7 @@
 
 * Also, it prevents the code from being exposed.
 
-####2. Static and Dynamic Libraries
+#### 2. Static and Dynamic Libraries
 
 * Static Libraries(archive) 
   * compiled and linked directly into your program
@@ -62,7 +62,7 @@
   * Some compilers will search each libraries in the order you write them, write libraries containing definition later than those containing declaration.
   * Good under some compilers (e.g. Clang).
 
-####5. Include Dynamic Libraries
+#### 5. Include Dynamic Libraries
 
 * When you execute a program depending on a dynamic library, system will try to find the library in environment variable `$LD_LIBRARY_PATH`.
 
