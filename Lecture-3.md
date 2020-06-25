@@ -17,7 +17,7 @@
 
 - a是全局变量，作用域是整个编译单元范围内；
 - b是函数中的栈变量，作用域只限于函数内部，在函数定义的反括号之后结束作用；
-- c是static静态变量，在静态内存区分配内存，虽然在函数内部声明定义，但是作用域是全局的；
+- c是static静态变量，在静态内存区分配内存。作用域在函数f内部，每次调用f时可以访问c，并不是全局的。
 - d的作用域比函数作用域更小，是只限于函数内部的括号里。
 
 
@@ -45,7 +45,8 @@
 - O as f parameter: in function f.
 - O as f return value: in the expression including f.
 - O as g parameter and g return value: in the expression including g.
-- O as h parameter and h return value: in the expression including h.
+- O as h parameter: in function h. 
+- O as h return value: in the expression including h.
 
 
 
