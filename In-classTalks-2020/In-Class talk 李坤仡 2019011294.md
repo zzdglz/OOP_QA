@@ -106,7 +106,7 @@ Adjacent arguments are separated by commas.
 >&emsp;@echo bar:$(bar)   
 >&emsp;@echo string:$(string)  
 
-**Result:**>  
+**Result:**  
 >thueda@thueda-VirtualBox:~share$ make  
 >bar:aBcd  
 >string:abcd
