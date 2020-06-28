@@ -45,3 +45,11 @@ You can see the example code:example.cpp and exmample.h
 ![avatar](doxygen_3.jpg)
 
 ![avatar](doxygen_4.jpg)
+
+#### Reference
+
+https://github.com/doxygen/doxygen
+
+http://www.doxygen.nl/manual/docblocks.html#docexamples
+
+https://blog.csdn.net/Candy1232009/article/details/80786179
