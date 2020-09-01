@@ -1,7 +1,24 @@
 # This page lists the useful C++ grammars, especially for C++11, C++14, C++17 and C++20.
 
+## `decltype` in C++11
 
-## 关键字：decltype
+Just like its name "declared type", it is an operator that can check the declared type of an expression. 
+
+Unlike `auto`, `decltype` can distinguish `const` varaible and reference. Besides, it won't execute the expression. It will just infer the type.
+
+```cpp
+int func();
+
+int main()
+{
+    int var = 2;
+    
+    decltype(var) type1;  // type1 is int
+    decltype(func()) type2;  // func is not defined, but decltype just analyze the type, won't execute the function
+
+    return 0;
+}
+```
 
 *Author* : Biru Yang    *Date*: 2020.6.24
 
@@ -127,8 +144,8 @@ typename const_pointer = const T*; // use channel_traits<T>::const_pointer to ac
 
 ## "auto" in C++11
 
-## auto的原理是根据变量后面的取值，来推测变量的类型
-## 使用auto可以简化变量初始化
+### auto的原理是根据变量后面的取值，来推测变量的类型
+### 使用auto可以简化变量初始化
 
 ```C++
     std::vector<std::string> ve;

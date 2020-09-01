@@ -3,6 +3,9 @@
 ## http://www.cppreference.com
 #### This link provides grammars along with examples for C++ standard libraries. 
 
+## http://www.planetsourcecode.com/vb/default.asp?lngWId=3
+#### It provides lots of useful programs in C/C++, which is a place to find high-quality codes to read.
+
 ## [free-programming-books](https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books.md)
 
 #### This link provides free English e-books centered around programming and computer science.
