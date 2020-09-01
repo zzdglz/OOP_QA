@@ -1,10 +1,9 @@
 # This page lists the useful opensource projects in C++, along with a description of the project's purpose. 
 
+
+## Cocos2d-x
+
 *Author*: Biru Yang     *Date* : 2020.6.23
-
-
-
-## 1. Cocos2d-x
 
 Cocos2d-x是国内普及度较高的一款开源的**跨平台**移动2D游戏框架，其主要侧重于原生移动平台，适配iOS、Android、Windows、Mac等系统。其官网是这样描述这个框架的：
 
@@ -19,9 +18,9 @@ Cocos2d-x的用户既有小型的独立游戏工作室，也有如Zynga、Gamevi
 
 其在github上的页面为：[cocos2d-x_github](https://github.com/cocos2d/cocos2d-x)
 
+## Lua
 
-
-## 2. Lua
+*Author*: Biru Yang     *Date* : 2020.6.23
 
 Lua是一个**轻量级脚本语言**，由巴西里约热内卢天主教大学的一个三人研究小组于1993年开发。
 
@@ -36,3 +35,24 @@ Lua是一个**轻量级脚本语言**，由巴西里约热内卢天主教大学�
 由于其良好的可扩展性，许多知名应用和游戏（如 **魔兽世界**，**饥荒**）都将其作为嵌入式脚本语言。
 
 其官网为[Lua官网](http://www.lua.org/)，在其上有对Lua特性的更全面、详尽的介绍，一个简明的入门手册，以及免下载的Lua体验页面。
+
+## EasyX
+
+EasyX is a graphic library for C++ that helps users get started with graphics and game programming quickly.
+Official website: https://easyx.cn.
+
+## SimpleNES https://github.com/amhndu/SimpleNES
+
+This project provides a simple NES emulator written in C++. You can run some classic Nintendo games like SuperMarioBros with this NES.
+
+I recommend this project because of both its simplicity and profundity. This project includes only less than 30 files, each of which has no more than 1000 lines of codes, which is very suitable for C++ beginners. Despite its simplicity, we can learn a lot about computer system architeture, which is really important for cs majors, including how CPU executes instructions, how the memory is allocated and so on.
+
+## LiquidFun
+
+## *1. Overview*   
+**LiquidFun** is a 2D rigid-body and fluid simulation C++ library for games based upon Box2D.     
+It provides support for procedural animation of physical bodies to make objects move and interact in realistic ways.
+**LiquidFun source code** is available for download from **github.com/google/liquidfun**.  
+## *2. Purpose*  
+It provides support for procedural animation of physical bodies to make objects move and interact in realistic ways.
+
