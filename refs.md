@@ -34,3 +34,7 @@
 
 ## http://www.cplusplus.com/
 #### In this website, you can find the grammer and examples for c++ STL and there are concrete explanation for the matters needed attention
+
+## https://devdocs.io/cpp/
+#### DevDocs is here to save you from tedious jobs of browsing API documentation. DevDocs aims to make reading and searching reference documentation fast, easy and enjoyable.
+#### DevDocs combines multiple developer documentations in a clean and organized web UI with instant search, offline support, mobile version, dark theme, keyboard shortcuts, and more. Of course, C++ is suppoeted.
