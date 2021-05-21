@@ -66,3 +66,12 @@ It provides support for procedural animation of physical bodies to make objects 
 ## *2. Purpose*  
 It provides support for procedural animation of physical bodies to make objects move and interact in realistic ways.
 
+## Google Test
+
+### Overview
+> Googletest is a testing framework developed by the Testing Technology team with Google’s specific requirements and constraints in mind. Whether you work on Linux, Windows, or a Mac, **if you write C++ code, googletest can help you. And it supports any kind of tests, not just unit tests**.
+
+In addition to many internal projects at Google, GoogleTest is also used by [Chromium projects](http://www.chromium.org/), [LLVM](http://llvm.org/), [Protocol Buffers](https://github.com/google/protobuf), [OpenCV](http://opencv.org/).
+
+The source code of **googletest** is available on [GitHub](https://github.com/google/googletest). As a beginner, it is advised to firstly refer to [Googletest Primer](https://google.github.io/googletest/primer.html) for basic concepts and usages, then [GoogleTest User’s Guide](https://google.github.io/googletest/) for a conprehensive guideline.
+
