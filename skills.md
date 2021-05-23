@@ -50,7 +50,6 @@ float func_reverse( float num )
     > 在计算浮点数的平方根倒数的同一精度的近似值时，此算法比直接使用浮点数除法要快四倍。
     
   + 但在我本地的编译器条件下，两个算法的时间基本相同（甚至第二个算法略快），运行10^8次后速算法用时0.518s，普通算法用时0.445s。可能是我的测试数据过于单一，在更为多样化的数据条件下也许其优势便会凸显。
-    
 ---
 
 该算法的更详细介绍（包括**魔法数字**的推导）见下文：[平方根倒数速算法](https://www.cnblogs.com/german-iris/p/5767546.html)
@@ -79,3 +78,17 @@ For example, you can use a int as a bool[32].
 
 ## Decline the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
+
+## Subset Enumeration
+
+在二进制压位枚举子集时，一种非常便捷的写法：
+
+```c++
+for (int mask = 0; mask < tot; ++mask) {
+    for (int submask = mask; submask; submask = (submask - 1) & mask) {
+        ...
+    }
+}
+```
+
+一层循环即可枚举 submask 的所有子集（空集除外），进而 mask ^ submask 可以得到 mask 的所有真子集。
