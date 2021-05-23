@@ -106,3 +106,22 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+## Oh-My-Zsh
+
+> Oh My Zsh is an open source, community-driven framework for managing your Zsh configuration.
+>
+> Sounds boring. Let's try again.
+>
+> Oh My Zsh will not make you a 10x developer...but you may feel like one!
+
+Oh-My-Zsh 是一个 zsh 配置的框架，支持多元色彩高亮、海量插件，直观的终端美化与人性化小技巧的设计，为开发提供便利。
+
+![ohmyzsh图片](https://ohmyz.sh/img/themes/kolo.jpg)
+
+#### 安装
+
+```shell
+ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+安装自动化，如遇网络问题无法访问github库，可以手动下载github压缩包并修改install.sh的路径为本地路径。
