@@ -3,6 +3,9 @@
 ## http://www.cppreference.com
 #### This link provides grammars along with examples for C++ standard libraries. 
 
+## http://www.cplusplus.com/
+#### This link also provides grammars along with examples for C++ standard libraries. 
+
 ## http://www.planetsourcecode.com/vb/default.asp?lngWId=3
 #### It provides lots of useful programs in C/C++, which is a place to find high-quality codes to read.
 
@@ -31,6 +34,3 @@
 
 ## https://vjudge.net/problem
 #### Virtual Judge is not a real online judge. It can grab problems from other regular online judges and simulate submissions to other online judges. It aims to enable holding contests when you don't have the test data.
-
-## http://www.cplusplus.com/
-#### In this website, you can find the grammer and examples for c++ STL and there are concrete explanation for the matters needed attention
