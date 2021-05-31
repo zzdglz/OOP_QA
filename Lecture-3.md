@@ -235,3 +235,19 @@ To fix this problem, we can:
 		Base b;
 		A(int k) : num(k), b(k) {}
 	};
+##	Explicit
+#### 15. Can keyword *explicit* forbid implicit type conversion for multi-parameter constuctor?
+
+	class Tree
+	{
+		int height_{0}, weight_{0};
+	public:
+		explicit Tree(int h, int w) : height_{h}, weight_{w} {}
+	};
+	void foo(Tree t) {}
+	int main() {
+		foo({1, 2});
+	}
+	
+- In C++03, it compiles successfully, without forbidding implicit type conversion for multi-parameter constuctor.
+- In C++11 and later version, it cannot compile, showing "error: converting to 'Tree' from initializer list would use explicit constructor 'Tree::Tree(int, int)', which implies keyword *explicit* works.
