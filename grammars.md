@@ -165,3 +165,30 @@ typename const_pointer = const T*; // use channel_traits<T>::const_pointer to ac
 ```
 
 auto在这里替代的就是int
+
+### 使用 auto 可以避开 private class name 的限制
+
+ ```cpp
+ class A{
+   private:
+     class B{
+       private:
+         int a;
+         char b;
+       public:
+         B(int _a,char _b) : a(_a) , b(_b) {}
+     };
+   public:
+     B getB(int _a = 0, char _b = '0'){
+         return B{_a, _b};
+     }
+ };
+ 
+ int main(){
+     A A_var;
+     // A::B B_var = A_var.getB(); // compile error!
+     auto B_var = A_var.getB();
+     return 0;
+ }
+ ```
+
