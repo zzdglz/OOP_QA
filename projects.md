@@ -18,7 +18,6 @@ It gives dozens of demo codes in every single package and detailed tutorials, ma
 Cocos2d-x是国内普及度较高的一款开源的**跨平台**移动2D游戏框架，其主要侧重于原生移动平台，适配iOS、Android、Windows、Mac等系统。其官网是这样描述这个框架的：
 
 > 引擎提供了图形渲染、GUI、音频、网络、物理、用户输入等丰富的功能，被广泛应用于游戏开发及交互式应用的构建。
->
 
 其核心部分用C++编写，支持用C++、Lua进行开发。
 
@@ -66,3 +65,10 @@ It provides support for procedural animation of physical bodies to make objects 
 ## *2. Purpose*  
 It provides support for procedural animation of physical bodies to make objects move and interact in realistic ways.
 
+
+
+## CppJieba
+
+https://github.com/yanyiwu/cppjieba
+
+结巴中文分词的Cpp版本，支持多种分词模式，将句子拆分成词以进行文本分析等应用。
