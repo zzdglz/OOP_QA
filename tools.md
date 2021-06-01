@@ -106,3 +106,12 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+## CLion
+
+> A **cross-platform** IDE for C and C++
+
+CLion是Jetbrains公司旗下新推出的一款专为开发C/C++所设计的跨平台IDE。它是以IntelliJ为基础设计的，同时包含了代码辅助、代码生成、安全重构、快速文档、实时代码分析、集成调试器等许多智能功能以提高开发效率。
+
+**对学生完全免费**，提供官方简体中文插件。
+
+Website: https://www.jetbrains.com/clion/
