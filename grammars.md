@@ -192,3 +192,45 @@ auto在这里替代的就是int
  }
  ```
 
+### Argument Packs（参数包）
+
+Have you wondered why printf can accept any number of parameters?
+
+Actually, it isn't a quite complex grammar, and you can implement a `printf` by yourself in only 10 lines.
+
+This grammar is called "argument packs", supported since C++11.
+
+Let's see a example:
+
+```cpp
+#include <iostream>
+ 
+void tprintf(const char* format) // base function
+{
+    std::cout << format;
+}
+ 
+template<typename T, typename... Targs>
+void tprintf(const char* format, T value, Targs... Fargs) // recursive variadic function
+{
+    for ( ; *format != '\0'; format++ ) {
+        if ( *format == '%' ) {
+           std::cout << value;
+           tprintf(format+1, Fargs...); // recursive call
+           return;
+        }
+        std::cout << *format;
+    }
+}
+ 
+int main()
+{
+    tprintf("% world% %\n","Hello",'!',123);
+    return 0;
+}
+```
+
+In short, we use `...xxx` to give a parameter pack in arguments, and we use `args...` to use it in somewhere.
+
+The most comfortable way to "open" a parameter pack is to use a recursive function like above.
+
