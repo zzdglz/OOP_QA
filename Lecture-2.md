@@ -130,8 +130,29 @@
 #### 12. Please try to explain the implementation of inline functions (内联函数的实现) in compiler, and explain the reason for runtime reduction of inline functions.
 
 - The compiler will copy the code of inline function to where the function is called.
+
 - Reason:
+  
   - No function call overhead, and with better safety than function-like macros. Inline functions save runtime because inline can generate less code without the function call, which needs to store local parameters before function call and restore the parameters after return.
+  
+- However, the [documents of GCC](https://gcc.gnu.org/onlinedocs/gcc/Inline.html) compilers tell that:
+
+  - > You can also direct GCC to try to integrate all “simple enough” functions into their callers with the option `-finline-functions`.
+  - > As required by ISO C++, GCC considers member functions defined within the body of a class to be marked inline even if they are not explicitly declared with the `inline` keyword. You can override this with `-fno-default-inline`;
+  - > When a function is (1) both inline and static, if (2)all calls to the function are integrated into the caller, and (3)the function’s address is never used, then (==>) the function’s own assembler code is never referenced. 
+    >
+    > In this case, GCC does not actually output assembler code for the function, unless you specify the option `-fkeep-inline-functions`.
+  - > Note that certain usages in a function definition can make it unsuitable for inline substitution. Among these usages are: (1)variadic functions(变参数的函数), use of `alloca`, (2)use of computed `goto`, (3) use of nonlocal `goto`, (4) use of nested functions, (5) use of `setjmp`, (6) use of `__builtin_longjmp` and (7)use of `__builtin_return` or `__builtin_apply_args`. 
+    >
+    > Using `-Winline` warns when a function marked inline could not be substituted, and gives the reason for the failure.
+  
+	- > GCC does not inline any functions when **not optimizing** unless you specify the ‘always_inline’ attribute for the function, like this:
+    >
+    > ```cpp
+    > /* Prototype.  */
+    > inline void foo (const char) __attribute__((always_inline));
+    > ```
+  
 
 ##	Header guarding
 #### 13.	Please give an example of header guarding using preprocessor directives (预编译命令) "#ifndef XXX #define XXX ... #endif", and try to explain the possible compiling errors without them.
@@ -140,11 +161,11 @@
 	#ifndef COMPUTER_H
 	#define COMPUTER_H
 	class computer {
-    private:
-      DeviceManager dm;
-    public:
-      inline void boot() { dm.awake_all(); }
-      inline void reboot() { dm.sleep_all(); dm.awake_all(); }
+	private:
+	  DeviceManager dm;
+	public:
+	  inline void boot() { dm.awake_all(); }
+	  inline void reboot() { dm.sleep_all(); dm.awake_all(); }
 	};
 	#endif
 
