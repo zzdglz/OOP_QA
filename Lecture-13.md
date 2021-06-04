@@ -248,7 +248,7 @@ int main ()
 ```
 [函数对象参数]（操作符重载函数参数）mutable 或 exception 声明或不加 -> 返回值类型 {函数体}
 ```
-- 例如以下程序可以完成vector<int>的排序，其中lambda表达式实现了比较运算。
+- 例如以下程序可以完成 int a[5] 的排序，其中lambda表达式实现了比较运算。
 ```
 sort(a, a + 5, [](int x, int y)->bool{return x < y;});
 ```
