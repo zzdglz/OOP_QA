@@ -4,13 +4,13 @@
 	int a;
 	int f ()
 	{
-    	static int c;
-    	int b;
-    	{int d; }
+		static int c;
+		int b;
+		{int d; }
 	}
 	int main ()
 	{
-    	f ();
+		f ();
 	}
 
 
@@ -59,7 +59,7 @@
 
 		    \#include <iostream>
 		    using namespace std;
-
+		    
 		    class A
 		    {
 		    private:
@@ -196,8 +196,8 @@ Generally, when an object is initialized without the use of new/delete (like myO
 	int main ()
 	{
 	    O* o = new O[5];
+	    return 0;
 	}
-
 
 No. It doesn’t define the default constructor.
 To fix this problem, we can:
