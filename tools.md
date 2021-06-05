@@ -106,3 +106,12 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+## Windows Subsystem for Linux(WSL)
+
+WSL可以让开发者在Windows电脑上运行Linux程序。
+
+目前WSL一共有两代。WSL1的实现原理大致是微软利用Windows的API模拟了一部分Linux的API以达到在Windows上运行Linux程序的效果，此时甚至可以在Windows的任务管理器中看到WSL中运行的程序。
+
+而WSL2则是在Hyper-V虚拟机中运行了一个完整的Linux内核，以达到更多的功能。
+
+此外，也有WSLg，它是WSL2的扩展版，支持在WSL2中运行GUI程序。
