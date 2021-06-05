@@ -50,7 +50,6 @@ float func_reverse( float num )
     > 在计算浮点数的平方根倒数的同一精度的近似值时，此算法比直接使用浮点数除法要快四倍。
     
   + 但在我本地的编译器条件下，两个算法的时间基本相同（甚至第二个算法略快），运行10^8次后速算法用时0.518s，普通算法用时0.445s。可能是我的测试数据过于单一，在更为多样化的数据条件下也许其优势便会凸显。
-    
 ---
 
 该算法的更详细介绍（包括**魔法数字**的推导）见下文：[平方根倒数速算法](https://www.cnblogs.com/german-iris/p/5767546.html)
@@ -79,3 +78,39 @@ For example, you can use a int as a bool[32].
 
 ## Decline the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
+
+## 快速乘
+
+当在C++中进行这种计算时可能因为不正确的结果：long long * long long % long long.
+
+即int64与int64相乘的结果对int64取模，如果直接进行的话，有可能会因为溢出而得到错误的结果。在这种情况下，有一种比较简单但是速度比较慢的方法：（假设模数小于LLONG_MAX/2，否则在unsigned long long下运算即可)
+
+```C++
+long long mul(long long a,long long b,long long P)
+{
+    long long ret=0;
+    for(;b;b>>=1,a=(a+a)%P)
+        if(b&1)
+            ret=(ret+b)%P;
+    return ret;       
+}
+```
+
+这个方法利用了快速幂的思想，单次的时间复杂度为$O(\log_2 b)$。
+
+但实际上，有更加快速的方法，其代码为：
+
+```C++
+long long fast_mul(long long x,long long y,long long p)
+{
+	long long z=(long double)x/p*y;
+	long long res=(unsigned long long)x*y-(unsigned long long)z*p;
+	return (res+p)%p;
+}
+```
+
+这份代码中，利用了$xy \bmod P=xy-\lceil \frac{xy}{P}\rceil *P$这个公式。
+
+虽然在第四行有可能出现溢出的情况，但由于是unsigned long long的自然溢出，因此可以保证它们的差值是正确的。
+
+这种方法的复杂度为$O(1)$。
