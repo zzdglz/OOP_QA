@@ -106,3 +106,7 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+## Jupyter lab
+Jupyterlab is the next generation of web-based interface developed by jupyter team for jupyter project. Compared with jupyter notebook, it is more integrated, flexible and extensible. It supports more than 100 languages [2], supports the integration of multiple documents, and realizes the new workflow of interactive computing.
+
+If jupyter notebook is like an interactive notebook, then jupyter lab is more like an interactive vscode. In addition, jupyterlab is very powerful. You can deploy it on the cloud server. Whether it's a computer, tablet or mobile phone, you only need a browser to access it remotely.

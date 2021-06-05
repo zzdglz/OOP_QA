@@ -169,3 +169,11 @@ The output is "Wind::play".
 	   //Thus it is still an abstract class.
 	}
 </code>
+
+#### 15. Why are virtual functions necessary when using dynamic_cast?
+
+- dynamic_cast needs runtime type checking, and the information needed is stored in the virtual table. Compilers create virtual pointers and virtual tables only for those classes that have virtual functions.
+
+#### 16. Why destructors have to be vitual for Base classes?
+
+- The compiler may mot call the base class destructor if it is not declared virtual. This might cause memory leak.
