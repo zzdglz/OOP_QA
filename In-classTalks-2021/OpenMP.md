@@ -24,7 +24,7 @@
 - 先编写串行程序
 - 后添加并行化指导语句
 - 如同写了一句注释
-- ![image-20210605103403364](C:\Users\mengb\Downloads\Documents\OOP\code_OOP\OOP_QA\OOP_QA\In-classTalks-2021\OpenMP-1.png)
+- ![image-20210605103403364](OpenMP-1.png)
 
 ### OpenMP组成
 
@@ -72,7 +72,7 @@ int omp_get_nested()//判断后续并行区是否嵌套并行
 }
 ```
 
-![image-20210605105809896](C:\Users\mengb\Downloads\Documents\OOP\code_OOP\OOP_QA\OOP_QA\In-classTalks-2021\OpenMP-2.png)
+![image-20210605105809896](OpenMP-2.png)
 
 - 程序运行至 parallel 时，创建一组线程
 - 所有线程均执行并行区内的代码
@@ -116,12 +116,12 @@ omp_set_num_threads(4);
 - 检查嵌套并行区是否开启：
   - 调用 `int omp_get_nested()` 
 
-![image-20210605110641107](C:\Users\mengb\Downloads\Documents\OOP\code_OOP\OOP_QA\OOP_QA\In-classTalks-2021\OpenMP-3.png)
+![image-20210605110641107](OpenMP-3.png)
 
 ### 任务分配结构体
 
 - 将代码区域中的任务自动分配给不同线程执行
-- 例：![image-20210605110753346](C:\Users\mengb\Downloads\Documents\OOP\code_OOP\OOP_QA\OOP_QA\In-classTalks-2021\OpenMP-4.png)
+- 例：![image-20210605110753346](OpenMP-4.png)
 - 注：
   - **任务分配结构体必须包含在并行区内部**
   - 任务分配结构体不创建新线程
@@ -134,23 +134,23 @@ omp_set_num_threads(4);
   -  `DO/for` ：
     - 将循环的各次迭代分配给不同线程
     - C/C++中for循环，FORTRAN中DO循环
-    - 例：![image-20210605111122880](C:\Users\mengb\Downloads\Documents\OOP\code_OOP\OOP_QA\OOP_QA\In-classTalks-2021\OpenMP-5.png)
+    - 例：![image-20210605111122880](OpenMP-5.png)
   -  `sections` ：
     - 将任务划分成若干个 `section` ，分配给不同线程
     - 每个 `section` 只被一个线程执行一次
     - 线程和 `section` 的对应关系是不确定的
-    - 例：![image-20210605111333015](C:\Users\mengb\Downloads\Documents\OOP\code_OOP\OOP_QA\OOP_QA\In-classTalks-2021\OpenMP-6.png)
+    - 例：![image-20210605111333015](OpenMP-6.png)
   -  `single` ：
     - 仅使用并行区中的一个线程执行
     - 不执行此代码段的线程将等待此代码段执行结束（除非用了 nowait 子句）
-    - 例：![image-20210605111440350](C:\Users\mengb\Downloads\Documents\OOP\code_OOP\OOP_QA\OOP_QA\In-classTalks-2021\OpenMP-7.png)
+    - 例：![image-20210605111440350](OpenMP-7.png)
 
 #### 简便写法
 
-- 以下两种写法是等价的：![image-20210605111627438](C:\Users\mengb\Downloads\Documents\OOP\code_OOP\OOP_QA\OOP_QA\In-classTalks-2021\OpenMP-8.png)
+- 以下两种写法是等价的：![image-20210605111627438](OpenMP-8.png)
 - 对比：
-  - 一个 `parallel` 内部的 `for` 会被每个线程执行一次![image-20210605111819518](C:\Users\mengb\Downloads\Documents\OOP\code_OOP\OOP_QA\OOP_QA\In-classTalks-2021\OpenMP-9.png)
-  - 然而当 `for` 之前加上了 `#pragma omp for` ，那么这个 `for` 会分配给一些线程，总的来看只运行一次![image-20210605111920951](C:\Users\mengb\Downloads\Documents\OOP\code_OOP\OOP_QA\OOP_QA\In-classTalks-2021\OpenMP-10.png)
+  - 一个 `parallel` 内部的 `for` 会被每个线程执行一次![image-20210605111819518](OpenMP-9.png)
+  - 然而当 `for` 之前加上了 `#pragma omp for` ，那么这个 `for` 会分配给一些线程，总的来看只运行一次![image-20210605111920951](OpenMP-10.png)
 
 #### 嵌套循环
 
@@ -159,7 +159,7 @@ omp_set_num_threads(4);
   - 上面只有 `3` 个，只有外层循环被并行化
   - 下面有 `4` 个，两层循环被合并然后并行化
 
-![image-20210605112225906](C:\Users\mengb\Downloads\Documents\OOP\code_OOP\OOP_QA\OOP_QA\In-classTalks-2021\OpenMP-11.png)
+![image-20210605112225906](OpenMP-11.png)
 
 ## 数据共享与线程同步
 
