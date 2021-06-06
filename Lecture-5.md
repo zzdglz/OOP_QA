@@ -132,6 +132,7 @@ Inline function as a member of a class can be defined in the class body.
 #### 17.	What are the differences between static and non-static member functions?
 
 - 出现在类体外的函数定义不能指定关键字static；
+- 虚函数(virtual)不能指定关键字static；
 - 静态成员之间可以相互访问，包括静态成员函数访问静态数据成员和访问静态成员函数；
 - 非静态成员函数可以任意地访问静态成员函数和静态数据成员；
 - 静态成员函数不能访问非静态成员函数和非静态数据成员；
