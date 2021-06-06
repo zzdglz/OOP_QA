@@ -79,3 +79,30 @@ For example, you can use a int as a bool[32].
 
 ## Decline the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
+
+## Duff's device
+在计算机科学领域，达夫设备（英文：Duff's device）是串行复制（serial copy）的一种优化实现，通过汇编语言编程时一常用方法，实现展开循环，进而提高执行效率。
+原理上，在编程时，循环展开注重于利用批量处理，减少总处理分支数。而在串行复制数据时，当总循环次数无法被展开后循环的增量整除时，一般就用直接跳转到展开后循环体中部的方式，完成剩余数据的复制流程。
+因此，根据循环展开的思想，针对串行复制数据的需要，以每次迭代时赋最多8个值的方式，用C语言写出了一个优化实现，成功优化了串行复制的效率。
+例如：
+send(to, from, count)
+register short *to, *from;
+register count;
+{
+	register n = (count + 7) / 8;
+	switch (count % 8) {
+	case 0:	do { *to = *from++;
+	case 7:		 *to = *from++;
+	case 6:		 *to = *from++;
+	case 5:		 *to = *from++;
+	case 4:	     *to = *from++;
+	case 3:      *to = *from++;
+	case 2:      *to = *from++;
+	case 1:      *to = *from++;
+	        } while (--n > 0);
+	}
+}
+从速度上说，由于采用了循环展开技巧，使所需处理的分支数减少，从而降低了在处理分支时，中断与刷新流水线的巨大运算开销，因而相较于简单、直接的循环代码，这段代码的执行效率较高。
+另外，由代码易知，若不带switch语句，则这段代码只能复制8*n个数据项，而若count无法为8整除，则仍有count%8（即count除于8的余数）项未处理；有鉴于此，此间嵌入了switch/case语句，负责处理剩余数据。
+reference：https://zh.wikipedia.org/wiki/%E8%BE%BE%E5%A4%AB%E8%AE%BE%E5%A4%87
+---------------------------
