@@ -79,3 +79,28 @@ For example, you can use a int as a bool[32].
 
 ## Decline the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
+
+## Loop unrolling
+Normal Loop
+
+```c++
+ int x;
+ for (x = 0; x < 100; x++)
+ {
+     delete(x);
+ }
+```
+After loop unrolling
+
+```c++
+ int x; 
+ for (x = 0; x < 100; x += 5 )
+ {
+     delete(x);
+     delete(x + 1);
+     delete(x + 2);
+     delete(x + 3);
+     delete(x + 4);
+ }
+```
+The goal of loop unwinding is to increase a program's speed by reducing or eliminating instructions that control the loop. Optimizing compilers will sometimes perform the unrolling automatically, or upon request. But the code may become less readable after loop unrolling.
