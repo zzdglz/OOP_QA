@@ -106,3 +106,6 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+## Ubuntu Pastebin
+You can share your code with others conveniently with it.
+Website: https://paste.ubuntu.com/
