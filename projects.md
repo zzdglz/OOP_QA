@@ -18,7 +18,6 @@ It gives dozens of demo codes in every single package and detailed tutorials, ma
 Cocos2d-x是国内普及度较高的一款开源的**跨平台**移动2D游戏框架，其主要侧重于原生移动平台，适配iOS、Android、Windows、Mac等系统。其官网是这样描述这个框架的：
 
 > 引擎提供了图形渲染、GUI、音频、网络、物理、用户输入等丰富的功能，被广泛应用于游戏开发及交互式应用的构建。
->
 
 其核心部分用C++编写，支持用C++、Lua进行开发。
 
@@ -65,4 +64,16 @@ It provides support for procedural animation of physical bodies to make objects 
 **LiquidFun source code** is available for download from **github.com/google/liquidfun**.  
 ## *2. Purpose*  
 It provides support for procedural animation of physical bodies to make objects move and interact in realistic ways.
+
+## TensorFlow:
+
+TensorFlow 是谷歌的第二代机器学习系统。
+
+TensorFlow 内建深度学习的扩展支持，任何能够用计算流图像来表达的计算，都可以使用TensorFlow。任何基于梯度的机器学习算法都能够受益于TensorFlow的自动分化（auto-differentiation）
+
+通过灵活的Python接口，要在TensorFlow中表达想法也会非常容易。
+
+官网网址：https://tensorflow.google.cn/
+
+相关教程：http://c.biancheng.net/tensorflow/
 
