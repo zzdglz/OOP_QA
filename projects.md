@@ -66,3 +66,20 @@ It provides support for procedural animation of physical bodies to make objects 
 ## *2. Purpose*  
 It provides support for procedural animation of physical bodies to make objects move and interact in realistic ways.
 
+## Face Recognition
+https://github.com/ageitgey/face_recognition
+
+Recognize and manipulate faces from Python or from the command line with
+the world's simplest face recognition library.
+
+Built using [dlib](http://dlib.net/)'s state-of-the-art face recognition
+built with deep learning. The model has an accuracy of 99.38% on the
+[Labeled Faces in the Wild](http://vis-www.cs.umass.edu/lfw/) benchmark.
+
+This also provides a simple `face_recognition` command line tool that lets
+you do face recognition on a folder of images from the command line!
+
+#### Features
+- **Find faces in pictures:** Find all the faces that appear in a picture
+- **Find and manipulate facial features in pictures:** Get the locations and outlines of each person's eyes, nose, mouth and chin.
+- **Identify faces in pictures:** Recognize who appears in each photo.
