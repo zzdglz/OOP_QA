@@ -40,14 +40,14 @@ void main()
 经过分析我们不难发现，这三个核心部分其实并无严格意义上的先后顺序，但如果按此流程执行的话，很可能会因为某一步的时间开销相对大而影响视频的流畅性，我们期望能够按如下方式运行代码：
 
 ```c++
-void main() 				void main()							void main()
-{							{									{
-    ...							...									...
-    while(1)					while(1)							while(1)
-    {							{									{
-        READ();						TRANSLATE();						OUTPUT();
-	}							}									}
-}							}									}
+void main() 				void main()					void main()
+{					{						{
+    ...					    ...						    ...
+    while(1)				    while(1)					    while(1)
+    {					    {						    {
+        READ();				        TRANSLATE();				        OUTPUT();
+    }					    }						    }
+}					}						}
 ```
 
 于是线程这一概念就被提出。线程之间可以并发地执行；线程之间共享相同的地址空间。
@@ -107,30 +107,30 @@ class SpeakThread extends Thread{
 但是仅仅依靠此方式来共享数据是有一定的风险的，在不同线程中并发地独写同一个变量可能会因为线程运行的快慢而产生不同的结果，比如：
 
 ```java
-	Thread1													Thread2
-	tmp1 = cnt;												tmp2 = cnt;
-	tmp1++;													tmp2 += 2;
-	cnt = tmp1;												cnt = tmp2;
+	Thread1										Thread2
+	tmp1 = cnt;									tmp2 = cnt;
+	tmp1++;										tmp2 += 2;
+	cnt = tmp1;									cnt = tmp2;
 ```
 
 这两个线程运行时，就有可能产生很多不同的结果：
 
-```java
-Thread1													Thread2
-tmp1 = cnt;												
-tmp1++;													
-cnt = tmp1;												
-														tmp2 = cnt;
-														tmp2 += 2;	
-														cnt = 2; //cnt = 4
+```jav
+	Thread1										Thread2
+	tmp1 = cnt;												
+	tmp1++;													
+	cnt = tmp1;												
+											tmp2 = cnt;
+											tmp2 += 2;	
+											cnt = 2; //cnt = 4
 ```
 
 ```java
-	Thread1													Thread2
+	Thread1										Thread2
 	tmp1 = cnt;												
-															tmp2 = cnt;
-															tmp2 += 2;
-															cnt = tmp2;
+											tmp2 = cnt;
+											tmp2 += 2;
+											cnt = tmp2;
 	tmp1++;
 	cnt = tmp1;	//cnt = 2
 ```
