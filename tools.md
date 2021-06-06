@@ -1,4 +1,4 @@
-# This page lists the useful programming tools for C++ programming, preferably with description of the tool or with an example illustrating how to use the tool. 
+# This page lists the useful programming tools for C++ programming, preferably with description of the tool or with an example illustrating how to use the tool.
 
 ## PuTTY
 
@@ -104,5 +104,13 @@ Website:https://code.visualstudio.com
 Vim is a text editor developed from VI. Code completion, compilation, error jump and other convenient programming functions are particularly rich, widely used among programmers, along with Emacs as a uniX-like system users favorite text editor.
 
 ## GNU Make
+
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+## MobaXterm
+
+MobaXterm is your **ultimate toolbox for remote computing**. In a single Windows application, it provides loads of functions that are tailored for programmers, webmasters, IT administrators and pretty much all users who need to handle their remote jobs in a more simple fashion.
+
+MobaXterm provides all the important **remote network tools** (SSH, X11, RDP, VNC, FTP, MOSH, ...) and **Unix commands** (bash, ls, cat, sed, grep, awk, rsync, ...) to Windows desktop, in a **single portable exe file** which works out of the box. [More info on supported network protocols](https://mobaxterm.mobatek.net/features.html)
+
+There are many advantages of having an **All-In-One network application** for your remote tasks, e.g. when you use **SSH** to connect to a remote server, a graphical **SFTP browser** will automatically pop up in order to directly edit your remote files. Your remote applications will also display seamlessly on your Windows desktop using the embedded **X server**. [See demo](https://mobaxterm.mobatek.net/demo.html)

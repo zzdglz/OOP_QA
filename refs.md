@@ -1,7 +1,8 @@
 # This page lists the useful online references
 
 ## http://www.cppreference.com
-#### This link provides grammars along with examples for C++ standard libraries. 
+
+#### This link provides grammars along with examples for C++ standard libraries.
 
 ## http://www.cplusplus.com/
 #### This link also provides grammars along with examples for C++ standard libraries. 
@@ -33,4 +34,9 @@
 #### This link provides grammers alone with examples for Boost, which provides free peer-reviewed portable C++ source libraries.
 
 ## https://vjudge.net/problem
+
 #### Virtual Judge is not a real online judge. It can grab problems from other regular online judges and simulate submissions to other online judges. It aims to enable holding contests when you don't have the test data.
+
+## [The Missing Semester of Your CS Education](https://missing-semester-cn.github.io/)
+
+#### This link contains some lectures about useful tools from MIT. Classes teach you all about advanced topics within CS, from operating systems to machine learning, but there’s one critical subject that’s rarely covered, and is instead left to students to figure out on their own: proficiency with their tools. We’ll teach you how to master the command-line, use a powerful text editor, use fancy features of version control systems, and much more!
