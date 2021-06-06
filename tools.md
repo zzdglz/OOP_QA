@@ -106,3 +106,7 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+## Visual Studio
+Microsoft Visual Studio（简称VS）是美国微软公司的开发工具包系列产品。VS是一个基本完整的开发工具集，它包括了整个软件生命周期中所需要的大部分工具，如UML工具、代码管控工具、集成开发环境(IDE)等等。所写的目标代码适用于微软支持的所有平台
+Website:https://visualstudio.microsoft.com/zh-hans/
+
