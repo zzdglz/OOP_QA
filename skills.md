@@ -79,3 +79,10 @@ For example, you can use a int as a bool[32].
 
 ## Decline the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
+
+## Multiple conditions in if
+When we have a statement like `if (A && B)` and A is false, program will not check B.
+
+Also statement like `if (A || B)` and A is true, program will not check B.
+
+Sometime we may use it to realize some functions.
