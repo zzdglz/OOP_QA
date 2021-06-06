@@ -106,3 +106,12 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+## pb_ds
+
+[link](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/)
+
+This is a library of policy-based elementary data structures: associative containers and priority queues.
+
+It is designed for high-performance, flexibility, semantic safety, and conformance to the corresponding containers in std and std::tr1 (except for some points where it differs by design).
+
+It is like STL, but have a lot of more powerful tools with better efficiency than STL. (such as HashTable, Balance Tree...)
