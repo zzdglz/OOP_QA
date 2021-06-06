@@ -59,7 +59,7 @@ float func_reverse( float num )
 
 If there are are many *else* branches, and the test-condition is very close to the last *else* branch, the CPU may spending lots of time jumping from one *else* to another *else*. If possible, convert to a *switch* statement, then CPU only need to execute one jump with a lookup table.
 
-## Use ++i instead of i++ except that you have a reason todo that.
+## Use ++i instead of i++ unless you have an explicit reason for the latter.
 ++i have a better efficiency than i++.
 
 >for(int i = 0; i < 10; ++i)
@@ -77,5 +77,5 @@ For example, you can use a int as a bool[32].
 + And for those function less than 10 lines, declare them as inline can improve the efficiency. 
 + For those large objects, it is costly to copy. So it better to use reference.
 
-## Decline the use of division
+## Avoid the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
