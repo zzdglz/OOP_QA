@@ -106,3 +106,7 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+## Notepad3
+Notepad3 is a fast and light-weight Scintilla-based text editor with syntax highlighting. It has a small memory footprint, but is powerful enough to handle most programming jobs.  
+[Website](https://www.rizonesoft.com/downloads/notepad3)  
+[Source code](https://github.com/rizonesoft/Notepad3)
