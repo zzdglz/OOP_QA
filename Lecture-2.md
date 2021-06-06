@@ -6,19 +6,19 @@
 
 - The two major parts of a class: member variables (成员变量) and member functions (成员函数). The class Computer is defined and used as follows:
 
-	class Computer
-	{
-	  public:
-	    std::string type_;  //member variables
-	    computer(const std::string& type) : type_(type) {}    //member functions
-	};
+		class Computer
+		{
+		  public:
+		    std::string type_;  //member variables
+		    computer(const std::string& type) : type_(type) {}    //member functions
+		};
 
-	int main()
-	{
-	  Computer A("lenovo");
-	  string B = A.type_;
-	  return 0;
-	}
+		int main()
+		{
+		  Computer A("lenovo");
+		  string B = A.type_;
+		  return 0;
+		}
 
 #### 2.	Where should we place the class definition (i.e., in the header file or the source file)? Please try to explain why header files are necessary.
 
@@ -30,14 +30,17 @@
 #### 3.	Please try to explain why the designers want to organize data and functions into classes? What are the advantages and disadvantages?
 
 - Data and functions are organized into classes because they are easier to deal with as a whole – an object.
+- Objects in real world have attributes and behaviors. To model them we need to encapsulate attributes (data) and behaviors (functions).
 - Advantages:
   - Easy for dividing the whole program into separate functioning modules.
-	- Easy for cooperation of a team and also easy for debugging.
-  -	Easy for code reuse. Little modifications are needed for reusing old code. Composition and inheritance are good ways for reuse.
+    - Easy for cooperation of a team and also easy for debugging.
+  -	Easy for code reuse. With the help of class composition and inheritance, developers can quickly design new classes based on existing ones to adapt to new needs. This improves the development productivity. It is also more convenient for the client user because they don't need to know the implementation details.
+  - Protect data. Access control make some data only accessible to the designer. It can prevent some unsafe changes.
   - Safe for code reuse. When only headers (including class definition with inline member functions) and libraries (including definitions of non-inline member functions) are provided, the client user cannot change the implementations made by the providers.
   -	Safe for memory control, with well-defined constructors and destructors.
 - Disadvantages:
   -	Polymorphism (多态) takes more runtime and memory, due to the virtual pointer (vptr) and virtual table (vtable).
+
 
 ## Access control
 #### 4.	Please try to use access control （访问控制）to enable information hiding of your class definition of a computer in Problem No.1.
@@ -73,6 +76,7 @@
 
 - Members of a struct are public by default; members of a class are private by default.
 - class is an new attribute in C++. In C, there is no "class". In contrast, there is "struct" in C.
+- "class" can be used just like keyword "typename" to define template parameters, while "struct" cannot.
 
 ##	Friend
 #### 9.	What should you do to permit a non-member function to access private or protected members? What about permitting another class to access them? Please give an example.
