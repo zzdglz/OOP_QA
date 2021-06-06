@@ -53,7 +53,7 @@ float func_reverse( float num )
     
 ---
 
-该算法的更详细介绍（包括**魔法数字**的推导）见下文：[平方根倒数速算法](https://www.cnblogs.com/german-iris/p/5767546.html)
+该算法的更详细介绍和**魔法数字**的推导详见下文：[平方根倒数速算法](http://www.nowamagic.net/algorithm/algorithm_EfficacyOfFunctionSqrt.php) ; [魔法数字的推导](http://www.matrix67.com/data/InvSqrt.pdf)
 
 ## Minimalize the use of if/else branches
 
@@ -79,3 +79,6 @@ For example, you can use a int as a bool[32].
 
 ## Decline the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
+
+## Avoid creation of unnecessary object
+For example , use string s = "ABC" instead of string s = new string ("ABC") to avoid creation of a unnecessary "ABC"
