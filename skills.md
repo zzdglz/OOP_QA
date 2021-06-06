@@ -59,6 +59,10 @@ float func_reverse( float num )
 
 If there are are many *else* branches, and the test-condition is very close to the last *else* branch, the CPU may spending lots of time jumping from one *else* to another *else*. If possible, convert to a *switch* statement, then CPU only need to execute one jump with a lookup table.
 
+## Minimize the use of function calls
+
+Function calls require two jumps, and cause the compiler to manipulate stack memory. Consider using inline functions and iteration over recursion.
+
 ## Use ++i instead of i++ unless you have an explicit reason for the latter.
 ++i have a better efficiency than i++.
 
@@ -67,6 +71,8 @@ If there are are many *else* branches, and the test-condition is very close to t
 instead of
 
 >for(int i =  0; i < 10; i++)
+
+because i++ creates a copy of the object, which, when not needed, is suboptimal.
 
 ## Use bit operations
 When the operation involves powers of two, the bit operation can be used to solve the problem.  
