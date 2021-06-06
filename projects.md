@@ -66,3 +66,7 @@ It provides support for procedural animation of physical bodies to make objects 
 ## *2. Purpose*  
 It provides support for procedural animation of physical bodies to make objects move and interact in realistic ways.
 
+## Bitcoin 
+
+Bitcoin is the largest cryptocurrency in the world. It is a decentralized currency and relies on peer-to-peer communications, meaning it has no authority and, being open-source, anyone can make edits. The name of the software bitcoin is built on is called "Bitcoin Core", and can be found here: https://github.com/bitcoin/bitcoin
+
