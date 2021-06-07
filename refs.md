@@ -34,3 +34,9 @@
 
 ## https://vjudge.net/problem
 #### Virtual Judge is not a real online judge. It can grab problems from other regular online judges and simulate submissions to other online judges. It aims to enable holding contests when you don't have the test data.
+
+## https://csdn.net
+#### CSDN is a domestic website for all programmers to look for references and coding assistance. Its useful resources and experience from other programmers will be of great assistance.
+
+## https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-6.0/aa260976(v=vs.60)?redirectedfrom=MSDN
+#### This is the website of Microsoft to introduce Hungarian Notation. Even though a bit complicated , the use of this coding style may help you to avoid many common errors.
