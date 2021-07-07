@@ -79,3 +79,40 @@ For example, you can use a int as a bool[32].
 
 ## Decline the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
+
+## 数组的多重循环按行遍历
+例如下面的程序：
+```c++
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+using namespace std;
+int main()
+{
+	const int MAX_ROW = 2000;
+	const int MAX_COL = 2000;
+	int(*a)[MAX_COL] = new int[MAX_ROW][MAX_COL];
+	clock_t start, finish;
+
+	//先行后列
+	start = clock();
+	for (int i = 0; i<MAX_ROW; i++)
+	for (int j = 0; j<MAX_COL; j++)
+		a[i][j] = 1;
+	finish = clock();
+	//totaltime=(double)()/CLOCKS_PER_SEC;
+	cout << "先行后列遍历时间为：" << finish - start << "ms" << endl;
+	//先列后行
+	start = clock();
+	for (int i = 0; i<MAX_COL; i++)
+	for (int j = 0; j<MAX_ROW; j++)
+		a[j][i] = 1;
+	finish = clock();
+	//totaltime=(double)()/CLOCKS_PER_SEC;
+	cout << "先列后行遍历时间为：" << finish - start << "ms" << endl;
+
+	return 0;
+}
+```
+这个程序的结果为：11ms，20ms
+由于行遍历的连续性，按行遍历可以快速找到下一个内存的指针，从而效率更高。
