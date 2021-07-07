@@ -28,10 +28,12 @@
   2) Files can be copied and modified easily.
   3) Files can provide a larger size of arguments.
   4) When reading large amounts of arguments(>= 10000), file reading are faster than command-line argument.
+  5) Files can be saved, thus provide an easier way to analyse data. 
 - Disadvantage of file reading:
   1) File IO is more complex and slower than command arguments with exceptions to handle.
   2) Conventions(e.g. “a.out”) are required without command argument.
   3) Not easy to know argument amounts.
+  4) Some commands such as std::endl may cause the writing process to crash. 
 - Advantage of command-line argument:
   - Make the program easier to be called in command-line.
   - Make the program callable in batch scripts for tasks like parameter sweeping (参数扫描, 以不同的参数运行同一个程序).

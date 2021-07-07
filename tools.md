@@ -115,3 +115,14 @@ This is a library of policy-based elementary data structures: associative contai
 It is designed for high-performance, flexibility, semantic safety, and conformance to the corresponding containers in std and std::tr1 (except for some points where it differs by design).
 
 It is like STL, but have a lot of more powerful tools with better efficiency than STL. (such as HashTable, Balance Tree...)
+
+
+## Intelligent Comparison
+
+Beyond Compare is focused. Beyond Compare allows you to quickly and easily compare your files and folders. By using simple, powerful commands you can focus on the differences you're interested in and ignore those you're not. You can then merge the changes, synchronize your files, and generate reports for your records.
+
+[Homepage](https://www.scootersoftware.com/features.php)
+
+## Ubuntu Pastebin
+You can share your code with others conveniently with it.
+Website: https://paste.ubuntu.com/
