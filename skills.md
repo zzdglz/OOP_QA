@@ -60,13 +60,21 @@ float func_reverse( float num )
 If there are are many *else* branches, and the test-condition is very close to the last *else* branch, the CPU may spending lots of time jumping from one *else* to another *else*. If possible, convert to a *switch* statement, then CPU only need to execute one jump with a lookup table.
 
 ## Use ++i instead of i++ except that you have a reason todo that.
-++i have a better efficiency than i++.
+`++i` have a better efficiency than `i++`.
 
->for(int i = 0; i < 10; ++i)
+```cpp
+for(int i = 0; i < 10; ++i)
+```
 
 instead of
 
->for(int i =  0; i < 10; i++)
+```cpp
+for(int i =  0; i < 10; i++)
+```
+
+Because `++i`  needn't call the copy constructor to build a new object `temp`.
+
+`++i` is also faster than `i++` in `iterator` of STL.
 
 ## Use bit operations
 When the operation involves powers of two, the bit operation can be used to solve the problem.  
