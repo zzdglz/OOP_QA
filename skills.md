@@ -80,6 +80,9 @@ For example, you can use a int as a bool[32].
 ## Decline the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
 
+## Allow small error in accuracy rather than using == operator when comparing two floating-point numbers
+As we all know, it is inevitable that error will occur when doing floating-point calculations. So instead of using `if(a==b)`, use `if(fabs(a-b)<EPS)`, where EPS is a very small number, for example 1E-7.
+
 ## 数组的多重循环按行遍历
 例如下面的程序：
 ```c++
