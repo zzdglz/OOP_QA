@@ -79,3 +79,69 @@ For example, you can use a int as a bool[32].
 
 ## Decline the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
+
+## Loop unrolling
+Normal Loop
+
+```c++
+ int x;
+ for (x = 0; x < 100; x++)
+ {
+     delete(x);
+ }
+```
+After loop unrolling
+
+```c++
+ int x; 
+ for (x = 0; x < 100; x += 5 )
+ {
+     delete(x);
+     delete(x + 1);
+     delete(x + 2);
+     delete(x + 3);
+     delete(x + 4);
+ }
+```
+The goal of loop unwinding/unrolling is to increase a program's speed by reducing or eliminating instructions that control the loop. Optimizing compilers will sometimes perform the unrolling automatically, or upon request. But the code may become less readable after loop unrolling.
+
+## Allow small error in accuracy rather than using == operator when comparing two floating-point numbers
+As we all know, it is inevitable that error will occur when doing floating-point calculations. So instead of using `if(a==b)`, use `if(fabs(a-b)<EPS)`, where EPS is a very small number, for example 1E-7.
+
+## 数组的多重循环按行遍历
+例如下面的程序：
+```c++
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+using namespace std;
+int main()
+{
+	const int MAX_ROW = 2000;
+	const int MAX_COL = 2000;
+	int(*a)[MAX_COL] = new int[MAX_ROW][MAX_COL];
+	clock_t start, finish;
+
+	//先行后列
+	start = clock();
+	for (int i = 0; i<MAX_ROW; i++)
+	for (int j = 0; j<MAX_COL; j++)
+		a[i][j] = 1;
+	finish = clock();
+	//totaltime=(double)()/CLOCKS_PER_SEC;
+	cout << "先行后列遍历时间为：" << finish - start << "ms" << endl;
+	//先列后行
+	start = clock();
+	for (int i = 0; i<MAX_COL; i++)
+	for (int j = 0; j<MAX_ROW; j++)
+		a[j][i] = 1;
+	finish = clock();
+	//totaltime=(double)()/CLOCKS_PER_SEC;
+	cout << "先列后行遍历时间为：" << finish - start << "ms" << endl;
+
+	return 0;
+}
+```
+这个程序的结果为：11ms，20ms
+由于行遍历的连续性，按行遍历可以快速找到下一个内存的指针，从而效率更高。
+

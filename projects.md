@@ -66,3 +66,6 @@ It provides support for procedural animation of physical bodies to make objects 
 ## *2. Purpose*  
 It provides support for procedural animation of physical bodies to make objects move and interact in realistic ways.
 
+## Google Test
+Google Test is Google's C++ testing and mocking framework. You can learn how to use it on https://google.github.io/googletest/.
+Website: https://github.com/google/googletest/
