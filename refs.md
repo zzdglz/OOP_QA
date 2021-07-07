@@ -35,6 +35,11 @@
 ## https://vjudge.net/problem
 #### Virtual Judge is not a real online judge. It can grab problems from other regular online judges and simulate submissions to other online judges. It aims to enable holding contests when you don't have the test data.
 
+
+## [Google coding style](https://google.github.io/styleguide/cppguide.html)
+
+#### Google coding Style Guide 
+
 ## [Project Euler](https://projecteuler.net/)
 #### A special online judge which is mainly about mathematics and you need to submit only the result, which means that you can use any method, any language, any device you desire to solve the problem(for example, pen and paper and brain). When you work out a problem successfully, you can go to the discussion board or look at the official tutorial.
 

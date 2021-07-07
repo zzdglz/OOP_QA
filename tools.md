@@ -106,6 +106,13 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+
+## Intelligent Comparison
+
+Beyond Compare is focused. Beyond Compare allows you to quickly and easily compare your files and folders. By using simple, powerful commands you can focus on the differences you're interested in and ignore those you're not. You can then merge the changes, synchronize your files, and generate reports for your records.
+
+[Homepage](https://www.scootersoftware.com/features.php)
+
 ## Ubuntu Pastebin
 You can share your code with others conveniently with it.
 Website: https://paste.ubuntu.com/
