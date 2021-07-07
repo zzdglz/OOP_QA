@@ -80,6 +80,31 @@ For example, you can use a int as a bool[32].
 ## Decline the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
 
+## Loop unrolling
+Normal Loop
+
+```c++
+ int x;
+ for (x = 0; x < 100; x++)
+ {
+     delete(x);
+ }
+```
+After loop unrolling
+
+```c++
+ int x; 
+ for (x = 0; x < 100; x += 5 )
+ {
+     delete(x);
+     delete(x + 1);
+     delete(x + 2);
+     delete(x + 3);
+     delete(x + 4);
+ }
+```
+The goal of loop unwinding/unrolling is to increase a program's speed by reducing or eliminating instructions that control the loop. Optimizing compilers will sometimes perform the unrolling automatically, or upon request. But the code may become less readable after loop unrolling.
+
 ## Allow small error in accuracy rather than using == operator when comparing two floating-point numbers
 As we all know, it is inevitable that error will occur when doing floating-point calculations. So instead of using `if(a==b)`, use `if(fabs(a-b)<EPS)`, where EPS is a very small number, for example 1E-7.
 
@@ -119,3 +144,4 @@ int main()
 ```
 这个程序的结果为：11ms，20ms
 由于行遍历的连续性，按行遍历可以快速找到下一个内存的指针，从而效率更高。
+
