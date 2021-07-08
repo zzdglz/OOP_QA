@@ -107,6 +107,16 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
 
+## CLion
+
+A **cross-platform** IDE for C and C++
+
+CLion是Jetbrains公司旗下新推出的一款专为开发C/C++所设计的跨平台IDE。它是以IntelliJ为基础设计的，同时包含了代码辅助、代码生成、安全重构、快速文档、实时代码分析、集成调试器等许多智能功能以提高开发效率。
+
+**对学生完全免费**，提供官方简体中文插件。
+
+Website: https://www.jetbrains.com/clion/
+
 ## vTune
 VTune Profiler (formerly VTune Amplifier) is a performance analysis tool for x86 based machines running Linux or Microsoft Windows operating systems. Many features work on both Intel and AMD hardware, but advanced hardware-based sampling requires an Intel-manufactured CPU.(It is very powerful)
 
@@ -155,7 +165,6 @@ This is a library of policy-based elementary data structures: associative contai
 It is designed for high-performance, flexibility, semantic safety, and conformance to the corresponding containers in std and std::tr1 (except for some points where it differs by design).
 
 It is like STL, but have a lot of more powerful tools with better efficiency than STL. (such as HashTable, Balance Tree...)
-
 
 ## Intelligent Comparison
 
