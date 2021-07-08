@@ -26,12 +26,13 @@
 - Advantage of file reading:
   1) File reading can be used in programs with a GUI.
   2) Files can be copied and modified easily.
-  3) Files can handle larger argument sizes.
-  4) When reading large amounts of arguments(>= 10000), file reading is faster than command-line arguments.
+  3) Files can provide a larger size of arguments.
+  4) When reading large amounts of arguments(>= 10000), file reading are faster than command-line argument.
+  5) Files can be saved, thus provide an easier way to analyse data. 
 - Disadvantage of file reading:
-  1) File IO is more complex and slower than command arguments, with exceptions to handle.
-  2) Conventions(e.g. “a.out”) are required with file reading.
-  3) Not easy to know argument quantity.
+  1) File IO is more complex and slower than command arguments with exceptions to handle.
+  2) Conventions(e.g. “a.out”) are required without command argument.
+  3) Not easy to know argument amounts.
 - Advantage of command-line argument:
   - Makes the program easier to be called in command-line.
   - Makes the program callable in batch scripts for tasks like parameter sweeping (参数扫描, 以不同的参数运行同一个程序).
