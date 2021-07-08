@@ -106,6 +106,25 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+## openFrameworks
+
+openFrameworks（以下简称 oF） 是一个开源的、跨平台的 C++ 工具包。旨在开发实时项目，重点是生成和处理图形和声音。如今，这是一个很受欢迎的实验平台，用于生成和声音艺术，以及创作互动装置和视听表演。
+
+oF 的强大之处在于，它不仅是一个通用的胶水（glue），同时它还封装了多种常用的库，包括：
+
+- OpenGL、GLEW、GLUT、libtess2、cairo - 用于处理图形；
+- rtAudio、PortAudio、OpenAL、Kiss FFT、FMOD - 用于音频的输入、输出和分析；
+- FreeType - 用于字体显示；
+- FreeImage - 用于图像存储和载入；
+- Quicktime、GStreamer、videoInput - 用于视频播放和截取；
+- Poco - 用于开发网络应用；
+- OpenCV - 用于计算机视觉；
+- Assimp - 用于读入 3D 模型。
+
+这些库虽然遵循着不同的规则和用法，但 oF 在它们基础上提供了一个通用的接口，使得使用它们变得很容易。
+
+除此之外，oF 的另一亮点在于它具有很好的跨平台特性。目前它支持 5 种操作系统（Windows、OSX、Linux、iOS、Android）以及 4 种 集成开发环境（XCode、Code::Blocks、Visual Studio、Eclipse）。
+
 ## pb_ds
 
 [link](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/)
@@ -126,3 +145,4 @@ Beyond Compare is focused. Beyond Compare allows you to quickly and easily compa
 ## Ubuntu Pastebin
 You can share your code with others conveniently with it.
 Website: https://paste.ubuntu.com/
+
