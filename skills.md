@@ -92,6 +92,13 @@ For example, you can use a int as a bool[32].
 ## Avoid the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
 
+## Multiple conditions in if
+When we have a statement like `if (A && B)` and A is false, program will not check B.
+
+Also statement like `if (A || B)` and A is true, program will not check B.
+
+Sometime we may use it to realize some functions.
+
 ## unsigned int & int
 
 ​	在C/C++语言中，整数存在无符号整数(unsigned int)和有符号整数(int)两种数据类型，虽然表面上这种安排是很合理的：用unsigned int来表示不会小于0的整数(如长度、集合中的元素的枚举关系等等)，用int来表示有可能为负数的整数。但实践证明，这种安排带来的麻烦远远超过了他所带来的收益(让unsigned int 能表示的最大值相较于int提高了一倍)，以至于在之后的高级编程语言中都选择了废弃无符号整数这一数据类型。
@@ -260,4 +267,3 @@ int main()
 ```
 这个程序的结果为：11ms，20ms
 由于行遍历的连续性，按行遍历可以快速找到下一个内存的指针，从而效率更高。
-
