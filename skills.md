@@ -54,18 +54,31 @@ float func_reverse( float num )
 
 该算法的更详细介绍（包括**魔法数字**的推导）见下文：[平方根倒数速算法](https://www.cnblogs.com/german-iris/p/5767546.html)
 
-## Minimalize the use of if/else branches
+## Minimize the use of if/else branches
 
 If there are are many *else* branches, and the test-condition is very close to the last *else* branch, the CPU may spending lots of time jumping from one *else* to another *else*. If possible, convert to a *switch* statement, then CPU only need to execute one jump with a lookup table.
 
-## Use ++i instead of i++ except that you have a reason todo that.
+## Minimize the use of function calls
+Function calls require two jumps, and cause the compiler to manipulate stack memory. Consider using inline functions, and using iterations over recursion.
+
+## Use ++i instead of i++ unless you have an explicit reason.
 ++i have a better efficiency than i++.
 
->for(int i = 0; i < 10; ++i)
+```cpp
+for(int i = 0; i < 10; ++i)
+```
 
 instead of
 
->for(int i =  0; i < 10; i++)
+```cpp
+for(int i =  0; i < 10; i++)
+```
+
+Because `++i`  needn't call the copy constructor to build a new object `temp`.
+
+`++i` is also faster than `i++` in `iterator` of STL.
+
+because i++ creates a copy of the object, which, when not needed, is suboptimal.
 
 ## Use bit operations
 When the operation involves powers of two, the bit operation can be used to solve the problem.  
@@ -76,12 +89,12 @@ For example, you can use a int as a bool[32].
 + And for those function less than 10 lines, declare them as inline can improve the efficiency. 
 + For those large objects, it is costly to copy. So it better to use reference.
 
-## Decline the use of division
+## Avoid the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
 
 ## 使用nullptr
 
-nullptr是c++11用来表示空指针新引入的常量值，在c++中如果表示空指针语义时建议使用nullptr而不要使用NULL，因为NULL本质上是个int型的0，其实不是个指针。
+nullptr是c++11用来表示空指针新引入的常量值，在c++中表示空指针语义时，建议使用nullptr而不要使用NULL，因为NULL本质上是个int型的0，其实不是个指针。
 
 ```c++
 void func(void *ptr) {
@@ -99,3 +112,67 @@ int main() {
 }
 ```
 
+## Loop unrolling
+Normal Loop
+
+```c++
+ int x;
+ for (x = 0; x < 100; x++)
+ {
+     delete(x);
+ }
+```
+After loop unrolling
+
+```c++
+ int x; 
+ for (x = 0; x < 100; x += 5 )
+ {
+     delete(x);
+     delete(x + 1);
+     delete(x + 2);
+     delete(x + 3);
+     delete(x + 4);
+ }
+```
+The goal of loop unwinding/unrolling is to increase a program's speed by reducing or eliminating instructions that control the loop. Optimizing compilers will sometimes perform the unrolling automatically, or upon request. But the code may become less readable after loop unrolling.
+
+## Allow small error in accuracy rather than using == operator when comparing two floating-point numbers
+As we all know, it is inevitable that error will occur when doing floating-point calculations. So instead of using `if(a==b)`, use `if(fabs(a-b)<EPS)`, where EPS is a very small number, for example 1E-7.
+
+## 数组的多重循环按行遍历
+例如下面的程序：
+```c++
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+using namespace std;
+int main()
+{
+	const int MAX_ROW = 2000;
+	const int MAX_COL = 2000;
+	int(*a)[MAX_COL] = new int[MAX_ROW][MAX_COL];
+	clock_t start, finish;
+
+	//先行后列
+	start = clock();
+	for (int i = 0; i<MAX_ROW; i++)
+	for (int j = 0; j<MAX_COL; j++)
+		a[i][j] = 1;
+	finish = clock();
+	//totaltime=(double)()/CLOCKS_PER_SEC;
+	cout << "先行后列遍历时间为：" << finish - start << "ms" << endl;
+	//先列后行
+	start = clock();
+	for (int i = 0; i<MAX_COL; i++)
+	for (int j = 0; j<MAX_ROW; j++)
+		a[j][i] = 1;
+	finish = clock();
+	//totaltime=(double)()/CLOCKS_PER_SEC;
+	cout << "先列后行遍历时间为：" << finish - start << "ms" << endl;
+
+	return 0;
+}
+```
+这个程序的结果为：11ms，20ms
+由于行遍历的连续性，按行遍历可以快速找到下一个内存的指针，从而效率更高。

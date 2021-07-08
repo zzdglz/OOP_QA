@@ -2,7 +2,7 @@
 
 ## Command-line argument（命令行参数）
 
-#### 1. Suppose that you want to write an A+B program, which obtains A and B from command-line arguments. How to complete the task? Please give an example of the source code, as well as how to compile and run the program.
+#### 1. Suppose that you want to write an A+B program that obtains A and B from command-line arguments. How can we do this? Please give an example of the source code, as well as how to compile and run the program.
 
 	//a.cpp
 	#include <iostream> 
@@ -24,45 +24,46 @@
 #### 2. Please list（列举）the potential advantages and disadvantages of obtaining arguments by file reading vs. by command-line argument.
 
 - Advantage of file reading:
-  1) File reading can be used in programs with GUI.
+  1) File reading can be used in programs with a GUI.
   2) Files can be copied and modified easily.
   3) Files can provide a larger size of arguments.
   4) When reading large amounts of arguments(>= 10000), file reading are faster than command-line argument.
+  5) Files can be saved, thus provide an easier way to analyse data. 
 - Disadvantage of file reading:
   1) File IO is more complex and slower than command arguments with exceptions to handle.
   2) Conventions(e.g. “a.out”) are required without command argument.
   3) Not easy to know argument amounts.
 - Advantage of command-line argument:
-  - Make the program easier to be called in command-line.
-  - Make the program callable in batch scripts for tasks like parameter sweeping (参数扫描, 以不同的参数运行同一个程序).
+  - Makes the program easier to be called in command-line.
+  - Makes the program callable in batch scripts for tasks like parameter sweeping (参数扫描, 以不同的参数运行同一个程序).
 - Diadvantage of command-line argument:
   - Unable to handle large number of arguments.
-  - Takes efforts to parsing data from argc and argv.
+  - Takes effort to parsing data from argc and argv.
 
-#### 3. How to input a command-line argument with spaces in it? For example, how to input ‘Hello World’ as a single argument?
+#### 3. How do you input a command-line argument with spaces in it? For example, how can we input ‘Hello World’ as a single argument?
 
-- Use quotation marks ("") to embrace the whole message. For example, to input 'Hello World' as one argument, put "Hello World" in the command-line, or input a slash sign '\' before the space (Hello\ World):
+- Use quotation marks ("") to enclose the whole message. For example, to input 'Hello World' as one argument, put "Hello World" in the command-line, or input a slash sign '\' before the space (Hello\ World):
   - a.exe "Hello World"
   - a.exe Hello\ World
 
-#### 4. What is the meaning of argc and argv? What are their data types? If command “a.exe 1 2 3” is executed in the terminal (终端), what are the values of argc and argv?
+#### 4. What is the meaning of argc and argv? What are their data types? If the command “a.exe 1 2 3” is executed in the terminal (终端), what are the values of argc and argv?
 
 - argc: the number of arguments obtained from the terminal. The data type of argc is int.
-- argv: the arguments obtained from the terminal. The data type of argv is char**, i.e., an array of char*.
+- argv: the arguments obtained from the terminal. The data type of argv is char**, i.e., an array of char*. The first element is always the name of your programs executable.
 - When "a.exe 1 2 3" is executed in the terminal, argc = 4, and argv = {"a.exe", "1", "2", "3"}
 
 ## Translation（翻译）from source code（源代码）to binary executable（二进制可执行文件）
 
 #### 5.	Please explain how interpreters（解释器）and compilers（编译器）work. What are the typical programming languages (典型编程语言) for each of the two translation methods? Please list the advantages and disadvantages of interpreters vs. compilers.
 
-- The interpreters translate the code line by line while executing the program. So generally interpreters run programs slower than compiled programs. The typical examples are Python and java.
-- Advantages of interpreters: programs can be easily transplanted (移植) to other platforms (平台), because the execution of the program only relies on the interpreters.
-- Disadvantage: runs slower than compiled program. Also, it will cost more memory.
-- The compilers compile the program into machine code, which is saved as a binary file (二进制文件). Then the machine code runs directly on the operating system (操作系统). This makes it faster than interpreters. Typical examples are C and C++.
-- Advantage: faster than the interpreters. By compiling codes into machine language, compilers can help with code hiding.
+- Interpreters translate the code line-by-line while executing the program. So, in general, interpreters run programs slower than compilers. The most common examples of interpreted languages are Python and java.
+- Advantages: programs can be easily transplanted (移植) to other platforms (平台), because the execution of the program only relies on the interpreters.
+- Disadvantage: run slower than compiled program. They also use more memory.
+- Compilers compile the program into machine code, which is saved as a binary file (二进制文件). Then the machine code runs directly on the operating system (操作系统). This makes running compilers faster than running interpreters. The most common examples of compiled languages are C and C++.
+- Advantages: faster than interpreters. By compiling codes into machine language, compilers can help with code hiding.
 - Disadvantage: For different platforms, the source code needs to be recompiled (重新编译).
 
-#### 6.	The g++ compiler is universally used in both commercial and scientific research projects. So you are supposed to know how to use g++ to compile C++ source files into the binary file. State the basic usage (基本用法) on how to compile a source file. List useful compiling options (编译选项) as many as possible, and explain why and when do we need these options.
+#### 6.	The g++ compiler is used universally in both commercial and scientific research projects. You should know how to use g++ to compile C++ source files into the binary file. State the basic usage (基本用法) on how to compile a source file. List useful compiling options (编译选项), as many as possible, and explain why and when we need these options.
 <pre>
 Usage: g++ [options] file...
 Options:
@@ -116,11 +117,11 @@ Options:
 </pre>
 Options starting with -g, -f, -m, -O, -W, or --param are automatically passed to the various sub-processes invoked by g++. In order to pass other options on to these processes the -W<letter> options must be used.
 
-#### 7.	What is a C/C++ library (库)? On Linux, how to build a library using g++ compiler? How to use an existing library by g++ compiler? At what stage is a library loaded (载入)? Is it always during the linking stage (链接阶段)? Please explain the difference between static (静态) and dynamic (动态) libraries.
+#### 7.	What is a C/C++ library (库)? On Linux, how do we build a library using the g++ compiler? How do we use an existing library with the g++ compiler? At what stage is a library loaded (载入)? Is it always during the linking stage (链接阶段)? Please explain the difference between static (静态) and dynamic (动态) libraries.
 
-* C/C++ libraries are modules of already-compiled objective code. By libraries, we could reuse functions/classes provided by others.
+* C/C++ libraries are modules of already-compiled objective code. With libraries, we can reuse functions/classes provided by others.
 * A library can be used by including the related hearder files and linking the library (*.a or *.lib). 
-* There are two types of libraries, i.e., *static* library and *dynamic* library.
+* There are two types of libraries, *static* libraries and *dynamic* libraries.
 * To build a static library with g++, run the following commands:
 	* g++ -c lib1.cpp -o lib1.o
 	* g++ -c lib2.cpp -o lib2.o
@@ -128,12 +129,12 @@ Options starting with -g, -f, -m, -O, -W, or --param are automatically passed to
 	* ranlib lib.a 
 * To link the static library lib.a, run:
 	* g++ main.o lib.a –o main.exe
-* Static libraries are loaded during the compiling process. Whereas dynamic libraries are loaded during the execution of the program, when the function in the library is being called.
-* A static library is required only at compile time. It is not needed during execution of the program, because all the functions in the library have been compiled into the executable. However, a dynamic library is required at runtime rather than at compile time, because the functions in the library are not compiled into the executable. Therefore, the executable with static library is larger in size than the one with dynamic library. 
+* Static libraries are loaded during the compiling process. On the other hand, dynamic libraries are loaded during the execution of the program, when the function in the library is being called.
+* A static library is required only at compile time. It does not need to be present during the execution of the program, because all the functions in the library have been compiled into the executable. However, a dynamic library is required at runtime rather than at compile time, because the functions in the library have not been compiled into the executable. Therefore, the executable with static library is larger in size than the one with dynamic library. 
 
 ## Multi-file project
 
-#### 8.	On Linux, assume that there are main.cpp, sum.cpp, product.cpp, and functions.h, please write down the command to compile them into test with g++.
+#### 8.	On Linux, assuming a project contains the files main.cpp, sum.cpp, product.cpp, and functions.h, please write the command(s) needed to compile them into test with g++.
 
 - g++ -c main.cpp main.o
 - g++ -c sum.cpp sum.o
@@ -144,25 +145,25 @@ Options starting with -g, -f, -m, -O, -W, or --param are automatically passed to
 
 - A large project often needs a lot of developers. It is error-prone for all the developers to modify a single file simultaneously.
 
-- For a large project, the compilation process usaully takes a long time. Using multi-file projects, we can only compile the modified file (using makefile to take care of the compilation process). Whereas in a single-file project, even a slight change in the file will cause the whole program to be re-compiled, which is very time-consuming.
+- For a large project, the compilation process usually takes a long time. Using multi-file projects, we can only compile the modified files (using makefile to take care of the compilation process). Whereas in a single-file project, even a slight change in the file will cause the whole program to be re-compiled, which is very time-consuming.
 
 #### 10. What is separate compilation (分段编译)? Why is it better than direct compilation, i.e., to generate the executable directly from the source files? Please state the whole process of separate compilation.
 
 - Different source files (.cpp) (源文件) are compiled separately into different object files (.o or .obj) (目标文件). E.g., "g++ -c fun.cpp -o fun.o"
 - The object files are then combined into the final executable program (可执行程序) (default name is a.exe or a.out) by a tool called linker (链接器)
-- Advantage of separate compilation: separate the whole compiling process into different steps. When we only modify one source file, we only need to re-compile the modified one rather than compiling all the source files once again. This greatly reduces compiling time. 
+- Advantage of separate compilation: separates the entire compiling process into discrete steps. When we only modify one source file, we only need to re-compile the modified one, rather than compiling all the source files once again. This greatly reduces compiling time. 
 
-#### 11. What should you do to use a global variable (全局变量) or function (函数) in several source files (源文件)? Please give as many ways as you can.
+#### 11. How can you use a global variable (全局变量) or function (函数) in several source files (源文件)? Please give as many ways as you can.
 
-- For a global variable: define it in one .cpp file, and use "extern" keyword to declare it a header file. Wherever do we want to use the global variable, we can simply include the header file. For functions, it is similar. The only difference is that the "extern" keyword could be omitted.
+- For a global variable: define it in one .cpp file, and use the "extern" keyword to declare it a header file. Wherever we want to use the global variable, we can simply include the header file. For functions, it is similar process. The only difference is that the "extern" keyword can be omitted.
 - Pass them as arguments of functions.
 
-#### 12. Is it allowed to redefine a variable or function with the keyword "extern"? For example, "extern int a = 2;". Why?
+#### 12. Is it possible to redefine a variable or function with the keyword "extern"? For example, "extern int a = 2;". Why?
 
-- No. Because variable "a" has been defined in another place, and "extern int a = 2;" is equal to "int a = 2;". This will cause redefinition error.
-- As mentioned above, if we want to use "a", then we should declare it with "extern int a;". And it is best practice to store "extern int a" in the header file. 
+- No. Because the variable "a" has been defined in another place, and "extern int a = 2;" is equal to "int a = 2;", this will cause redefinition error.
+- As mentioned above, if we want to use "a", then we should declare it with "extern int a;". And it is a best practice to store "extern int a" in the header file. 
 
-#### 13. Please explain the usage of header files (头文件). Is it allowed to define the function body (函数体) in the header file? Do we need to compile header files using g++? Why?
+#### 13. Please explain the usage of header files (头文件). Can we define the function body (函数体) in the header file? Do we need to compile header files using g++? Why?
 
 - 头文件是用来使多文件项目可以顺利完成正常编译的必要部分。因为多文件项目中的某些编译单元定义了某些函数或者变量，而另一些编译单元又需要使用（调用）这些函数或者变量，此时我们把这些函数和变量的声明统一放在一个头文件之中，这样我们只需要在每个编译单元之中使用预处理器将头文件包含进去，就可以正常完成编译，而不会出现未声明就使用的错误。而且，头文件使整个项目中出现的函数和变量列出，显得十分有条理。
 - 在头文件中，对于普通函数的定义是不允许的，因为这样可能出现链接时出现重复定义的错误，普通函数可以多次声明但不可以多次定义。但是如果是内联函数，就必须写在头文件之中，不能写在任何其他的编译单元之中，否则在分段编译形成目标文件之后，对应的内联函数的标识符就会被编译器自动替换为整个函数体，此时该标识符就不存在了，于是在其他的编译单元中调用该内联函数时就会报错。
@@ -171,22 +172,22 @@ Options starting with -g, -f, -m, -O, -W, or --param are automatically passed to
 #### 14. Please explain the differences between "" and  <>  when including a header file in the source file.
 
 - \#include <headerfile>:
-The compiler will search from the standard library directory. This method is typically used to include header files in the standard library. We may modify the “include search path” (include的文件搜索路径) in the following ways: (1) environmental variable “PATH” (通过环境变量设置); (2) in the compiler option, e.g., g++ -Idir/to/header (通过编译选项设置).
+The compiler will search from the standard library directory. This method is typically used to include header files that are found in the standard library. We may modify the “include search path” (include的文件搜索路径) in the following ways: (1) environmental variable “PATH” (通过环境变量设置); (2) in the compiler option, e.g., g++ -Idir/to/header (通过编译选项设置).
 
 - \#include "headerfile":
-The compiler will first search from the user’s working directory. This method is typically used to include user-defined header files. If the header is not found in the current directory, then the compiler will search again in the same directories as "<>".
+The compiler will first search for the header in the user’s working directory. This method is typically used to include user-defined header files. If the header is not found in the current directory, the compiler will search again in the same directories as "<>".
 
 ##	Make and makefile
 #### 15. Please explain the dependency rules of make.
 
-- The symbol in front of the colon is the target. If the target is a file, and its modification date is older than any dependencies after the colon or the target does not exist, the following commands will be executed.
+- The symbol in front of the colon is the "target". If the target is a file and its modification date is older than any dependencies after the colon, or the target does not exist, the following commands will be executed.
 
 		target: file1 file2 file3
 			command to generate target
 		file1: file12 file13
 			command to generate file1
 
-#### 16. On Linux, how to enable separate compilation (分段编译) of source files using make and makefile? Assume that we have main.cpp, sum.cpp, product.cpp, and functions.h, please write the makefile to generate the executable named test by separate compilation.
+#### 16. On Linux, how do we enable separate compilation (分段编译) of source files using make and makefile? Assume that we have the files main.cpp, sum.cpp, product.cpp, and functions.h; write a makefile to generate an executable named test by separate compilation.
 
 	all: test
 	test: main.o sum.o product.o functions.h
@@ -201,7 +202,7 @@ The compiler will first search from the user’s working directory. This method 
 		rm *.o
 		rm test
 
-#### 17. On linux, how to generate a binary file with a makefile? How to use the library file to generate an executable file with makefile? Please give a simple example on Linux.
+#### 17. On linux, how can we generate a binary file with a makefile? How can we use a library file to generate an executable file with makefile? Please give a simple example on Linux.
 
 	/*  mylib.h  */
 	#ifndef MYLIB_H
@@ -294,7 +295,7 @@ The compiler will first search from the user’s working directory. This method 
 	-t, --touch                                   Touch targets instead of remaking them.
 </pre>
 
-**19.	Please list useful advanced grammars (高级语法) of makefile as many as you can. It is suggested to explain the usage of these grammars. For example, it is convenient to automatically detect all the source files in a folder (自动检测文件夹下的所有文件) and automatically compile them all. How does makefile support this?**
+**19.	Please list as many useful advanced grammars (高级语法) of makefile as many as you can. If possible, explain the usage of these grammars. For example, it is convenient to automatically detect all the source files in a folder (自动检测文件夹下的所有文件) and automatically compile them all. How does makefile support this?**
 
 - Assume there are source files a.cpp, b.cpp, and c.cpp in the folder, along with the header file func.h, we can complie the program in the following way:
 
