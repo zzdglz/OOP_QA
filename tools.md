@@ -106,6 +106,23 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+## StarUML
+StatUML是一款开放源码的UML开发工具，支持创建UML类图，生成类图和其它类型的统一建模语言图表。
+
+其特点如下：
+
+* 支持绘制：用例图、类图、序列图、状态图、活动图、通信图、构件图、部署图等多种UML图
+* 完全免费：不仅免费下载，而且代码都是开源的
+* 可以将生成图导出为：PDF、JPG、JPEG、BMP、EMF等多种格式的文件
+* 语法检验：StarUML遵守UML的语法规则，不支持违反语法的动作。
+* 正反向工程：可以依据类图的内容生成Java、C++、C#代码，也能够读取Java、C++、C#代码反向生成类图。
+
+总的来说这是一款简单、易上手、功能全面的UML开发工具，可以用它来图例化大作业文档中的许多设计。
+
+官网网址：https://staruml.io/
+
+入门教程：https://blog.csdn.net/csdn_20150804/article/details/105004375
+
 ## openFrameworks
 
 openFrameworks（以下简称 oF） 是一个开源的、跨平台的 C++ 工具包。旨在开发实时项目，重点是生成和处理图形和声音。如今，这是一个很受欢迎的实验平台，用于生成和声音艺术，以及创作互动装置和视听表演。
