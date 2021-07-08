@@ -55,12 +55,15 @@ float func_reverse( float num )
 
 该算法的更详细介绍（包括**魔法数字**的推导）见下文：[平方根倒数速算法](https://www.cnblogs.com/german-iris/p/5767546.html)
 
-## Minimalize the use of if/else branches
+## Minimize the use of if/else branches
 
 If there are are many *else* branches, and the test-condition is very close to the last *else* branch, the CPU may spending lots of time jumping from one *else* to another *else*. If possible, convert to a *switch* statement, then CPU only need to execute one jump with a lookup table.
 
-## Use ++i instead of i++ except that you have a reason todo that.
-`++i` have a better efficiency than `i++`.
+## Minimize the use of function calls
+Function calls require two jumps, and cause the compiler to manipulate stack memory. Consider using inline functions, and using iterations over recursion.
+
+## Use ++i instead of i++ unless you have an explicit reason.
+++i have a better efficiency than i++.
 
 ```cpp
 for(int i = 0; i < 10; ++i)
@@ -76,6 +79,8 @@ Because `++i`  needn't call the copy constructor to build a new object `temp`.
 
 `++i` is also faster than `i++` in `iterator` of STL.
 
+because i++ creates a copy of the object, which, when not needed, is suboptimal.
+
 ## Use bit operations
 When the operation involves powers of two, the bit operation can be used to solve the problem.  
 For example, you can use a int as a bool[32].
@@ -85,7 +90,7 @@ For example, you can use a int as a bool[32].
 + And for those function less than 10 lines, declare them as inline can improve the efficiency. 
 + For those large objects, it is costly to copy. So it better to use reference.
 
-## Decline the use of division
+## Avoid the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
 
 ## Loop unrolling
