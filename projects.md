@@ -18,7 +18,6 @@ It gives dozens of demo codes in every single package and detailed tutorials, ma
 Cocos2d-x是国内普及度较高的一款开源的**跨平台**移动2D游戏框架，其主要侧重于原生移动平台，适配iOS、Android、Windows、Mac等系统。其官网是这样描述这个框架的：
 
 > 引擎提供了图形渲染、GUI、音频、网络、物理、用户输入等丰富的功能，被广泛应用于游戏开发及交互式应用的构建。
->
 
 其核心部分用C++编写，支持用C++、Lua进行开发。
 
@@ -66,20 +65,11 @@ It provides support for procedural animation of physical bodies to make objects 
 ## *2. Purpose*  
 It provides support for procedural animation of physical bodies to make objects move and interact in realistic ways.
 
-## Face Recognition
-https://github.com/ageitgey/face_recognition
 
-Recognize and manipulate faces from Python or from the command line with
-the world's simplest face recognition library.
+## Bitcoin 
+Bitcoin is the largest cryptocurrency in the world. It is a decentralized currency and relies on peer-to-peer communications, meaning it has no authority and, being open-source, anyone can make edits. The name of the software bitcoin is built on is called "Bitcoin Core", and can be found here: https://github.com/bitcoin/bitcoin
 
-Built using [dlib](http://dlib.net/)'s state-of-the-art face recognition
-built with deep learning. The model has an accuracy of 99.38% on the
-[Labeled Faces in the Wild](http://vis-www.cs.umass.edu/lfw/) benchmark.
+## Google Test
+Google Test is Google's C++ testing and mocking framework. You can learn how to use it on https://google.github.io/googletest/.
+Website: https://github.com/google/googletest/
 
-This also provides a simple `face_recognition` command line tool that lets
-you do face recognition on a folder of images from the command line!
-
-#### Features
-- **Find faces in pictures:** Find all the faces that appear in a picture
-- **Find and manipulate facial features in pictures:** Get the locations and outlines of each person's eyes, nose, mouth and chin.
-- **Identify faces in pictures:** Recognize who appears in each photo.
