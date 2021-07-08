@@ -65,15 +65,11 @@ It provides support for procedural animation of physical bodies to make objects 
 ## *2. Purpose*  
 It provides support for procedural animation of physical bodies to make objects move and interact in realistic ways.
 
-## TensorFlow:
 
-TensorFlow 是谷歌的第二代机器学习系统。
+## Bitcoin 
+Bitcoin is the largest cryptocurrency in the world. It is a decentralized currency and relies on peer-to-peer communications, meaning it has no authority and, being open-source, anyone can make edits. The name of the software bitcoin is built on is called "Bitcoin Core", and can be found here: https://github.com/bitcoin/bitcoin
 
-TensorFlow 内建深度学习的扩展支持，任何能够用计算流图像来表达的计算，都可以使用TensorFlow。任何基于梯度的机器学习算法都能够受益于TensorFlow的自动分化（auto-differentiation）
-
-通过灵活的Python接口，要在TensorFlow中表达想法也会非常容易。
-
-官网网址：https://tensorflow.google.cn/
-
-相关教程：http://c.biancheng.net/tensorflow/
+## Google Test
+Google Test is Google's C++ testing and mocking framework. You can learn how to use it on https://google.github.io/googletest/.
+Website: https://github.com/google/googletest/
 
