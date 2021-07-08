@@ -92,6 +92,24 @@ For example, you can use a int as a bool[32].
 ## Avoid the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
 
+
+## __builtin functions：
+
+这些函数是C标准库中的一些函数，被GCC引入为内置函数。可以快速完成基础的位运算或其他功能，从而大幅优化关键位置效率。
+
+`__builtin_popcount(uint32_t x)`：返回`x`二进制表示中`1`的个数。
+`__builtin_ctz(uint32_t x)`：返回`x`二进制中最低位0的个数。注意`x=0`时返回值是未定义的。
+`__builtin_clz(x)`：返回`x`二进制中最高位前导0的个数。注意`x=0`时返回值是未定义的。
+`__builtin_bswap16(uint16_t x)`：返回16位整数字节顺序翻转的结果
+`__builtin_bswap32(uint32_t x)`：返回32位整数字节顺序翻转的结果
+`__builtin_bswap64(uint64_t x)`：返回64位整数字节顺序翻转的结果
+`__builtin_except(bool x,true/false)`：表示期望这个`bool`表达式的真假，优化编译器的分支预测。
+`__builtin_parity(uint32_t x)`：返回`x`的二进制中`1`个数的奇偶性。
+
+**注意**：上述字节顺序翻转是指：以字节为单位将整数看作字符串，然后将这个字符串翻转。而非逐位取反。如`0xabcd -> 0xcdab`，`0x12345678 -> 0x78563412`）
+
+更多请参考：https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html#Other-Builtins
+
 ## Multiple conditions in if
 When we have a statement like `if (A && B)` and A is false, program will not check B.
 
@@ -267,3 +285,4 @@ int main()
 ```
 这个程序的结果为：11ms，20ms
 由于行遍历的连续性，按行遍历可以快速找到下一个内存的指针，从而效率更高。
+
