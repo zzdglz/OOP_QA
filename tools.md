@@ -106,6 +106,7 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+
 ## vTune
 VTune Profiler (formerly VTune Amplifier) is a performance analysis tool for x86 based machines running Linux or Microsoft Windows operating systems. Many features work on both Intel and AMD hardware, but advanced hardware-based sampling requires an Intel-manufactured CPU.(It is very powerful)
 
@@ -165,3 +166,4 @@ Beyond Compare is focused. Beyond Compare allows you to quickly and easily compa
 ## Ubuntu Pastebin
 You can share your code with others conveniently with it.
 Website: https://paste.ubuntu.com/
+
