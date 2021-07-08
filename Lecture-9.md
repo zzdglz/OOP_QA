@@ -75,16 +75,20 @@ public:
 - Keyword overide asks the compiler to check whether the function is correctly overided.(which means hide the original function in the base class)
 - When we require polymorphism, override is necessary to tell others that we have overridden the virtual function in the base class.
 
-```cpp
-class Man {
-public:
-	virtual void speak() { cout << "I am a man." << endl; }
-}
+- When the definition of the base class function is changed or there is some mistake in the definition of the derived class so that there is no overriding, keyword override helps us to check.
+<code>
 
-class Genius {
-public:
-	void speak() override { cout << "I am a genius." << endl; }
-}
+	class Man {
+	public:
+	  virtual void speak() { cout << "I am a man." << endl; }
+	};
+
+	class Genius : public Man {
+	public:
+	  void speak(int a = 0) override { cout << "I am a genius." << endl; } 
+	  //Compile error.
+	  //error: ‘void Genius::speak(int)’ marked ‘override’, but does not override
+	};
 
 void foo(Man& m) {
 	m.speak();

@@ -37,6 +37,7 @@
 #### 3.	Please try to explain why the designers want to organize data and functions into classes? What are the advantages and disadvantages?
 
 - Data and functions are organized into classes because they are easier to deal with as a whole – an object.
+- Objects in real world have attributes and behaviors. To model them we need to encapsulate attributes (data) and behaviors (functions).
 - Advantages:
   - Easy for dividing the whole program into separate functioning modules.
   - Easy for cooperation of a team and also easy for debugging.
@@ -45,6 +46,7 @@
   -	Safe for memory control, with well-defined constructors and destructors.
 - Disadvantages:
   -	Polymorphism (多态) takes more runtime and memory, due to the virtual pointer (vptr) and virtual table (vtable).
+
 
 ## Access control
 #### 4.	Please try to use access control （访问控制）to enable information hiding of your class definition of a computer in Problem No.1.

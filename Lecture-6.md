@@ -100,7 +100,7 @@ MyString::MyString(const MyString& _string){
 #### 13.	Please list the cases where copy constructors are called. How to avoid the copy constructor in the listed cases?
 
 - 新对象创建和参数传递时会调用拷贝构造函数。
-- 避免方法：传参时加引用，将拷贝构造函数定义为private。
+- 避免方法：传参时加引用，将拷贝构造函数定义为private，将拷贝构造函数定义为delete。
 
 #### 14.	What’s the function of compiler-generated copy constructor? What is the fatal disadvantage of depending on the compiler-generated copy constructor? Please give an example of the fatal error. 
 

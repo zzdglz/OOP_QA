@@ -34,3 +34,21 @@
 
 ## https://vjudge.net/problem
 #### Virtual Judge is not a real online judge. It can grab problems from other regular online judges and simulate submissions to other online judges. It aims to enable holding contests when you don't have the test data.
+
+
+## [Compiler Explorer](https://godbolt.org/)
+#### **Compiler Explorer** is an interactive compiler exploration website. Edit C, C++, Rust, Go, D, Haskell, Swift, Pascal, [ispc](https://ispc.github.io/) or other language code, and see how that code looks after being compiled in real time. Multiple compilers are supported, many different tools and visualations are available, and the UI layout is configurable (thanks to [GoldenLayout](https://www.golden-layout.com/)).
+
+## [Google coding style](https://google.github.io/styleguide/cppguide.html)
+
+#### Google coding Style Guide 
+
+## [Project Euler](https://projecteuler.net/)
+#### A special online judge which is mainly about mathematics and you need to submit only the result, which means that you can use any method, any language, any device you desire to solve the problem(for example, pen and paper and brain). When you work out a problem successfully, you can go to the discussion board or look at the official tutorial.
+
+## https://csdn.net
+#### CSDN is a domestic website for all programmers to look for references and coding assistance. Its useful resources and experience from other programmers will be of great assistance.
+
+## https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-6.0/aa260976(v=vs.60)?redirectedfrom=MSDN
+#### This is the website of Microsoft to introduce Hungarian Notation. Even though a bit complicated , the use of this coding style may help you to avoid many common errors.
+

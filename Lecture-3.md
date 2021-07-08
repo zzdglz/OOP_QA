@@ -233,3 +233,30 @@ class A
 	A(int k) : num(k), b(k) {}
 };
 ```
+
+
+#### 15. When should we use the keyword `explicit` and Why?
+
+- To forbid the **implicit type conversion**, we will use keyword `explicit`.
+
+  If the bug of **implicit type conversion** happens, it is difficult to discover. So we should use it when we complete the constructor.
+
+  The conversion will happen when the constructor has only one parameter or has n parameters with n-1 default values.
+
+- an example:
+
+  ```cpp
+  #include <cstdio>
+  
+  class Demo{
+  	public:
+  		Demo(){}
+  		Demo(int a,int b = 10,double c = 1.6): value1(a), value2(b){};
+  	private:
+  		int value1, value2;
+  };
+  
+  int main(){
+  	Demo obj = 1.2;//works if no explicit keyword, error if explicit is used
+  }
+  ```
