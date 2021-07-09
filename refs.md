@@ -52,3 +52,5 @@
 ## https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-6.0/aa260976(v=vs.60)?redirectedfrom=MSDN
 #### This is the website of Microsoft to introduce Hungarian Notation. Even though a bit complicated , the use of this coding style may help you to avoid many common errors.
 
+## http://c.biancheng.net/view/vip_2310.html
+#### Here, operator overloading as member function or globle funtion is distinguished in detail, a little bit clearer than the lecture PPT to be honest. 
