@@ -106,6 +106,8 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+## IDA
+IDA是Interactive Disassembler Professional的缩写，指交互式反汇编器。可以用于分析不知道源码的C可执行程序，不仅可以得到等效源码、汇编代码，还能分析栈和堆的分配方式，如函数地址和变量地址。
 
 ## CLion
 
@@ -175,4 +177,3 @@ Beyond Compare is focused. Beyond Compare allows you to quickly and easily compa
 ## Ubuntu Pastebin
 You can share your code with others conveniently with it.
 Website: https://paste.ubuntu.com/
-

@@ -92,7 +92,22 @@ For example, you can use a int as a bool[32].
 ## Avoid the use of division
 use a * b = c instead of a = c / b because computers are less efficient at division.
 
+## 快速幂
+如果我们要计算$x^y$那么我们可以考虑利用倍增的思想，即通过每次平方算出$x^2,x^4,x^8,......,x^{2k}$并用这些结果相乘得到$x^y$需要乘法运算的次数变为原来的对数。代码如下：
 
+```c++
+int quickPow(int x,int y)
+{
+    int ans=1;
+    while(y)
+    {
+        if(y&1)ans*=x;
+        y>>=1;
+        x*=x;
+    }
+    return ans;
+}
+```
 ## __builtin functions：
 
 这些函数是C标准库中的一些函数，被GCC引入为内置函数。可以快速完成基础的位运算或其他功能，从而大幅优化关键位置效率。
