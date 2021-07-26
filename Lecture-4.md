@@ -120,6 +120,7 @@ int main ()
 ##	Constants
 #### 10. Please explain why we can define a constant variable in the header file without causing compiling errors? What should be done for you to use a constant variable defined in another source file?
 
+- C++中const变量默认为内部链接，即仅在被定义的文件中可见，在每个包含它的编译单元内单独分配内存地址，由于地址不同，链接时也不会发生重定义的错误，通常而言编译器甚至都不会为const变量创建存储空间，而是进行常量折叠，直接将其保存在符号表内，对其进行值替换，而没有存储空间自然也不会发生重定义。
 - 在预编译的时候如果在头文件定义了`const`变量，每一个包含该头文件的c文件都会将其展开，而在编译的时候不会报错，因为这符合语法规则，每一个包含这个头文件的`*.c`文件都会编译一次这个变量，分配一个新的地址，然后在链接的时候也不会报错，因为每个同名变量都有自己的地址空间，虽然程序运行不会带来问题，但是如果变量多了，会造成rom的大量浪费。
 - To use variables in another source file, we need to use the keyword `extern` as in the following code
 	```cpp
@@ -163,8 +164,8 @@ const int a = 1;
 int &b = const_cast<int&> (a);  
 b = 2;
 ```  
-
-这段代码可以通过编译，但是很有可能运行错误，或者得到无法预计的结果(例如，在上述代码之后再开一个以`a`为长度的数组试试？)。
+这段代码可以通过编译，但是很有可能运行错误，或者得到无法预计的结果(例如，在上述代码之后再开一个以a为长度的数组试试？除此之外，如果此时打印一下a、b的地址和值，你会发现它们拥有完全相同的地址，然而`a=1,b=2`。）。C++标准规定：Modifying a const object through a non-const access path and referring to a volatile object through a non-volatile glvalue results in undefined behavior。
+在设计良好的程序中，通常不应该使用const_cast。
 
 C++标准规定：
 > Modifying a const object through a non-const access path and referring to a volatile object through a non-volatile glvalue results in undefined behavior。

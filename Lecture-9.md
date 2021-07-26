@@ -154,7 +154,7 @@ public:
 
 - Yes, it can.
 - Providing a function body for pure virtual function can reuse these code, which is good for programming.
-- The most common use of pure virtual function body is the pure virtual destructor. By declaring destructor as pure virtual, we can create an abstract class while define most of its behaviour. But at the same time, destructor must have a function body (C++ standard requires). This provide a way to create an abstract class at a relatively low cost.
+- The most common use of pure virtual function body is the pure virtual destructor. By declaring destructor as pure virtual, we can create an abstract class while define most of its behaviour. But at the same time, destructor must have a function body (C++ standard requires so, because when destructing a derived object, the compiler will automatically invoke the destructors of its base classes according to the order of inheritance, if destructor of base class is declared pure virtual and not defined, then it can't be invoked successfully and will cause compiling error). This provide a way to create an abstract class at a relatively low cost.
 
 #### 14. Please give an example where a derived class of an abstract class is still an abstract class.
 
