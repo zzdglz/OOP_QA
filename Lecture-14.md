@@ -6,11 +6,12 @@
 - In templates, data types are used as parameters.
 
 #### 2. Please write down the general form of function template definition accepting two different data types.
-```
-  template<class T1, class T2>
-  ReturnType FunctionName(ParameterList) {
-  // FunctionBody
-  }
+
+```cpp
+template<class T1, class T2>
+ReturnType FunctionName(ParameterList) {
+    // FunctionBody
+}
 ```
 **Note: The ParameterList don't need to use all the template arguments (T1 and T2).Just call the function like this:**
 
@@ -28,22 +29,23 @@ FuctionName<Class1, Class2>(parameter);
 
 - When the defined template function/class cannot be used for a special data type, we need to define a special template function/class for the special data type. This is called template specialization.
 - The general form is given as follows:
-```
-    //general template
+  ```cpp
+  //general template
   template <class T>
-    return-type func(T arg1, float arg2) {    
-        //FunctionBody
-    }
+  return-type func(T arg1, float arg2) {    
+      //FunctionBody
+  }
 
-    //template specialization
+  //template specialization
   template <>
-    return-type func <int> (int arg1, float arg2) {
+  return-type func <int> (int arg1, float arg2) {
       //A different FunctionBody
-    }
-```
+  }
+  ```
 
 #### 5. Please complete the following code to compute the Fibonacci sequence value of 100 within O(1) runtime.
-```
+
+```cpp
 #include <cmath>
 #include <iostream>
 using namespace std;
@@ -56,7 +58,7 @@ int main ()
 ```
 - Answer:
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -91,9 +93,9 @@ int main ()
 
 #### 7. Please write down the general form of class template.
 
-```
-  template <class T1, class T2>
-  class ClassName {
+```cpp
+template <class T1, class T2>
+class ClassName {
   //Class body using T1 and T2
   };
 ```
@@ -108,50 +110,50 @@ int main ()
 
 - Default value for template parameters:
 
-```
-  template<class T = int>
+```cpp
+template<class T = int>
 ```
 
 - Consntant value in template:
 
-```
-  template<class T, int max>
+```cpp
+template<class T, int max>
 ```
 
 - Inherit from a template class:
 
-```
-  template<class T>
-  class InheritedClass : public BaseClass<T> {
+```cpp
+template<class T>
+class InheritedClass : public BaseClass<T> {
   // Declaration body.
-  };
+};
 ```
 
 ####  10. Please give the UML class diagram for the iterator design pattern.
 <!-- <![image][tmp11] > -->
 
-![14-11](https://raw.githubusercontent.com/darknessnone/oop-exercise/master/14-11.png)
+![14-11](./14-11.png)
 
 #### 11. Plese implement a general “Count_If” algorithm using template along with the iterator design pattern.
 
-```
-  template <typename InputIterator, class Pred>
-  int Count_If(InputIterator begin, InputIterator end, Pred pred) {
-      int count = 0;
-      for (; begin != end; ++begin)
-          if (pred(*begin))
-              count++;
-      return count;
-  }
+```cpp
+template <typename InputIterator, class Pred>
+int Count_If(InputIterator begin, InputIterator end, Pred pred) {
+    int count = 0;
+    for (; begin != end; ++begin)
+        if (pred(*begin))
+            count++;
+    return count;
+}
 ```
 
 #### 12. Please give an example to illustrate how the function object (函数对象) is used in STL.
 
--	std::priority_queue<int, std::vector<int>, std::greater<int> > Q; // by default, less<int> is used in priority_queue, which defines a large-root heap (大根堆)
-- Here, greater<int> is a function object defined in STL (with template parameter int), which defines a small-root heap (小根堆).
+-	`std::priority_queue<int, std::vector<int>, std::greater<int> > Q;` // by default, `less<int>` is used in `priority_queue`, which defines a large-root heap (大根堆)
+- Here, `greater<int>` is a function object defined in STL (with template parameter `int`), which defines a small-root heap (小根堆).
 - Code:
 
-```
+```cpp
 //http://www.cplusplus.com/reference/queue/priority_queue/push/
 #include <iostream>       // std::cout
 #include <queue>          // std::priority_queue
