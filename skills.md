@@ -90,7 +90,43 @@ For example, you can use a int as a bool[32].
 + For those large objects, it is costly to copy. So it better to use reference.
 
 ## Avoid the use of division
-use a * b = c instead of a = c / b because computers are less efficient at division.
+use b = *a\*0.2* instead of *b = a / 5* because computers are less efficient at division.
+
+## 快速乘
+
+当在C++中进行这种计算时可能因为不正确的结果：long long * long long % long long.
+
+即int64与int64相乘的结果对int64取模，如果直接进行的话，有可能会因为溢出而得到错误的结果。在这种情况下，有一种比较简单但是速度比较慢的方法：（假设模数小于LLONG_MAX/2，否则在unsigned long long下运算即可)
+
+```C++
+long long mul(long long a,long long b,long long P)
+{
+    long long ret=0;
+    for(;b;b>>=1,a=(a+a)%P)
+        if(b&1)
+            ret=(ret+b)%P;
+    return ret;       
+}
+```
+
+这个方法利用了快速幂的思想，单次的时间复杂度为$O(\log_2 b)$。
+
+但实际上，有更加快速的方法，其代码为：
+
+```C++
+long long fast_mul(long long x,long long y,long long p)
+{
+	long long z=(long double)x/p*y;
+	long long res=(unsigned long long)x*y-(unsigned long long)z*p;
+	return (res+p)%p;
+}
+```
+
+这份代码中，利用了$xy \bmod P=xy-\lceil \frac{xy}{P}\rceil *P$这个公式。
+
+虽然在第四行有可能出现溢出的情况，但由于是unsigned long long的自然溢出，因此可以保证它们的差值是正确的。
+
+这种方法的复杂度为$O(1)$。
 
 ## 快速幂
 如果我们要计算$x^y$那么我们可以考虑利用倍增的思想，即通过每次平方算出$x^2,x^4,x^8,......,x^{2k}$并用这些结果相乘得到$x^y$需要乘法运算的次数变为原来的对数。代码如下：
