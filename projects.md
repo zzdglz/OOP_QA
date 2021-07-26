@@ -66,10 +66,15 @@ It provides support for procedural animation of physical bodies to make objects 
 It provides support for procedural animation of physical bodies to make objects move and interact in realistic ways.
 
 
+## CppJieba
+
+https://github.com/yanyiwu/cppjieba
+
+结巴中文分词的Cpp版本，支持多种分词模式，将句子拆分成词以进行文本分析等应用。
+
 ## Bitcoin 
 Bitcoin is the largest cryptocurrency in the world. It is a decentralized currency and relies on peer-to-peer communications, meaning it has no authority and, being open-source, anyone can make edits. The name of the software bitcoin is built on is called "Bitcoin Core", and can be found here: https://github.com/bitcoin/bitcoin
 
 ## Google Test
 Google Test is Google's C++ testing and mocking framework. You can learn how to use it on https://google.github.io/googletest/.
 Website: https://github.com/google/googletest/
-

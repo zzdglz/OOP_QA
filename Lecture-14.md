@@ -13,7 +13,13 @@ ReturnType FunctionName(ParameterList) {
     // FunctionBody
 }
 ```
-**Note: The ParameterList must use all the template arguments (T1 and T2).**
+**Note: The ParameterList don't need to use all the template arguments (T1 and T2).Just call the function like this:**
+
+```
+FuctionName<Class1, Class2>(parameter);
+```
+
+
 
 #### 3. Please state all the data types that can be template arguments.
 
@@ -91,8 +97,8 @@ int main ()
 template <class T1, class T2>
 class ClassName {
   //Class body using T1 and T2
-};
- ```
+  };
+```
 
 #### 8. Why are the definitions of template functions and template classes supposed to be placed in header files?
 
