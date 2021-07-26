@@ -106,3 +106,90 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+## Visual Studio
+Microsoft Visual Studio（简称VS）是美国微软公司的开发工具包系列产品。VS是一个基本完整的开发工具集，它包括了整个软件生命周期中所需要的大部分工具，如UML工具、代码管控工具、集成开发环境(IDE)等等。所写的目标代码适用于微软支持的所有平台
+Website:https://visualstudio.microsoft.com/zh-hans/
+
+## Windows Subsystem for Linux(WSL)
+
+WSL可以让开发者在Windows电脑上运行Linux程序。
+
+目前WSL一共有两代。WSL1的实现原理大致是微软利用Windows的API模拟了一部分Linux的API以达到在Windows上运行Linux程序的效果，此时甚至可以在Windows的任务管理器中看到WSL中运行的程序。
+
+而WSL2则是在Hyper-V虚拟机中运行了一个完整的Linux内核，以达到更多的功能。
+
+此外，也有WSLg，它是WSL2的扩展版，支持在WSL2中运行GUI程序。
+
+## IDA
+IDA是Interactive Disassembler Professional的缩写，指交互式反汇编器。可以用于分析不知道源码的C可执行程序，不仅可以得到等效源码、汇编代码，还能分析栈和堆的分配方式，如函数地址和变量地址。
+
+## CLion
+
+A **cross-platform** IDE for C and C++
+
+CLion是Jetbrains公司旗下新推出的一款专为开发C/C++所设计的跨平台IDE。它是以IntelliJ为基础设计的，同时包含了代码辅助、代码生成、安全重构、快速文档、实时代码分析、集成调试器等许多智能功能以提高开发效率。
+
+**对学生完全免费**，提供官方简体中文插件。
+
+Website: https://www.jetbrains.com/clion/
+
+## vTune
+VTune Profiler (formerly VTune Amplifier) is a performance analysis tool for x86 based machines running Linux or Microsoft Windows operating systems. Many features work on both Intel and AMD hardware, but advanced hardware-based sampling requires an Intel-manufactured CPU.(It is very powerful)
+
+## StarUML
+StatUML是一款开放源码的UML开发工具，支持创建UML类图，生成类图和其它类型的统一建模语言图表。
+
+其特点如下：
+
+* 支持绘制：用例图、类图、序列图、状态图、活动图、通信图、构件图、部署图等多种UML图
+* 完全免费：不仅免费下载，而且代码都是开源的
+* 可以将生成图导出为：PDF、JPG、JPEG、BMP、EMF等多种格式的文件
+* 语法检验：StarUML遵守UML的语法规则，不支持违反语法的动作。
+* 正反向工程：可以依据类图的内容生成Java、C++、C#代码，也能够读取Java、C++、C#代码反向生成类图。
+
+总的来说这是一款简单、易上手、功能全面的UML开发工具，可以用它来图例化大作业文档中的许多设计。
+
+官网网址：https://staruml.io/
+
+入门教程：https://blog.csdn.net/csdn_20150804/article/details/105004375
+
+## openFrameworks
+
+openFrameworks（以下简称 oF） 是一个开源的、跨平台的 C++ 工具包。旨在开发实时项目，重点是生成和处理图形和声音。如今，这是一个很受欢迎的实验平台，用于生成和声音艺术，以及创作互动装置和视听表演。
+
+oF 的强大之处在于，它不仅是一个通用的胶水（glue），同时它还封装了多种常用的库，包括：
+
+- OpenGL、GLEW、GLUT、libtess2、cairo - 用于处理图形；
+- rtAudio、PortAudio、OpenAL、Kiss FFT、FMOD - 用于音频的输入、输出和分析；
+- FreeType - 用于字体显示；
+- FreeImage - 用于图像存储和载入；
+- Quicktime、GStreamer、videoInput - 用于视频播放和截取；
+- Poco - 用于开发网络应用；
+- OpenCV - 用于计算机视觉；
+- Assimp - 用于读入 3D 模型。
+
+这些库虽然遵循着不同的规则和用法，但 oF 在它们基础上提供了一个通用的接口，使得使用它们变得很容易。
+
+除此之外，oF 的另一亮点在于它具有很好的跨平台特性。目前它支持 5 种操作系统（Windows、OSX、Linux、iOS、Android）以及 4 种 集成开发环境（XCode、Code::Blocks、Visual Studio、Eclipse）。
+
+## pb_ds
+
+[link](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/)
+
+This is a library of policy-based elementary data structures: associative containers and priority queues.
+
+It is designed for high-performance, flexibility, semantic safety, and conformance to the corresponding containers in std and std::tr1 (except for some points where it differs by design).
+
+It is like STL, but have a lot of more powerful tools with better efficiency than STL. (such as HashTable, Balance Tree...)
+
+## Intelligent Comparison
+
+Beyond Compare is focused. Beyond Compare allows you to quickly and easily compare your files and folders. By using simple, powerful commands you can focus on the differences you're interested in and ignore those you're not. You can then merge the changes, synchronize your files, and generate reports for your records.
+
+[Homepage](https://www.scootersoftware.com/features.php)
+
+## Ubuntu Pastebin
+You can share your code with others conveniently with it.
+Website: https://paste.ubuntu.com/
+
+
