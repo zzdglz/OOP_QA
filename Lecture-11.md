@@ -1,6 +1,7 @@
 # Lecture 11
 ##	Factory method
 #### 1.	What is the basic function (功能) of factory method?
+
 - Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory method lets a class defer instantiation to subclasses.
 - In factory method, there is a one-to-one correspondance between concrete product and concrete creator. When a new concrete product is added, we only need to add a concrete creator.
 - Program to an interface (i.e., Abstract Product and Abstract Creator), not an implement.
@@ -10,8 +11,9 @@
 #### 2. Please give an example using factory method design pattern.
 
 <!--  ![image][tmp2]  -->
-<!--![11-2](https://raw.githubusercontent.com/darknessnone/oop-exercise/master/11-2.png) -->
-```
+<!--![11-2](./11-2.png) -->
+
+```makefile
 #makefile
 all: Pizza.exe
 Pizza.exe: main.o
@@ -22,7 +24,7 @@ main.o: main.cpp CheesePizza.h Pizza.h VeggiePizza.h PepperoniPizza.h PizzaStore
 clean:
 	del *.o *.exe
 ```
-```
+```cpp
 //Pizza.h
 #ifndef __PIZZA__
 #define __PIZZA__
@@ -36,7 +38,7 @@ public:
 
 #endif
 ```
-```
+```cpp
 //CheesePizza.h
 #ifndef __CHEESE_PIZZA__
 #define __CHEESE_PIZZA__
@@ -54,7 +56,7 @@ public:
 };
 #endif
 ```
-```
+```cpp
 //VeggiePizza.h
 #ifndef __VEGGIE_PIZZA__
 #define __VEGGIE_PIZZA__
@@ -73,7 +75,7 @@ public:
 
 #endif
 ```
-```
+```cpp
 //PepperoniPizza.h
 #ifndef __PEPPERONI_PIZZA__
 #define __PEPPERONI_PIZZA__
@@ -92,7 +94,7 @@ public:
 
 #endif
 ```
-```
+```cpp
 //PizzaFactory.h
 #ifndef __PIZZA_FACTORY__
 #define __PIZZA_FACTORY__
@@ -106,7 +108,7 @@ public:
 
 #endif
 ```
-```
+```cpp
 //PepperoniPizzaFactory.h
 #ifndef __PEPPERONI_PIZZA_FACTORY__
 #define __PEPPERONI_PIZZA_FACTORY__
@@ -124,7 +126,7 @@ public:
 
 #endif
 ```
-```
+```cpp
 //VeggiePizzaFactory.h
 #ifndef __VEGGIE_PIZZA_FACTORY__
 #define __VEGGIE_PIZZA_FACTORY__
@@ -142,7 +144,7 @@ public:
 
 #endif
 ```
-```
+```cpp
 //CheesePizzaFactory.h
 #ifndef __CHEESE_PIZZA_FACTORY__
 #define __CHEESE_PIZZA_FACTORY__
@@ -160,7 +162,7 @@ public:
 
 #endif
 ```
-```
+```cpp
 //PizzaStore.h
 #ifndef __PIZZA_STORE__
 #define __PIZZA_STORE__
@@ -179,7 +181,7 @@ public:
 
 #endif
 ```
-```
+```cpp
 //main.cpp
 #include "PizzaStore.h"
 #include "PizzaFactory.h"
@@ -213,13 +215,15 @@ int main() {
 #### 3. Please give a typical UML class diagram of factory method.
 
 <!--  ![image][tmp4]  -->
-![11-4](https://raw.githubusercontent.com/darknessnone/oop-exercise/master/11-4.png)
+![11-4](./11-4.png)
 
 #### 4. Please state the single responsibility principle.
+
 - Assign each class a single task: partition different tasks and assign them to different objects.
 When a class has multiple tasks, we need to create a family of classes instead of the single class.
 
 #### 5. What is the main idea of parameterized factory method? What is the advantages of parameterized factory method compared with factory method and simple factory?
+
 - Parameterized factory can be regarded as a combination of simple factory and factory method. It is still a factory method, but each concrete factory can be parameterized to create different concrete products.
 - Advantages
 	- Still open for extension and closed for modification. When we want to add a new product, we can simply add a new concrete factory for this product.  
@@ -231,9 +235,10 @@ When a class has multiple tasks, we need to create a family of classes instead o
 #### 7. Please give a typical UML class diagram of abstract factory.
 
 <!--  ![image][tmp8]  -->
-![11-8](https://raw.githubusercontent.com/darknessnone/oop-exercise/master/11-8.png)
+![11-8](./11-8.png)
 
 #### 8. What is the key difference among simple factory, factory method, parameterized factory method, and abstract factory?
+
 - Simple factory：does not comply with the open-closed principle.
 - Factory method: easy for extension, but the number of classes increases dramatically when there are many different products.
 - Parameterized factory method: simple factory + factory method. At the initial design stage, simple factory is used for creating a lot of different products. For future extension, factory method is used for avoiding the modification of existing code.
@@ -245,7 +250,8 @@ When a class has multiple tasks, we need to create a family of classes instead o
 - Define a one-to-many dependency between objects, so that when one object changes state, all its dependents are notified and updated automatically.
 
 #### 10.	Please give an example using observer pattern?
-```
+
+```makefile
 #makefile
 sSOURCES=$(wildcard *.cpp)
 HEADERS=$(wildcard *.h)
@@ -266,7 +272,7 @@ explain:
 	@echo "Objects: $(sOBJECTS)"
 	@echo "Target: $(TARGET)"
 ```
-```
+```cpp
 //Publisher.h
 #ifndef PUBLISHER_H
 #define PUBLISHER_H
@@ -290,7 +296,7 @@ private:
 
 #endif // PUBLISHER_H
 ```
-```
+```cpp
 //Publisher.cpp
 #include <iostream>
 #include "Publisher.h"
@@ -325,7 +331,7 @@ void Publisher::removeSubscriber(Subscriber *s)
     }
 }
 ```
-```
+```cpp
 //Subscriber.h
 #ifndef SUBSCRIBER_H
 #define SUBSCRIBER_H
@@ -340,7 +346,7 @@ public:
 
 #endif // SUBSCRIBER_H
 ```
-```
+```cpp
 //Newspaper.h
 #ifndef NEWSPAPER_H
 #define NEWSPAPER_H
@@ -363,7 +369,7 @@ private:
 
 #endif // NEWSPAPER_H
 ```
-```
+```cpp
 //Magazine.h
 #ifndef MAGZINE_H
 #define MAGZINE_H
@@ -385,7 +391,7 @@ private:
 
 #endif // MAGZINE_H
 ```
-```
+```cpp
 //Company.h
 #ifndef COMPANY_H
 #define COMPANY_H
@@ -409,7 +415,7 @@ private:
 
 #endif // COMPANY_H
 ```
-```
+```cpp
 //Person.h
 #ifndef PERSON_H
 #define PERSON_H
@@ -433,7 +439,7 @@ private:
 
 #endif // PERSON_H
 ```
-```
+```cpp
 //main.cpp
 #include "Newspaper.h"
 #include "Magazine.h"
@@ -482,4 +488,4 @@ int main()
 #### 11.	Please give a typical UML class diagram of observer.
 
 <!--  ![image][tmp13]  -->
-![11-13](https://raw.githubusercontent.com/darknessnone/oop-exercise/master/11-13.png)
+![11-13](./11-13.png)
