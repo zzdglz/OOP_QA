@@ -4,13 +4,13 @@
 	int a;
 	int f ()
 	{
-    	static int c;
-    	int b;
-    	{int d; }
+		static int c;
+		int b;
+		{int d; }
 	}
 	int main ()
 	{
-    	f ();
+		f ();
 	}
 
 - a是全局变量，作用域是所有编译单元（包括定义它的文件和所有声明了它的文件）；
@@ -68,46 +68,36 @@ O h(const O& o)
 
 - 析构函数: 不是. 构造函数: 不是.
 - 原因：
-  - 如果你不想让外面的用户直接构造一个类（假设这个类的名字为`A`）的对象，而希望用户只能构造这个类`A`的子类，那你就可以将类`A`的构造函数/析构函数声明为`protected`。
-  - 如果将构造函数/析构函数声明为`private`，那只能这个类的“内部”的函数才能构造这个类的对象：
-	```cpp
-	#include <iostream>
-	using namespace std;
+  - 如果你不想让外面的用户直接构造一个类（假设这个类的名字为`A`）的对象，而希望用户只能构造这个类`A`的子类，那你就可以将类`A`的构造函数/析构函数声明为`protected`/`private`。
+  - 如果将构造函数/析构函数声明为`private`，则类的使用者无法构造和这个类的对象，单件设计模式由此而来：
 
-	class A
-	{
-	private:
-		A(): data(10) { cout << "A" << endl; }
-		~A() { cout << "~A" << endl; }
-	public:
-		static A& Instance()
-		{
-			static A a;
-			return a;
-		}
-		void Print()
-		{
-			cout << data << endl;
-		}
-	private:
-		int data;
-	};
-	int main(int argc, char** argv)
-	{
-		A& ra = A::Instance();
-		ra.Print();
-	}
-	```
-  - 当我们规定类只能在堆上分配内存时，就可以将析构函数声明为私有的：
-	```cpp
-	class alloc
-	{
-	public:
-		alloc():
-	　  destroy(){ delete this;} 　
-	private:
-		~alloc();
-	};
+```cpp
+		    \#include <iostream>
+		    using namespace std;
+		    
+		    class A
+		    {
+		    private:
+		        A(): data(10) { cout << "A" << endl; }
+		        ~A() { cout << "~A" << endl; }
+		    public:
+		        static A& Instance()
+		        {
+		            static A a;
+		            return a;
+		        }
+		        void Print()
+		        {
+		            cout << data << endl;
+		        }
+		    private:
+		        int data;
+		    };
+		    int main(int argc, char** argv)
+		    {
+		        A& ra = A::Instance();
+		        ra.Print();
+		    }
 	```
 
 #### 4. When does copy constructors and move constructors get called?
@@ -249,7 +239,6 @@ class A
 	A(int k) : num(k), b(k) {}
 };
 ```
-
 
 #### 15. When should we use the keyword `explicit` and Why?
 
