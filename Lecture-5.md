@@ -158,23 +158,49 @@ int Example::count = 0;
 #### 20. Please give a complete example of the singleton design pattern.
 
 ```cpp
-class Singleton{
+	class Singleton{
+	private:
+		static Singleton *instance;
+		Singleton(){}
+		Singleton(Singleton &&) = delete;
+		Singleton(const Singleton &) = delete;
+		Singleton & operator=(Singleton &&) = delete;
+		Singleton & operator=(const Singleton &) = delete;
+		~Singleton(){}
+	public:
+		Singleton *getInstance(){
+			if(instance == nullptr)
+				instance = new Singleton;
+			return instance;
+		}
+	};
+```
+
+上面是 Lazy Singleton 的基础实现，但存在如下问题：
+
+- 使用了`new`但没有相应的`delete`，存在内存泄露的问题。要解决这一问题，可以通过嵌套类的方式，在嵌套类内部的析构函数中`delete instance;`。
+- 多线程环境下不是线程安全的。要解决这一问题，可以使用双检测锁模式（DCL）
+
+但实际上，`c++11`以后，这两个问题可以通过一种更为优雅的方式解决。这一方法在 *Effective C++* 中被给出：
+
+```cpp
+class Singleton {
 private:
-	static Singleton *instance;
-	Singleton(){}
-	Singleton(Singleton &&) = delete;
-	Singleton(const Singleton &) = delete;
-	Singleton & operator=(Singleton &&) = delete;
-	Singleton & operator=(const Singleton &) = delete;
-	~Singleton(){}
+    Singleton() {}
+    ~Singleton() {}
 public:
-	Singleton *getInstance(){
-		if(instance == nullptr)
-			instance = new Singleton;
-		return instance;
-	}
+    Singleton(Singleton&&) = delete;
+    Singleton(const Singleton&) = delete;
+    Singleton &operator=(Singleton&&) = delete;
+    Singleton &operator=(const Singleton&) = delete;
+    Singleton *getInstance() {
+        static Singleton instance;
+	return instance;
+    }
 };
 ```
+
+说明：由于`static Singleton instance;`只在第一次执行时（第一次调用`getInstance()`）初始化，因此实现了单件，同时保证了内存安全和线程安全。
 
 #### 21. Please explain the necessity of singleton and try to describe some typical situations of using singletons.
 

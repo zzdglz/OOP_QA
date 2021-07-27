@@ -328,7 +328,26 @@ explain:
 	```
 	Using "`$`", we may define variables for batch processing.
 
-- "`.RECIPEPREFIX = >`" can change all the tab into '`>`'.
+- Infact, we can make the above process more automaticlly using the following makefile (JACK OF ALL TRADES!):
+
+```makefile
+cc = g++
+prom = ./main  # target
+deps = $(shell find ./ -name "*.h")  # dependence
+src = $(shell find ./ -name "*.cpp")  # source code
+obj = $(src:%.cpp=%.o)  # object file
+ 
+$(prom): $(obj)
+	$(cc) $(obj) -o $(prom) -std=c++2a -Wall
+ 
+%.o: %.cpp $(deps)
+	$(cc) $< -o $@ -std=c++2a -c -Wall
+```
+
+Explanation: Using the shell command `find`, we can automaticlly detect all source files (`*.cpp` matches all the files with a `.cpp` extension, etc. the source file) and all header files (`*.h` matches all the files with a `.h` extension, etc. the header file). `prom` is the name of our wanted executable file, when we type `make` in the command line, the make program will automaticlly find all source files and header files to compile (create or update) our target (in this case, that is the `./main`)
+
+- ".RECIPEPREFIX = >" can change all the tab into '>'.
+
 - In Makefile, we can use Bash grammars as follows.
 	```makefile
 	ifeq ($(CC),gcc)
