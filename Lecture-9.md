@@ -1,43 +1,44 @@
 # Lecture 9
 ##	Virtual function (虚函数)
 #### 1.	Please give an example to explain polymorphism (多态性).
-<code>
 
-	#include <iostream>
-	using namespace std;
+```cpp
+#include <iostream>
+using namespace std;
 
-	enum note { middleC, Csharp, Eflat };
-	/**
-	 * The base class.
-	 * It declared a virtual function.
-	 */
-	class Instrument {
-	public:
-	  virtual void play(note) const{ cout<< "Instrument::play" <<endl; }
-	};
+enum note { middleC, Csharp, Eflat };
+/**
+	* The base class.
+	* It declared a virtual function.
+	*/
+class Instrument {
+public:
+	virtual void play(note) const{ cout<< "Instrument::play" <<endl; }
+};
 
-	/**
-	 * The derived class.
-	 * It overloaded the virtual function in the base class, so it has polymorphic behaviour.
-	 */
-	class Wind : public Instrument {
-	public:
-	  void play(note) const{ cout<< "Wind::play" <<endl; }
-	};
+/**
+	* The derived class.
+	* It overloaded the virtual function in the base class, so it has polymorphic behaviour.
+	*/
+class Wind : public Instrument {
+public:
+	void play(note) const{ cout<< "Wind::play" <<endl; }
+};
 
-	/**
-	 * Use reference to display polymorphism.
-	 */
-	void tune(Instrument &i) {
-	  i.play(middleC);
-	}
+/**
+	* Use reference to display polymorphism.
+	*/
+void tune(Instrument &i) {
+	i.play(middleC);
+}
 
-	int main() {
-	  Wind flute;
-	  tune(flute); // Upcasting
-	}
-</code>
-The output is "Wind::play".
+int main() {
+	Wind flute;
+	tune(flute); // Upcasting
+}
+```
+
+The output is "`Wind::play`".
 
 #### 2. Is it necessary to redefine a virtual function in derived class (派生类)? And is the keyword virtual necessary in redefining the virtual function in derived class?
 
@@ -47,48 +48,52 @@ The output is "Wind::play".
 #### 3. What is the meaning of keyword final? What problem will be caused without it? Please give an example showing a typical situation that keyword final is necessary.
 
 - the derived class can't overload the virtual function, and it can avoid a class to be inherited.
-- Problem will occur when user overload a function improperly. When we don't want a class or virtual function be inherited or overloaded, we should use final.
-- Example: class B inherits from class A, and class C inherits from B. function F() is a virtual function in A and is overridden in B, while it is not expected to be overridden in B's child classes. Then we should use final for function F() in B for better safety.
-<code>
+- Problem will occur when user overload a function improperly. When we don't want a class or virtual function be inherited or overloaded, we should use `final`.
+- Example: class B inherits from class A, and class C inherits from B. function F() is a virtual function in A and is overridden in B, while it is not expected to be overridden in B's child classes. Then we should use `final` for function F() in B for better safety.
 
-	class A {
-	public:
-	  virtual void F() { cout << "A::F()" << endl; }
-	};
+```cpp
+class A {
+public:
+	virtual void F() { cout << "A::F()" << endl; }
+};
 
-	class B : public A {
-	public:
-	  virtual void F() final { cout << "B::F()" << endl; }
-	};
+class B : public A {
+public:
+	virtual void F() final { cout << "B::F()" << endl; }
+};
 
-	class C : public B {
-	public:
-	  //void F() { cout << "C::F()" << endl; }
-	  //Cause compile error.
-	  //[Error] overriding final function 'virtual void B::F()'
-	};
-</code>
+class C : public B {
+public:
+	//void F() { cout << "C::F()" << endl; }
+	//Cause compile error.
+	//[Error] overriding final function 'virtual void B::F()'
+};
+```
 
 #### 4. What is the meaning of keyword override? What problem will be caused without it? Please give an example of a typical situation that keyword override is necessary.
 
 - Keyword overide asks the compiler to check whether the function is correctly overided.(which means hide the original function in the base class)
 - When we require polymorphism, override is necessary to tell others that we have overridden the virtual function in the base class.
+
+- When the definition of the base class function is changed or there is some mistake in the definition of the derived class so that there is no overriding, keyword override helps us to check.
 <code>
 
 	class Man {
 	public:
 	  virtual void speak() { cout << "I am a man." << endl; }
-	}
+	};
 
-	class Genius {
+	class Genius : public Man {
 	public:
-	  void speak() override { cout << "I am a genius." << endl; }
-	}
+	  void speak(int a = 0) override { cout << "I am a genius." << endl; } 
+	  //Compile error.
+	  //error: ‘void Genius::speak(int)’ marked ‘override’, but does not override
+	};
 
-	void foo(Man& m) {
-	  m.speak();
-	}
-</code>
+void foo(Man& m) {
+	m.speak();
+}
+```
 
 ##	Late binding (后期绑定)
 #### 5. Please explain the difference between early binding and late binding.
@@ -123,14 +128,14 @@ The output is "Wind::play".
 
 - Some classes serve as APIs and are not implemented (and hence should not be constructed directly). So it is good to declare these classes' member functions "pure" to make the compiler recognize that the class is abstract.
 - Here's an example:
-<code>
 
-	class FileHandle {
-	public:
-	  void set_name();
-	  virtual void get_data() = 0;	//pure virtual function
-	};
-</code>
+```cpp
+class FileHandle {
+public:
+	void set_name();
+	virtual void get_data() = 0;	//pure virtual function
+};
+```
 
 #### 11. What is an abstract class?
 
@@ -149,23 +154,23 @@ The output is "Wind::play".
 
 - Yes, it can.
 - Providing a function body for pure virtual function can reuse these code, which is good for programming.
-- The most common use of pure virtual function body is the pure virtual destructor. By declaring destructor as pure virtual, we can create an abstract class while define most of its behaviour. But at the same time, destructor must have a function body (C++ standard requires). This provide a way to create an abstract class at a relatively low cost.
+- The most common use of pure virtual function body is the pure virtual destructor. By declaring destructor as pure virtual, we can create an abstract class while define most of its behaviour. But at the same time, destructor must have a function body (C++ standard requires so, because when destructing a derived object, the compiler will automatically invoke the destructors of its base classes according to the order of inheritance, if destructor of base class is declared pure virtual and not defined, then it can't be invoked successfully and will cause compiling error). This provide a way to create an abstract class at a relatively low cost.
 
 #### 14. Please give an example where a derived class of an abstract class is still an abstract class.
-<code>
 
-	//Example:
-	class FileHandle {
-	public:
-	   void set_name();
-	   virtual void get_data() =0;
-	   virtual void process() = 0;
-	};
+```cpp
+//Example:
+class FileHandle {
+public:
+	void set_name();
+	virtual void get_data() =0;
+	virtual void process() = 0;
+};
 
-	class RemoteFileHandle: public FileHandle {
-	public:
-	   void get_data();
-	   //The derived class didn't overide all the pure virtual functions in the base class.
-	   //Thus it is still an abstract class.
-	}
-</code>
+class RemoteFileHandle: public FileHandle {
+public:
+	void get_data();
+	//The derived class didn't overide all the pure virtual functions in the base class.
+	//Thus it is still an abstract class.
+}
+```
