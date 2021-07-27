@@ -18,7 +18,6 @@ It gives dozens of demo codes in every single package and detailed tutorials, ma
 Cocos2d-x是国内普及度较高的一款开源的**跨平台**移动2D游戏框架，其主要侧重于原生移动平台，适配iOS、Android、Windows、Mac等系统。其官网是这样描述这个框架的：
 
 > 引擎提供了图形渲染、GUI、音频、网络、物理、用户输入等丰富的功能，被广泛应用于游戏开发及交互式应用的构建。
->
 
 其核心部分用C++编写，支持用C++、Lua进行开发。
 
@@ -74,4 +73,13 @@ It provides support for procedural animation of physical bodies to make objects 
 In addition to many internal projects at Google, GoogleTest is also used by [Chromium projects](http://www.chromium.org/), [LLVM](http://llvm.org/), [Protocol Buffers](https://github.com/google/protobuf), [OpenCV](http://opencv.org/).
 
 The source code of **googletest** is available on [GitHub](https://github.com/google/googletest). As a beginner, it is advised to firstly refer to [Googletest Primer](https://google.github.io/googletest/primer.html) for basic concepts and usages, then [GoogleTest User’s Guide](https://google.github.io/googletest/) for a conprehensive guideline.
+
+## CppJieba
+
+结巴中文分词的Cpp版本，支持多种分词模式，将句子拆分成词以进行文本分析等应用。
+https://github.com/yanyiwu/cppjieba
+
+
+## Bitcoin 
+Bitcoin is the largest cryptocurrency in the world. It is a decentralized currency and relies on peer-to-peer communications, meaning it has no authority and, being open-source, anyone can make edits. The name of the software bitcoin is built on is called "Bitcoin Core", and can be found here: https://github.com/bitcoin/bitcoin
 
