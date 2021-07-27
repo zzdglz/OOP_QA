@@ -1,5 +1,8 @@
 # This page lists the useful programming tools for C++ programming, preferably with description of the tool or with an example illustrating how to use the tool. 
 
+##  Gurobi
+[Gurobi](https://www.gurobi.com/) is possibly the fastest solver in the world. It's extremely powerful in mathematical optimization and can help solve various kinds of problems including Linear Programming(LP), Mixed Integer Proramming(MIP), Quadratic Programming(QP) and so on. Gurobi provides support for all platforms and interfaces for not only C++, but also other programming languages like python, Java and C#. It's a commercial software, but you can use it free of charge under academic license. For examples, see [here](https://www.gurobi.com/resource/functional-code-examples/). 
+
 ## GDB
 
  GDB是一个由GNU开源组织发布的、UNIX/LINUX操作系统下的、基于命令行的、功能强大的程序调试工具。对于linux环境下的编程，GDB是很好用的调试工具，在编程环境局限于命令行的条件下，GDB是必不可少的。GDB不仅有在命令行中使用的版本，也有带图形化界面的版本。
