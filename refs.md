@@ -37,6 +37,10 @@
 
 #### Virtual Judge is not a real online judge. It can grab problems from other regular online judges and simulate submissions to other online judges. It aims to enable holding contests when you don't have the test data.
 
+## https://devdocs.io/cpp/
+#### DevDocs is here to save you from tedious jobs of browsing API documentation. DevDocs aims to make reading and searching reference documentation fast, easy and enjoyable.
+#### DevDocs combines multiple developer documentations in a clean and organized web UI with instant search, offline support, mobile version, dark theme, keyboard shortcuts, and more. Of course, C++ is supported.
+
 ## [The Missing Semester of Your CS Education](https://missing-semester-cn.github.io/)
 #### This link contains some lectures about useful tools from MIT. Classes teach you all about advanced topics within CS, from operating systems to machine learning, but there’s one critical subject that’s rarely covered, and is instead left to students to figure out on their own: proficiency with their tools. We’ll teach you how to master the command-line, use a powerful text editor, use fancy features of version control systems, and much more!
 
