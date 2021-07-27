@@ -177,3 +177,4 @@ The output is "Wind::play".
 #### 16. Why destructors have to be vitual for Base classes?
 
 - The compiler may mot call the base class destructor if it is not declared virtual. This might cause memory leak.
+
