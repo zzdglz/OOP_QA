@@ -166,6 +166,74 @@ typename const_pointer = const T*; // use channel_traits<T>::const_pointer to ac
 
 auto在这里替代的就是int
 
+### 使用 auto 可以避开 private class name 的限制
+
+ ```cpp
+ class A{
+   private:
+     class B{
+       private:
+         int a;
+         char b;
+       public:
+         B(int _a,char _b) : a(_a) , b(_b) {}
+     };
+   public:
+     B getB(int _a = 0, char _b = '0'){
+         return B{_a, _b};
+     }
+ };
+ 
+ int main(){
+     A A_var;
+     // A::B B_var = A_var.getB(); // compile error!
+     auto B_var = A_var.getB();
+     return 0;
+ }
+ ```
+
+### Argument Packs（参数包）
+
+Have you wondered why printf can accept any number of parameters?
+
+Actually, it isn't a quite complex grammar, and you can implement a `printf` by yourself in only 10 lines.
+
+This grammar is called "argument packs", supported since C++11.
+
+Let's see a example:
+
+```cpp
+#include <iostream>
+ 
+void tprintf(const char* format) // base function
+{
+    std::cout << format;
+}
+ 
+template<typename T, typename... Targs>
+void tprintf(const char* format, T value, Targs... Fargs) // recursive variadic function
+{
+    for ( ; *format != '\0'; format++ ) {
+        if ( *format == '%' ) {
+           std::cout << value;
+           tprintf(format+1, Fargs...); // recursive call
+           return;
+        }
+        std::cout << *format;
+    }
+}
+ 
+int main()
+{
+    tprintf("% world% %\n","Hello",'!',123);
+    return 0;
+}
+```
+
+In short, we use `...xxx` to give a parameter pack in arguments, and we use `args...` to use it in somewhere.
+
+The most comfortable way to "open" a parameter pack is to use a recursive function like above.
+
 ## "nullptr" in C++11
 
 为了区分NULL和0，C++11引入了空指针nullptr。nullptr的类型为std::nullptr_t而非指针或int，可以保证nullptr表示空指针而不是0。
