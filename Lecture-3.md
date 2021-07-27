@@ -225,43 +225,36 @@ class A
 - For reference varibles.
 - For class varibles that don't have a default constructor. See below:
 
-```cpp
-struct Base
-{
-	int num;
-	Base(int _num) : num(_num) {}
-};
+  ```cpp
+	struct Base
+	{
+		int num;
+		Base(int _num) : num(_num) {}
+	};
 
-class A
-{
-	int num;
-	Base b;
-	A(int k) : num(k), b(k) {}
-};
-```
+	class A
+	{
+		int num;
+		Base b;
+		A(int k) : num(k), b(k) {}
+	};
+  ```
 
-#### 15. When should we use the keyword `explicit` and Why?
-
-- To forbid the **implicit type conversion**, we will use keyword `explicit`.
-
-  If the bug of **implicit type conversion** happens, it is difficult to discover. So we should use it when we complete the constructor.
-
-  The conversion will happen when the constructor has only one parameter or has n parameters with n-1 default values.
-
-- an example:
+##	Explicit
+#### 15. Can keyword *explicit* forbid implicit type conversion for multi-parameter constuctor?
 
   ```cpp
-  #include <cstdio>
-  
-  class Demo{
-  	public:
-  		Demo(){}
-  		Demo(int a,int b = 10,double c = 1.6): value1(a), value2(b){};
-  	private:
-  		int value1, value2;
-  };
-  
-  int main(){
-  	Demo obj = 1.2;//works if no explicit keyword, error if explicit is used
-  }
+	class Tree
+	{
+		int height_{0}, weight_{0};
+	public:
+		explicit Tree(int h, int w) : height_{h}, weight_{w} {}
+	};
+	void foo(Tree t) {}
+	int main() {
+		foo({1, 2});
+	}
   ```
+	
+- In C++03, it compiles successfully, without forbidding implicit type conversion for multi-parameter constuctor.
+- In C++11 and later version, it cannot compile, showing "error: converting to 'Tree' from initializer list would use explicit constructor 'Tree::Tree(int, int)', which implies keyword *explicit* works.

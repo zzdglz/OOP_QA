@@ -110,6 +110,9 @@ Vim is a text editor developed from VI. Code completion, compilation, error jump
 ## GNU Make
 Make is an essential tool for writing a large program. It can find makefile files and efficiently compile linked source files.
 
+## GNU gprof
+GNU gprof allows us to learn where our program spent its time and which functions called which other functions while it was executing. This information can show us which pieces of your program are slower than expected, and might be candidates for rewriting to make our program execute faster. It can also tell us which functions are being called more or less often than expected. This may help us spot bugs that had otherwise been unnoticed.
+
 ## Jupyter lab
 Jupyterlab is the next generation of web-based interface developed by jupyter team for jupyter project. Compared with jupyter notebook, it is more integrated, flexible and extensible. It supports more than 100 languages [2], supports the integration of multiple documents, and realizes the new workflow of interactive computing.
 
