@@ -165,3 +165,8 @@ typename const_pointer = const T*; // use channel_traits<T>::const_pointer to ac
 ```
 
 auto在这里替代的就是int
+
+## "nullptr" in C++11
+
+为了区分NULL和0，C++11引入了空指针nullptr。nullptr的类型为std::nullptr_t而非指针或int，可以保证nullptr表示空指针而不是0。
+在使用空指针时，应该尽量使用nullptr而不是NULL。
