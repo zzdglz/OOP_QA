@@ -89,6 +89,19 @@ For example, you can use a int as a bool[32].
 + And for those function less than 10 lines, declare them as inline can improve the efficiency. 
 + For those large objects, it is costly to copy. So it better to use reference.
 
+## Subset Enumeration
+
+在二进制压位枚举子集时，一种非常便捷的写法：
+
+```c++
+for (int mask = 0; mask < tot; ++mask) {
+    for (int submask = mask; submask; submask = (submask - 1) & mask) {
+        ...
+    }
+}
+```
+一层循环即可枚举 submask 的所有子集（空集除外），进而 mask ^ submask 可以得到 mask 的所有真子集。
+
 ## Duff's device
 在计算机科学领域，达夫设备（英文：Duff's device）是串行复制（serial copy）的一种优化实现，通过汇编语言编程时一常用方法，实现展开循环，进而提高执行效率。
 原理上，在编程时，循环展开注重于利用批量处理，减少总处理分支数。而在串行复制数据时，当总循环次数无法被展开后循环的增量整除时，一般就用直接跳转到展开后循环体中部的方式，完成剩余数据的复制流程。
@@ -362,4 +375,3 @@ int main()
 ```
 这个程序的结果为：11ms，20ms
 由于行遍历的连续性，按行遍历可以快速找到下一个内存的指针，从而效率更高。
-
