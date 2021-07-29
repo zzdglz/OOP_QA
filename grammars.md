@@ -1,5 +1,16 @@
 # This page lists the useful C++ grammars, especially for C++11, C++14, C++17 and C++20.
 
+## Auto in C++17
+
+The deduction range of auto is expanded in C++17. You can use it as:
+
+```c++
+std::tuple<int,double,std::string> f() {
+    return std::make_tuple(1,4.3,"abc");
+}
+auto [x,y,z] = f(); // x,y,z are individually deducted as int,double,std::string
+```
+
 ## Zero Initialization
 
 For fundamental types such as int, double, or pointer types, there is no default constructor that initializes them with a useful default value. Instead, any noninitialized local variable has an undefined value:
@@ -566,4 +577,3 @@ The most comfortable way to "open" a parameter pack is to use a recursive functi
 
 为了区分NULL和0，C++11引入了空指针nullptr。nullptr的类型为std::nullptr_t而非指针或int，可以保证nullptr表示空指针而不是0。
 在使用空指针时，应该尽量使用nullptr而不是NULL。
-
