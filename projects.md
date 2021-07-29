@@ -1,4 +1,4 @@
-# This page lists the useful opensource projects in C++, along with a description of the project's purpose.
+# This page lists the useful opensource projects in C++, along with a description of the project's purpose. 
 
 ## [https://github.com/vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
 
@@ -155,4 +155,3 @@ https://github.com/yanyiwu/cppjieba
 
 ## Bitcoin 
 Bitcoin is the largest cryptocurrency in the world. It is a decentralized currency and relies on peer-to-peer communications, meaning it has no authority and, being open-source, anyone can make edits. The name of the software bitcoin is built on is called "Bitcoin Core", and can be found here: https://github.com/bitcoin/bitcoin
-
