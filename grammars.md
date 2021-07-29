@@ -1,5 +1,37 @@
 # This page lists the useful C++ grammars, especially for C++11, C++14, C++17 and C++20.
 
+## If Statement with Initializer (since C++17)
+
+Add an initializer to the *if* statement. It allows you to declare arrays and arbitrary many variables in the *if* statement itself, and ensures that they don't leak out of the *if* scope.
+
+Grammar: 
+
+```c++
+if (init-statement condition) {
+    // Do something when condition is true
+} else {
+    // Do something when condition is false
+}
+```
+
+Example:
+
+```c++
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+int main() {
+  srand(time(NULL));
+  if (int number = rand(); number % 2 == 0) {
+    std::cout << number << " is an even number" << std::endl;
+  } else {
+    std::cout << number << " is an odd number" << std::endl;
+  }
+  return 0;
+}
+```
+
 ## tuple
 
 ​	C++11 introduced tuple, an extension of pair, to simply package several values into a structure.
@@ -604,3 +636,4 @@ The most comfortable way to "open" a parameter pack is to use a recursive functi
 
 为了区分NULL和0，C++11引入了空指针nullptr。nullptr的类型为std::nullptr_t而非指针或int，可以保证nullptr表示空指针而不是0。
 在使用空指针时，应该尽量使用nullptr而不是NULL。
+
