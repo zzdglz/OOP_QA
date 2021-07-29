@@ -66,3 +66,8 @@
 ## http://c.biancheng.net/
 #### This is a website where basic knowledge of C and C++ is showed in detail, where beginners may get a better grasp in some details.
 
+## http://c.biancheng.net/stl/
+#### This link can help you be familiar with the STL library quickly.
+
+## https://www.boost.org/
+#### The powerful library named Boost.
