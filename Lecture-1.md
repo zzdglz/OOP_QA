@@ -26,21 +26,20 @@ int main(int argc, char** argv)
 #### 2. Please list（列举）the potential advantages and disadvantages of obtaining arguments by file reading vs. by command-line argument.
 
 - Advantage of file reading:
-  1) File reading can be used in programs with a GUI.
-  2) Files can be copied and modified easily.
-  3) Files can provide a larger size of arguments.
-  4) When reading large amounts of arguments(>= 10000), file reading are faster than command-line argument.
-  5) Files can be saved, thus provide an easier way to analyse data. 
+  - File reading can be used in programs with a GUI.
+  - Files can be copied and modified easily.
+  - Files can provide a larger size of arguments.
+  - When reading large amounts of arguments(>= 10000), file reading is more convenient than command-line argument.
+  - Files can be saved, thus provide an easier way to analyse data. 
 - Disadvantage of file reading:
-  1) File IO is more complex and slower than command arguments with exceptions to handle.
-  2) Conventions(e.g. “`a.out`”) are required without command argument.
-  3) Not easy to know argument amounts.
+  - File IO is more complex and slower than command arguments with exceptions to handle.
+  - Not easy to know argument amounts.
 - Advantage of command-line argument:
   - Makes the program easier to be called in command-line.
   - Makes the program callable in batch scripts for tasks like parameter sweeping (参数扫描, 以不同的参数运行同一个程序).
 - Diadvantage of command-line argument:
   - Unable to handle large number of arguments.
-  - Takes efforts to parsing data from `argc` and `argv`.
+  - Takes efforts to parse data from `argc` and `argv`.
 
 #### 3. How do you input a command-line argument with spaces in it? For example, how can we input ‘Hello World’ as a single argument?
 
@@ -62,7 +61,7 @@ int main(int argc, char** argv)
 - Advantages: programs can be easily transplanted (移植) to other platforms (平台), because the execution of the program only relies on the interpreters.
 - Disadvantage: run slower than compiled program. They also use more memory.
 - Compilers compile the program into machine code, which is saved as a binary file (二进制文件). Then the machine code runs directly on the operating system (操作系统). This makes running compilers faster than running interpreters. The most common examples of compiled languages are C and C++.
-- Advantages: faster than interpreters. By compiling codes into machine language, compilers can help with code hiding.
+- Advantages: faster than interpreters. The compiler can also perform code optimization during the compiling process.
 - Disadvantage: For different platforms, the source code needs to be recompiled (重新编译).
 
 #### 6.	The g++ compiler is universally used in both commercial and scientific research projects. So you are supposed to know how to use g++ to compile C++ source files into the binary file. State the basic usage (基本用法) on how to compile a source file. List useful compiling options (编译选项) as many as possible, and explain why and when do we need these options.
@@ -124,7 +123,7 @@ Options starting with `-g`, `-f`, `-m`, `-O`, `-W`, or `--param` are automatical
 #### 7.	What is a C/C++ library (库)? On Linux, how do we build a library using the g++ compiler? How do we use an existing library with the g++ compiler? At what stage is a library loaded (载入)? Is it always during the linking stage (链接阶段)? Please explain the difference between static (静态) and dynamic (动态) libraries.
 
 * C/C++ libraries are modules of already-compiled objective code. By libraries, we could reuse functions/classes provided by others.
-* A library can be used by including the related hearder files and linking the library (`*.a` or `*.lib`). 
+* A library can be used by including the related header files and linking the library (`*.a` or `*.lib`). 
 * There are two types of libraries, i.e., *static* library and *dynamic* library.
 * To build a static library with `g++`, run the following commands:
   ```bash
@@ -155,7 +154,7 @@ g++ main.o sum.o product.o -o test
 #### 9.	Please explain why multiple files are necessary for a project. What are the advantages of multi-file project compared with single-file project?
 
 - A large project often needs a lot of developers. It is error-prone for all the developers to modify a single file simultaneously.
-- For a large project, the compilation process usaully takes a long time. Using multi-file projects, we can only compile the modified file (using `makefile` to take care of the compilation process). Whereas in a single-file project, even a slight change in the file will cause the whole program to be re-compiled, which is very time-consuming.
+- For a large project, the compilation process usaully takes a long time. Using multi-file projects, we can compile only the modified file (using `makefile` to take care of the compilation process), whereas in a single-file project, even a slight change in the file will cause the whole program to be re-compiled, which is very time-consuming.
 
 #### 10. What is separate compilation (分段编译)? Why is it better than direct compilation, i.e., to generate the executable directly from the source files? Please state the whole process of separate compilation.
 
