@@ -10,7 +10,7 @@
 	{
 	  public:
 		std::string type_;  //member variables
-		computer(const std::string& type) : type_(type) {}    //member functions
+		Computer(const std::string& type) : type_(type) {}    //member functions
 	};
 
 	int main()
@@ -33,6 +33,11 @@
 	...
 	#endif
 	```
+    or we can directly use
+    ```cpp
+    #pragma once
+    ...
+    ```
 
 #### 3.	Please try to explain why the designers want to organize data and functions into classes? What are the advantages and disadvantages?
 
@@ -54,7 +59,7 @@
 ```cpp
 class Computer {
 public:
-	computer(const std::string& type) : type_(type) {}
+	Computer(const std::string& type) : type_(type) {}
 	std::string get_type() const { return type_; };
 private:
 	std::string type_;
@@ -82,8 +87,8 @@ private:
 
 #### 8.	Please explain the differences between keyword struct and class.
 
-- Members of a struct are public by default; members of a class are private by default.
-- class is an new attribute in C++. In C, there is no "`class`". In contrast, there is "`struct`" in C.
+- Members of a struct are public by default; members of a class are private by default. When inheriting, struct defaults to public inheritance and class defaults to private inheritance. 
+- Class is a new feature in C++. It is recommended to use struct for C-style "plain-old-data" structures (e.g. without any methods), but they do achieve the same functions.
 
 ##	Friend
 #### 9.	What should you do to permit a non-member function to access private or protected members? What about permitting another class to access them? Please give an example.
