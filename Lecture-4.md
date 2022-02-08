@@ -2,7 +2,7 @@
 
 ## Function Overloading(函数重载)
 
-#### 1.	It is necessary to overloaded functions? Please explain why it necessary and specify the situation that need to overloaded functions. What kinds of functions can be overloaded?
+#### 1.	It is necessary to overload functions? Please explain why it is necessary and specify the situation that need to overload functions. What kinds of functions can be overloaded?
 
 - 有必要。
 - 在要实现功能相似参数不同的函数时，程序员就不需要选择不同的函数名，这也增强程序的可读性。
@@ -10,7 +10,7 @@
 
 #### 2. How the compilers distinguish two functions with the same name?  
 
-- They should either be in different namespaces, or differ in the parameter types so that the compilers give different names to them according to different parameters while compilin.
+- They should either be in different namespaces, or differ in the parameter types so that the compilers give different names to them according to different parameters while compiling.
 
 ##	Default Argument
 #### 3. Where to put the default arguments （默认参数）on? declarations or definitions?
@@ -20,7 +20,7 @@
 #### 4. Which arguments of a function can be defaulted with default values? Explain the reason.
 
 - The parameters in the last of parameter list.
-- It will avoid confusion.
+- To avoid confusion.
 
 #### 5. Try to add an argument to an existing function with modifying the code as less as possible
 
@@ -40,7 +40,7 @@ int add(int x, int y, int z = 0)
 ```
 
 
-#### 6. Is the code below work fine?
+#### 6. Does the following code work fine?
 
 ```cpp
 struct O
@@ -56,7 +56,7 @@ int main ()
 ```
 
 No.  
-When `O(6)` is called, there is two possible situations:    
+When `O(6)` is called, there are two options:    
 1. `O(int)` is called and the parameter is `6`.  
 2. `O(int,int)` is called, the first parameter is `6` and the second is the default value `0`.
 
@@ -74,10 +74,8 @@ Therefore, these codes have two different meanings, so it cannot pass the compil
 #### 8. Explain why we should avoid using macros to define numbers? Please give the alternative grammars to replace using macros.
 
 - Reasons why we should avoid using macros to define numbers:
-  - Macros cannot be decided types.
-  - Macros cannot be controlled scopes.
-  - Macros cannot be controlled accessibilities.
-- We can use `static const` or `enum` to avoid using macros.
+  - The types, scopes and accessibilities of macros cannot be controlled.
+- We can use `static const` or `enum` instead:
 	```cpp
 	//Example:
 	class abcd
@@ -108,7 +106,7 @@ int main ()
 }
 ```
 
-- c++11 defines a new concept, which makes enumerations both strongly typed and strongly scoped. So `altitude::high` won’t be transferred to “`'h'`”, and thus will cause compile error.  
+- c++11 defines a new concept, which makes enumerations both strongly typed and strongly scoped. So `altitude::high` won’t be transferred to “`'h'`”, and thus will cause compile error. A correct statement is like `altitude h = altitude::high`.
 - Output: 
   ```plain
   2 0 2
