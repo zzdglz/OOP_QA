@@ -33,7 +33,7 @@ class Base {
 public:
     void f();
 };
-class Derived {
+class Derived: public Base {
 public:
     void f() { Base::f(); }
     void f() const {…}
@@ -43,7 +43,7 @@ class Base {
 public:
     void f();
 };
-class Derived {
+class Derived: public Base {
 public:
     void f() const { … }
     using Base::f;
@@ -137,7 +137,7 @@ a.water_amount = 90; a.color = red; a.type = hongfushi;
   - Private: almost the same with composition.
 
 ##	Upcasting (向上转型)
-#### 7. What is the meaning of upcasting? It is true that upcasting works fine in protected inheritance (保护继承) and private inheritance (私有继承)? Please try to explain why it works or not.
+#### 7. What is the meaning of upcasting? Is it true that upcasting works fine in protected inheritance (保护继承) and private inheritance (私有继承)? Please try to explain why it works or not.
 
 - Upcasting means converting a reference/pointer of the derived class object into a reference/pointer of the base class object. 
 - It’s only effective in public inheritance. Because only public inheritance follows is-a relationship.

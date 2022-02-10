@@ -50,7 +50,7 @@ private:
     BST a;
 public:
     void push(Object o) { a.insert(o); }
-    void pop() { a.erase(o); }
+    void pop() { a.erase(a.getMin()); }
     Object top() { return a.getMin(); }
 };
 ```
@@ -68,14 +68,14 @@ public:
 Noodles *orderNoodles(string type) {
 	Noodles *noodles = 0;
 	// changes
-if (type == "cheese") {
-	noodles = new CheeseNoodles();
-} else if (type == "veggie") {
-	noodles = new VeggieNoodles();
-} //……
-//no changes
-//cut, box, and sell
-noodles->sellNoodles(); 
+    if (type == "cheese") {
+	    noodles = new CheeseNoodles();
+    } else if (type == "veggie") {
+	    noodles = new VeggieNoodles();
+    } //……
+    //no changes
+    //cut, box, and sell
+    noodles->sellNoodles(); 
 	
 	return noodles;
 }

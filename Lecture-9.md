@@ -110,7 +110,7 @@ The output is "Wind::play".
 
 - VTABLE: a table for each class to store the addresses of virtual functions.
 - VPTR: each class with virtual functions and each object of the class contain a pointer pointing to VTABLE.
-- VTABLE is built in the memory grobal data area, and VPTR is stored in each object.
+- VTABLE is usually stored in the memory like global variables, and VPTRs are stored in each object.
 
 #### 9. How do VTABLE and VPTR enable polymorphism?
 
@@ -174,7 +174,7 @@ The output is "Wind::play".
 
 - dynamic_cast needs runtime type checking, and the information needed is stored in the virtual table. Compilers create virtual pointers and virtual tables only for those classes that have virtual functions.
 
-#### 16. Why destructors have to be vitual for Base classes?
+#### 16. Why destructors have to be virtual for Base classes?
 
 - The compiler may mot call the base class destructor if it is not declared virtual. This might cause memory leak.
 

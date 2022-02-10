@@ -54,6 +54,7 @@ public:
   a)	when functions are 10 lines or smaller.  
   b)	without loops and switch statements.  
   c)	note: recursive and virtual functions are normally not inlined.
+- In fact, the compiler will sometimes determine by its own whether a function is inlined or not even if you explicitly inline it.
 
 #### 8. Find the relation or similarity between inline and the C++ class grammar?
 
